@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">移动校园</string>
+    
+    <!--动画界面  -->
+    <string name="hand_school">掌上师大</string>
+
+    <!--登陆界面  -->
+    <string name="login_name_prompt">一卡通卡号</string>
+    <string name="password">密码</string>
+    <string name="login_password_prompt">身份证后6位</string>
+    <string name="login">登录</string>
+    <string name="login_remember_password">记住密码(自动登录)？</string>
+    <string name="user_login_prompt">请先登录</string>
+
+    <!-- 模块标题 -->
+    <string name="info_center_title">信息中心</string>
+    <string name="library_title">掌上图书馆</string>
+    <string name="study_resource_title">学习资源</string>
+    <string name="card_title">我的一卡通</string>
+
+    <!-- 新闻信息详情菜单 -->
+    <string name="DetailsGood">太棒了</string>
+    <string name="DetailsBed">一般般</string>
+    <string name="DetailsCollect">收藏</string>
+    <string name="DetailsShare">分享</string>
+    <string name="DetailsDiscuss">评论</string>
+
+     <!-- 用户反馈 -->
+    <string name="feedback_submit">提交</string>
+    <string name="feedback_input_content">请输入您的反馈意见</string>
+    <string name="feedback_back">返回</string>
+
+
+    <!-- 学习资源 -->
+    <string name="menu_settings">Settings</string>
+    <string name="homeinfo">系统信息</string>
+    <string name="personinfo">个人信息</string>
+    <string name="personcourse">个人课表</string>
+    <string name="classcourse">班级课表</string>
+    <string name="score">成绩查询</string>
+    <string name="freeroom">空闲教室</string>
+    <string name="selectcourse">选修课程</string>
+    <string name="examschedule">考试安排</string>
+    <string name="tcourse">教师课表</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_preview">PreviewActivity</string>
+
+    <!-- 一卡通模块 -->
+    <string name="info_center_mynews">我的信箱</string>
+    <string name="card_balance_remain"> 一卡通余额</string>
+    <string name="ok">确认</string>
+    <string name="card_transfer">一卡通转账</string>
+    <string name="card_loss_registration">挂失一卡通</string>
+    <string name="card_loss_unlock">解锁一卡通</string>
+    <string name="dollar">元</string>
+    <string name="card_transfer_amount_prompt">选择转账金额</string>
+    <string name="card_transfer_personid_prompt">请输入身份证号</string>
+    <string name="card_transfer_ok">确认转账</string>
+    <string name="cancel">取消</string>
+    <string name="lockunlock">一键挂失|解锁</string>
+    <string name="leftmoney">***元</string>
+
+    <!-- 学习资源 -->
+    <string name="study_resource">学习资源</string>
+    <string name="username">用户名</string>
+    <string name="coursetable">课程表</string>
+    <string name="title_activity_card_transfer">CardTransferActivity</string>
+    <string name="banlance_left">一卡通余额</string>
+    <string name="newclass">分类信息</string>
+    <string name="presonalcourses">个人课表</string>
+    <string name="scoreconsult">成绩查询</string>
+    <string name="choosecource">选修课程</string>
+    <string name="localnews">本地信息</string>
+    <string name="schoolnews">学校新闻</string>
+    <string name="speeches">公告讲座</string>
+    <string name="jobnews">就业信息</string>
+    <string name="jwnotice">教务公告</string>
+    <string name="back">返回</string>
+    <string name="chooseamount">请选择转账金额(1000以内)</string>
+    <string name="textpid">请输入身份证号</string>
+    <string name="pidnumber">请输入身份证号</string>
+    
+    <!-- 设置 -->
+    <string name="about">关于</string>
+    <string name="version">版本</string>
+    <string name="newsprefer">新闻偏好</string>
+    <string name="feedback">建议反馈</string>
+    <string name="account">河北师范大学移动校园</string>
+    <string name="setting">设置</string>
+    <string name="usernamed">用户名：</string>
+    
+    <!-- 天气 -->
+    <string name="btn_apply">查询</string>
+    <string name="text_hint">城市中文名</string>
+    <string name="province">省份</string>
+    <string name="city">城市</string>
+    <string name="lossandfound">失物招领</string>
+    <string name="am">上午</string>
+    <string name="am_a">上</string>
+    <string name="localnew_prefer">本地信息偏好</string>
+    <string name="tv_info_prefer">勾选在订阅新闻</string>
+    <string name="title_activity_about">About</string>
+
+    
+	<!--  关于-->
+	<string name="about_us">关于我们</string>
+    <string name="about_title">名称:movingcampus\n版本:1\n</string>
+    <string name="about_intro">[应用简介]\movingcampus。将高质量的移动开发资讯、学习教程、代码库等信息提供给移动开发者，以方便大家能更好更快的学习移动开发的相关知识，尽快成长。</string>
+    <string name="about_story">[应用故事]\movingcampus‘让简单’，如何让移动开发者更简单是我们不断思考和探索的，我们认为有组织、有体系的内容对开发者的学习和成长都是最有价值的，于是大家都希望有这么一款让我们零碎时间里学习到最有价值的知识，于是eoe客户端诞生了!</string>
+    <string name="about_thanks">[致谢]\neoe客户端里边的内容资源都是由，并由感谢其中包括的所有人，感谢你们提供的内容，有了你们会更精彩！</string>
+    <string name="about_opensource">[开源]\nmovingcampus， 详情情况请关注相关信息, 感谢每一个参与的人和每一行代码, 尤其感谢.</string>
+
+    
+    <!-- 上拉下拉 -->
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+    <string name="press_again_exit">再按一次退出</string>
+
+    <!-- 错误提示 -->
+    <string name="httpError">连接失败</string>
+    <string name="httpisNull">没有网络</string>
+    <string name="user_center_error">请先登录再进入用户中心</string>
+    <string name="user_username">输入用户名</string>
+    <string name="user_pwd">输入密码</string>
+    <string name="user_login_error">用户名或者密码错误!</string>
+    <string name="user_loginKey_error">错误密钥!</string>
+    <string name="user_loginInfo_error">获取信息失败，\n请尝试重新登录。</string>
+    <string name="free_room">空闲教室查询</string>
+    <string name="pause">暂停</string>
+    <string name="todo">TODO</string>
+    <string name="title_activity_custom">todo</string>
+
+
+    
+</resources>

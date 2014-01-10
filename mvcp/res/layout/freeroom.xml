@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/jw_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/shake_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="shake_activity_back"
+            android:text="@string/back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/free_room"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="5.0dip" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@id/linearLayout01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5.0dip"
+            android:layout_marginRight="5.0dip"
+            android:orientation="vertical" >
+
+            <include layout="@layout/student_idname" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="5.0dip" />
+
+    <View
+        android:id="@id/home_view1"
+        android:layout_width="fill_parent"
+        android:layout_height="2.0px"
+        android:background="#ff9966cc" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="5.0dip" />
+
+    <RelativeLayout
+        android:id="@id/home_layout0001"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@id/home_layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="5.0dip"
+                    android:layout_height="10.0dip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/tv_school"
+                android:layout_width="wrap_content"
+                android:layout_height="26.0dip"
+                android:gravity="center"
+                android:text="校区："
+                android:textColor="#ff9966cc"
+                android:textSize="13.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:id="@id/parent_school"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@+id/spinner_school"
+                    android:layout_width="103dp"
+                    android:layout_height="35.0dip"
+                    android:background="@drawable/bg_spinner"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="2.0dip"
+                android:layout_height="10.0dip" />
+
+            <TextView
+                android:id="@id/tv_building"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:gravity="center"
+                android:text="楼号："
+                android:textColor="#ff9966cc"
+                android:textSize="13.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:id="@id/parent_building"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@id/spinner_building"
+                    android:layout_width="112dp"
+                    android:layout_height="35.0dip"
+                    android:background="@drawable/bg_spinner"
+                    android:gravity="center" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/home_layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="10.0dip"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@id/home_layout0002"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@id/chome_layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="5.0dip"
+                    android:layout_height="10.0dip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/tv_weeks"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:gravity="center"
+                android:text="周次："
+                android:textColor="#ff9966cc"
+                android:textSize="13.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:id="@id/parent_weeks"
+                android:layout_width="80.0dip"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@id/spinner_weeks"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35.0dip"
+                    android:background="@drawable/bg_spinner"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="2.0dip"
+                android:layout_height="10.0dip" />
+
+            <TextView
+                android:id="@id/tv_weekday"
+                android:layout_width="wrap_content"
+                android:layout_height="35.0dip"
+                android:gravity="center"
+                android:text="星期："
+                android:textColor="#ff9966cc"
+                android:textSize="13.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:id="@id/parent_weekday"
+                android:layout_width="145.0dip"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@id/spinner_weekday"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35.0dip"
+                    android:background="@drawable/bg_spinner"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="2.0dip"
+                android:layout_height="10.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="5.0dip" />
+
+    <RelativeLayout
+        android:id="@id/home_layout0003"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@id/chome_layout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="5.0dip"
+                    android:layout_height="10.0dip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@id/tv_weekUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="30.0dip"
+                android:gravity="center"
+                android:text="节次："
+                android:textColor="#ff9966cc"
+                android:textSize="13.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:id="@id/parent_Unit"
+                android:layout_width="80.0dip"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <Spinner
+                    android:id="@id/spinner_unit"
+                    android:layout_width="fill_parent"
+                    android:layout_height="35.0dip"
+                    android:background="@drawable/bg_spinner"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="42.0dip"
+                android:layout_height="20.0dip" />
+
+            <Button
+                android:id="@id/btn_rquery"
+                android:layout_width="90.0dip"
+                android:layout_height="34.0dip"
+                android:background="@drawable/btn_roomok"
+                android:text="查询"
+                android:textColor="#ff330000"
+                android:textSize="14.0sp"
+                android:typeface="sans" />
+
+            <LinearLayout
+                android:layout_width="10.0dip"
+                android:layout_height="20.0dip" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@id/home_layout31"
+        android:layout_width="wrap_content"
+        android:layout_height="10.0dip"
+        android:orientation="vertical" />
+
+    <View
+        android:id="@id/home_view"
+        android:layout_width="fill_parent"
+        android:layout_height="2.0px"
+        android:background="#ff9966cc" />
+
+    <LinearLayout
+        android:id="@id/home_layout3"
+        android:layout_width="wrap_content"
+        android:layout_height="10.0dip"
+        android:orientation="vertical" />
+
+    <RelativeLayout
+        android:id="@id/home_layout0004"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@id/layout_roomList1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="5.0dip"
+            android:gravity="center" >
+
+            <GridView
+                android:id="@id/gv_freedroom"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#fffcfbf9"
+                android:horizontalSpacing="3.0px"
+                android:numColumns="4"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="3.0px" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

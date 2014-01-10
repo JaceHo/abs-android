@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffe0f0e9" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="40.0dip" >
+
+        <TextView
+            android:id="@id/item_text"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/setclick"
+            android:paddingLeft="5.0dip"
+            android:textColor="#ff9966cc"
+            android:textSize="14.0sp"
+            android:text="测试" />
+    </RelativeLayout>
+
+</LinearLayout>

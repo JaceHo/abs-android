@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center" android:layout_width="45.0dip" android:layout_height="45.0dip">
+        <ImageView android:id="@id/img_pic" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+    </LinearLayout>
+    <LinearLayout android:gravity="left" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="45.0dip">
+        <LinearLayout android:orientation="horizontal" android:id="@id/linearLayout01" android:layout_width="fill_parent" android:layout_height="26.0dip" android:layout_marginLeft="10.0dip">
+            <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:gravity="center" android:id="@id/tvscore_stuID" android:layout_width="wrap_content" android:layout_height="26.0dip" android:hint="学号" android:editable="true" />
+            <TextView android:textSize="12.0sp" android:id="@id/textview001" android:layout_width="30.0dip" android:layout_height="wrap_content" android:text="  " android:editable="true" />
+            <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:gravity="center" android:id="@id/tvscore_StuName" android:layout_width="wrap_content" android:layout_height="26.0dip" android:hint="姓名" android:maxLength="4" android:editable="true" />
+            <TextView android:id="@id/textview00101" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="  " android:editable="true" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="fill_parent" android:layout_height="26.0dip" android:layout_marginLeft="10.0dip">
+            <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:gravity="center" android:id="@id/tvpage_xnxq" android:layout_width="wrap_content" android:layout_height="26.0dip" android:hint="学年学期" android:editable="true" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

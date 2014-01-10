@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/assets/Android-PullToRefresh-master/extras/PullToRefreshListFragment/PullToRefreshListFragment.iml" filepath="$PROJECT_DIR$/assets/Android-PullToRefresh-master/extras/PullToRefreshListFragment/PullToRefreshListFragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assets/Android-PullToRefresh-master/extras/PullToRefreshViewPager/PullToRefreshViewPager.iml" filepath="$PROJECT_DIR$/assets/Android-PullToRefresh-master/extras/PullToRefreshViewPager/PullToRefreshViewPager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/assets/Android-PullToRefresh-master/library/library.iml" filepath="$PROJECT_DIR$/assets/Android-PullToRefresh-master/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/movingcampus.iml" filepath="$PROJECT_DIR$/movingcampus.iml" />
+    </modules>
+  </component>
+</project>
+

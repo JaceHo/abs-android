@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="课程年份"
+                android:textColor="#ff9966cc" />
+
+            <Spinner
+                android:id="@+id/spinner_course_year"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_common_bg" />
+        </LinearLayout>
+		<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="学  期     "
+                android:textColor="#ff9966cc" />
+
+            <Spinner
+                android:id="@+id/spinner_course_term"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_common_bg" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="课程性质" 
+                android:textColor="#ff9966cc"/>
+
+            <Spinner
+                android:id="@+id/spinner_course_pro"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_common_bg" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_course_search"
+        android:layout_width="90.0dip"
+        android:layout_height="34.0dip"
+        android:layout_gravity="bottom"
+        android:background="@drawable/btn_roomok"
+        android:text="查询"
+        android:textColor="#ff330000"
+        android:textSize="14.0sp"
+        android:typeface="sans" />
+
+</LinearLayout>

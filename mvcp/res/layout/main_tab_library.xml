@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" xmlns:app="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_horizontal|center_vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/library_title"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <include
+            android:id="@+id/loading_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            layout="@layout/loading_layout" />
+
+        <include
+            android:id="@+id/loadfailed_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            layout="@layout/load_failed_layout" />
+
+        <com.handmark.pulltorefresh.library.PullToRefreshWebView
+            android:id="@+id/webkit"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="bottom" >
+        </com.handmark.pulltorefresh.library.PullToRefreshWebView>
+
+    </FrameLayout>
+
+
+</LinearLayout>

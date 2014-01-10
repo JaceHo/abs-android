@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    app:ignore="Deprecated,UselessParent" >
+
+    <RelativeLayout
+        android:id="@+id/student_show_rl"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:onClick="shake_activity_back"
+            android:text="@string/back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/personinfo"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:ignore="UselessLeaf" >
+
+    </LinearLayout>
+    <View android:background="#ff9966cc" android:layout_width="fill_parent" android:layout_height="2.0dip" android:layout_marginTop="10.0dip" />
+    <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="10.0dip">
+        <RelativeLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true">
+                <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10.0dip" android:layout_marginTop="5.0dip" android:layout_marginRight="10.0dip">
+                    <TableRow android:gravity="center_vertical" android:layout_marginLeft="20.0dip" android:layout_marginTop="10.0dip">
+                        <TextView android:textSize="14.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:gravity="center_vertical" android:layout_gravity="right" android:id="@id/tv_ID" android:layout_width="wrap_content" android:layout_height="40.0dip" android:text="@string/usernamed" />
+
+                        <EditText
+                            android:id="@id/et_stuID"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="@string/username"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="Deprecated" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="姓  名："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_stuName"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="姓 名"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_sex"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="性  别："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_sex"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="性  别"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_role"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="用户角色："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_role"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="用户角色："
+                            android:singleLine="false"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_mz"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="民     族："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_mz"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="民       族 "
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_birth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="出生年月："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_birth"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="出生年月"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                    <TableRow android:layout_marginLeft="20.0dip">
+
+                        <TextView
+                            android:id="@id/tv_sfzh"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40.0dip"
+                            android:layout_gravity="right"
+                            android:gravity="center_vertical"
+                            android:text="身份证号："
+                            android:textColor="#ff9966cc"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                        <EditText
+                            android:id="@id/et_sfzh"
+                            android:layout_width="210.0dip"
+                            android:layout_height="40.0dip"
+                            android:editable="false"
+                            android:hint="身份证号"
+                            android:singleLine="false"
+                            android:textSize="14.0sp"
+                            android:typeface="sans"
+                            app:ignore="HardcodedText" />
+
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

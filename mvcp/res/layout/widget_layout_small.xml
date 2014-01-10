@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="100px"
+    android:minWidth="80px"
+    android:background="@drawable/widget_small"
+
+    android:id="@+id/SmallBase"
+    >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/s_month"
+            android:textStyle="bold"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:paddingTop="23dp"
+            android:paddingLeft="13dp"
+            android:typeface="sans"
+            android:textColor="@color/title"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/s_date"
+            android:textStyle="italic"
+            android:textSize="25sp"
+            android:typeface="sans"
+            android:layout_alignParentRight="true"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:textColor="@color/title"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/s_day"
+            android:paddingLeft="13dp"
+            android:textSize="10sp"
+            android:layout_below="@id/s_month"
+            android:layout_alignLeft="@id/s_month"
+            android:textStyle="italic"
+            android:paddingTop="15dp"
+            android:textColor="@color/title"
+            android:typeface="sans"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/s_weekday"
+            android:textStyle="italic"
+            android:textSize="20sp"
+            android:layout_below="@id/s_day"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            
+            android:typeface="sans"
+            
+            android:textColor="@color/title"
+            ></TextView>
+         <TextView
+            android:id="@+id/s_zhou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 周"
+            
+            android:typeface="sans"
+            android:textSize="12sp"
+            android:layout_below="@id/s_day"
+            android:layout_toRightOf="@id/s_weekday"
+            
+            android:layout_alignParentBottom="true"
+            android:paddingTop="8dp"
+            
+            android:textColor="@color/title"
+            ></TextView>
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/ksoap2-2.5.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/umeng_sdk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/jackson-all-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

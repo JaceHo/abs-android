@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="课程"
+            android:textSize="30px" />
+
+        <View
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="日期"
+            android:textSize="30px" />
+		<View
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="时间"
+            android:textSize="30px" />
+		<View
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="地点"
+            android:textSize="30px" />
+    </LinearLayout>
+	<ListView android:id="@+id/examination_show_list"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"></ListView>
+</LinearLayout>

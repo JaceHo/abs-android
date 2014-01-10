@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/jw_background"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/shake_title_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@drawable/title_bar"
+        android:gravity="center_vertical" >
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/title_btn_back"
+            android:text="@string/back"
+            android:textColor="#fff"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="用户反馈"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="30.0dip" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="      亲，给我们提点儿意见吧！"
+            android:textColor="#ff9966cc" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="10.0dip" />
+
+        <EditText
+            android:id="@+id/et_feedback_string"
+            android:layout_width="240dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center"
+            android:gravity="top"
+            android:hint="@string/feedback_input_content" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="20.0dip" />
+
+        <Button
+            android:id="@+id/btn_submit_feedback"
+            android:layout_width="80.0dip"
+            android:layout_height="34.0dip"
+            android:layout_gravity="right"
+            android:background="@drawable/btn_roomok"
+            android:text="提交"
+            android:textColor="#ff330000"
+            android:textSize="14.0sp"
+            android:typeface="sans" />
+    </LinearLayout>
+
+</LinearLayout>

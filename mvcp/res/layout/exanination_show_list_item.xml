@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    <TextView
+        android:id="@+id/examlist_item_kcm"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="考试科目"
+            android:textSize="27px" />
+
+        <View
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:id="@+id/examlist_item_ksrq"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="考试日期"
+            android:textSize="27px" />
+		<View
+		    
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:id="@+id/examlist_item_kssj"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="考试时间"
+            android:textSize="27px" />
+		<View
+            android:layout_height="fill_parent"
+            android:layout_width="2dip"
+            android:background="#636" />
+        <TextView
+            android:id="@+id/examlist_item_roomid"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="考试地点"
+            android:textSize="27px" />
+
+</LinearLayout>

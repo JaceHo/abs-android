@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="20.0dip" android:layout_centerHorizontal="true">
+        <LinearLayout android:orientation="horizontal" android:id="@id/homelayout11" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_person" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/studentInfoButton" android:background="@drawable/btn_person" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_person" android:background="@drawable/setclick" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="个人信息" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_percourse" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/coursesButton" android:background="@drawable/btn_course" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_percourse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="个人课表" android:onClick="@drawable/setclick" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_perscore" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/coursesScoreButton" android:background="@drawable/btn_score" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_perscore" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="成绩查询" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/homelayout12" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_room" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/btn_classroom" android:background="@drawable/btn_classroom" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_freeroom" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="空闲教室" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_selcourse" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/btn_selectcourse" android:background="@drawable/btn_selectcourse" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_selcourse" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="选修课程" />
+            </LinearLayout>
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_class" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40.0dip" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/ClassCourses" android:background="@drawable/btn_course" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_classcourse" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="班级课表" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="horizontal" android:id="@id/homelayout14" android:layout_width="wrap_content" android:layout_height="wrap_content">
+            <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@id/layout_schedule" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip">
+                <ImageButton android:id="@id/btn_exam" android:background="@drawable/btn_exams" android:layout_width="40.0dip" android:layout_height="40.0dip" />
+                <TextView android:textSize="13.0sp" android:typeface="sans" android:textColor="#ff9966cc" android:id="@id/tv_schedule" android:background="@drawable/setclick" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="考试安排" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
