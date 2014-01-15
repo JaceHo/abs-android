@@ -1,20 +1,23 @@
-实用工具|校园百科---街景地图         -  soso街景   -------zzp
-                 |__地图      api baidu google    --------zzp
+checklist format:  
+task  [priority(1-10 1 for most important)]  [worker(name)]   [status(doing|done)  ]
+
+实用工具|校园百科---街景地图         -  soso街景   -------zzp   doing 
+                 |__地图      api baidu google    --------zzp    doing 
                  |__常用电话   
                  |__生活信息(一卡通补办流程...)
                  
 
 UI:
-左侧菜单---- 模块导航  -------------hj (doing|done)  2.5
+左侧菜单---- 模块导航  -------------hj doing 
 确定界面 
 20号ui------------bijianchang
 
 
 
 学习资源:
-      -------选课+------------------------zlj&lyx     
+      -------选课+------------------------zlj&lyx     doing
       
-天气 api ---------------------------------xxx 
+天气 api ---------------------------------xxx   doing
 
 更新提醒：新信息提醒1.2.3 通知
 
