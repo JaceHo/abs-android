@@ -1,3 +1,4 @@
+```
 checklist format:  
 task  [priority(1-10 1 for most important)]  [worker(name)]   [status(doing|done)  ]
 
@@ -31,6 +32,7 @@ server部分自建(图书馆|一卡通)放到学校服务器 ------lzl
 
 代码文档注释,DRY don't repeat yourself.
 
+
 v2.0
 教师+学习资源
 失物招领|寻物启事---------
@@ -42,3 +44,4 @@ v3.0
 订餐助手
 //教师部分?v2.0?---教师课表
 //              |__教师申请空闲教师
+```

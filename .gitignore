@@ -1,6 +1,18 @@
+# movingcampus  project generated files to ignore
+#  if you want to ignore files created by your editor/tools,
+#  please consider a global .gitignore https://help.github.com/articles/ignoring-files
+
+mvcp/.* 
+mvcp/bin
+mvcp/gen
+mvcp/build
+.idea
+.DS_Store
+.hg/
+.git/
 .classpath
 .project
 .settings
-bin
-gen
-build
+*.war 
+server/.* 
+server/build 
