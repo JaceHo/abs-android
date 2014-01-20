@@ -172,13 +172,17 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		// sm.setFadeDegree(0.35f);
 
-		//屏幕左右滑动不能显示menu
+		//屏幕左右滑动不能显示menu,显示上一页，下一页
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
 		// sm.setShadowWidth(20);
 		sm.setBehindScrollScale(0);
 	}
 
+	/**
+	 * 左侧栏菜单初始化，可以加入删除模块
+	 * @return
+	 */
 	private List<Map<String, Object>> getData() {
 		// TODO image button
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -201,6 +205,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		return list;
 	}
 
+	//初始化左侧菜单列表按Mainactivity 中currentInx指定
 	private void initListView() {
 		lvAdapter = new SimpleAdapter(this, getData(),
 				R.layout.behind_list_show, new String[] { LIST_TEXT,
