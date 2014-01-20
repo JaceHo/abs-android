@@ -21,7 +21,7 @@
 
 
         <Button
-            android:id="@+id/btn_account"
+            android:id="@+id/cbAccount"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:alpha="0"

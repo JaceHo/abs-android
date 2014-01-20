@@ -67,13 +67,13 @@
         <include layout="@layout/merge_verticalside" />
         
         <edu.hebtu.movingcampus.widget.CustomButton
-            android:id="@+id/cbAbove"
+            android:id="@+id/cbSetting"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             Image="@drawable/button_about"
             ImageID="@+id/imageview_about_button"
-            Text="@string/about"
+            Text="@string/setting"
             TextID="@+id/textview_about_button"
             android:background="@drawable/back_button_default_style"
             android:clickable="true" >

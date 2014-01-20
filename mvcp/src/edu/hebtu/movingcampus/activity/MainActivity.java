@@ -1,58 +1,69 @@
 package edu.hebtu.movingcampus.activity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.baidu.android.pushservice.PushConstants;
-import com.baidu.android.pushservice.PushManager;
-import com.baidu.android.pushservice.apiproxy.PushSettings;
-
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Display;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.SimpleAdapter;
 import android.widget.Toast;
+
+import com.baidu.android.pushservice.PushConstants;
+import com.baidu.android.pushservice.PushManager;
+
 import edu.hebtu.movingcampus.R;
-import edu.hebtu.movingcampus.activity.base.BaseActivity;
+import edu.hebtu.movingcampus.activity.base.BaseSlidingFragmentActivity;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
-import edu.hebtu.movingcampus.activity.login.LoginActivity;
 import edu.hebtu.movingcampus.activity.setting.AccountSettingActivity;
+import edu.hebtu.movingcampus.activity.setting.FeedBack;
 import edu.hebtu.movingcampus.activity.setting.SettingActivity;
+import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
 import edu.hebtu.movingcampus.utils.Utils;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseSlidingFragmentActivity {
 
+	private final String LIST_TEXT = "text";
+	private final String LIST_IMAGEVIEW = "img";
 	public static MainActivity instance = null;
 
 	private ViewPager mTabPager;
+	private SimpleAdapter lvAdapter;
 	private ImageView mTabImg;
+	private ListView lvTitle;
 	private ImageView mTab1, mTab2, mTab3, mTab4;
 	private int zero = 0;
 	private int currIndex = 0;
 	private int one;
 	private int two;
 	private int three;
-	private PopupWindow menuWindow;
-	private LayoutInflater inflater;
+	//private PopupWindow menuWindow;
+	//private LayoutInflater inflater;
 
 	/**
 	 * 连续按两次返回键就退出
 	 */
+	private SlidingMenu sm;
 	private static volatile int keyBackClickCount = 0;
 	private final ArrayList<PageWraper> wrapers = new ArrayList<PageWraper>();
 
@@ -61,8 +72,11 @@ public class MainActivity extends BaseActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.main);
-		bindButton();
+		setBehindContentView(R.layout.behind_slidingmenu);
+
+		lvTitle = (ListView) findViewById(R.id.behind_list_show);
 		// PushSettings.enableDebugMode(this, true);
 
 		PushManager.startWork(getApplicationContext(),
@@ -137,6 +151,10 @@ public class MainActivity extends BaseActivity {
 		};
 
 		mTabPager.setAdapter(mPagerAdapter);
+
+		initSlidingMenu();
+		initListView();
+		bindButton();
 	}
 
 	@Override
@@ -144,6 +162,84 @@ public class MainActivity extends BaseActivity {
 		super.onResume();
 		keyBackClickCount = 0;
 		wrapers.get(currIndex).onResume();
+	}
+
+	// [start]初始化函数
+	private void initSlidingMenu() {
+		// customize the SlidingMenu
+		sm = getSlidingMenu();
+		sm.setShadowWidthRes(R.dimen.shadow_width);
+		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+		// sm.setFadeDegree(0.35f);
+
+		//屏幕左右滑动不能显示menu
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
+		// sm.setShadowWidth(20);
+		sm.setBehindScrollScale(0);
+	}
+
+	private List<Map<String, Object>> getData() {
+		// TODO image button
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(LIST_TEXT, getResources().getString(R.string.info_center_title));
+		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_handpick);
+		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put(LIST_TEXT, getResources().getString(R.string.study_resource));
+		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_news);
+		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put(LIST_TEXT, getResources().getString(R.string.library_title));
+		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_studio);
+		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put(LIST_TEXT, getResources().getString(R.string.card_title));
+		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_blog);
+		list.add(map);
+		return list;
+	}
+
+	private void initListView() {
+		lvAdapter = new SimpleAdapter(this, getData(),
+				R.layout.behind_list_show, new String[] { LIST_TEXT,
+						LIST_IMAGEVIEW },
+				new int[] { R.id.textview_behind_title,
+						R.id.imageview_behind_icon }) {
+			@Override
+			public View getView(int position, View convertView, ViewGroup parent) {
+				// TODO Auto-generated method stub.
+				View view = super.getView(position, convertView, parent);
+				if (position == currIndex) {
+					view.setBackgroundResource(R.drawable.back_behind_list);
+					lvTitle.setTag(view);
+				} else {
+					view.setBackgroundColor(Color.TRANSPARENT);
+				}
+				return view;
+			}
+		};
+		lvTitle.setAdapter(lvAdapter);
+		lvTitle.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if(position==currIndex)return ;
+				mTabPager.setCurrentItem(position);
+				if (lvTitle.getTag() != null) {
+					if (lvTitle.getTag() == view) {
+						MainActivity.this.showContent();
+						return;
+					}
+					((View) lvTitle.getTag())
+							.setBackgroundColor(Color.TRANSPARENT);
+				}
+				lvTitle.setTag(view);
+				view.setBackgroundResource(R.drawable.back_behind_list);
+				sm.toggle();
+			}
+		});
 	}
 
 	/**
@@ -238,7 +334,7 @@ public class MainActivity extends BaseActivity {
 			wrapers.get(arg0).onResume();
 			currIndex = arg0;
 			animation.setFillAfter(true);
-			animation.setDuration(150);
+			animation.setDuration(Math.abs(currIndex-arg0)*500);
 			mTabImg.startAnimation(animation);
 		}
 
@@ -256,7 +352,7 @@ public class MainActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			menuWindow.dismiss();
+			//menuWindow.dismiss();
 			switch (keyBackClickCount++) {
 			case 0:
 				Toast.makeText(this,
@@ -285,8 +381,14 @@ public class MainActivity extends BaseActivity {
 			}
 			return true;
 		} else if (keyCode == KeyEvent.KEYCODE_MENU) {
-			menuWindow.showAtLocation(this.findViewById(R.id.mainweixin),
-					Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+			// menuWindow.showAtLocation(this.findViewById(R.id.mainweixin),
+			// Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+			if (sm.isMenuShowing()) {
+				toggle();
+			} else {
+				showMenu();
+			}
+
 			return false;
 		}
 		return super.onKeyDown(keyCode, event);
@@ -298,43 +400,59 @@ public class MainActivity extends BaseActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 	}
 
-	@Override
 	protected void bindButton() {
-		inflater = (LayoutInflater) this
-				.getSystemService(LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.main_menu, null);
+		// inflater = (LayoutInflater) this
+		// .getSystemService(LAYOUT_INFLATER_SERVICE);
+		// View layout = inflater.inflate(R.layout.main_menu, null);
+		//
+		// menuWindow = new PopupWindow(layout,
+		// android.view.ViewGroup.LayoutParams.FILL_PARENT,
+		// android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+		// menuWindow.setOutsideTouchable(true);
+		// menuWindow.setBackgroundDrawable(new BitmapDrawable());
+		//
+		// Button mSetting = (Button) layout.findViewById(R.id.btn_setting);
+		// Button mAccount = (Button) layout.findViewById(R.id.btn_account);
+		// TODO weatcher xxx
 
-		menuWindow = new PopupWindow(layout,
-				android.view.ViewGroup.LayoutParams.FILL_PARENT,
-				android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-		menuWindow.setOutsideTouchable(true);
-		menuWindow.setBackgroundDrawable(new BitmapDrawable());
-
-		Button mSetting = (Button) layout.findViewById(R.id.btn_setting);
-		Button mAccount = (Button) layout.findViewById(R.id.btn_account);
-
-		mSetting.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// Toast.makeText(Main.this, "�˳�",
-				// Toast.LENGTH_LONG).show();
-				Intent intent = new Intent();
-				intent.setClass(MainActivity.this, SettingActivity.class);
-				menuWindow.dismiss();
-				startActivity(intent);
-			}
-		});
-		mAccount.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// Toast.makeText(Main.this, "�˳�",
-				// Toast.LENGTH_LONG).show();
-				Intent intent = new Intent();
-				intent.setClass(MainActivity.this, AccountSettingActivity.class);
-				menuWindow.dismiss();
-				startActivity(intent);
-			}
-		});
+		findViewById(R.id.cbFeedback).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						// Toast.makeText(Main.this, "�˳�",
+						// Toast.LENGTH_LONG).show();
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this, FeedBack.class);
+						// menuWindow.dismiss();
+						startActivity(intent);
+					}
+				});
+		findViewById(R.id.cbSetting).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						// Toast.makeText(Main.this, "�˳�",
+						// Toast.LENGTH_LONG).show();
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this,
+								SettingActivity.class);
+						// menuWindow.dismiss();
+						startActivity(intent);
+					}
+				});
+		findViewById(R.id.cbAccount).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						// Toast.makeText(Main.this, "�˳�",
+						// Toast.LENGTH_LONG).show();
+						Intent intent = new Intent();
+						intent.setClass(MainActivity.this,
+								AccountSettingActivity.class);
+						// menuWindow.dismiss();
+						startActivity(intent);
+					}
+				});
 
 	}
 

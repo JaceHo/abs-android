@@ -130,7 +130,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 			FeedbackAgent agent = new FeedbackAgent(this);
 			agent.startFeedbackActivity();
 			break;
-		case R.id.cbAbove:
+		case R.id.cbSetting:
 			IntentUtil.start_activity(this, About.class);
 			break;
 		}

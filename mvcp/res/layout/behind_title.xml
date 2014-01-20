@@ -16,7 +16,7 @@
         />
     
     <ImageButton 
-        android:id="@+id/login_login"
+        android:id="@+id/cbAccount"
         android:layout_width="@dimen/title_button_height"
         android:layout_height="@dimen/title_button_height"
         android:layout_gravity="right|center_vertical"

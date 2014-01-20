@@ -10,9 +10,6 @@ mvcp/build
 .DS_Store
 .hg/
 .git/
-.classpath
-.project
-.settings
 *.war 
 server/.* 
 server/build 
