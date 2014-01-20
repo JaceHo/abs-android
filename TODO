@@ -9,7 +9,7 @@ task  [priority(1-10 1 for most important)]  [worker(name)]   [status(doing|done
                  
 
 UI:
-左侧菜单---- 模块导航  -------------hj doing 
+左侧菜单---- 模块导航  -------------hj done
 确定界面 
 20号ui------------bijianchang
 
@@ -23,7 +23,7 @@ UI:
 更新提醒：新信息提醒1.2.3 通知
 
 
-数据持久化存储+不登陆效果？联网更新本地通知
+数据持久化存储+不登陆效果？联网更新本地通知  doing
 
 不联网记住了密码可登录
 没有账号不能登录
