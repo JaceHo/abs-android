@@ -21,9 +21,9 @@ import com.umeng.update.UmengUpdateAgent;
 
 import edu.hebtu.movingcampus.AppInfo;
 import edu.hebtu.movingcampus.R;
-import edu.hebtu.movingcampus.activity.IPreference;
 import edu.hebtu.movingcampus.activity.MainActivity;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
+import edu.hebtu.movingcampus.activity.wrapper.IPreference;
 import edu.hebtu.movingcampus.biz.UserDao;
 import edu.hebtu.movingcampus.config.Constants;
 import edu.hebtu.movingcampus.config.Urls;

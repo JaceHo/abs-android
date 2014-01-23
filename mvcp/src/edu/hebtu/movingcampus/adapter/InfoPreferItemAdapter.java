@@ -11,7 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import edu.hebtu.movingcampus.R;
-import edu.hebtu.movingcampus.activity.IPreference;
+import edu.hebtu.movingcampus.activity.wrapper.IPreference;
 import edu.hebtu.movingcampus.adapter.base.AdapterBase;
 import edu.hebtu.movingcampus.entity.InfoPreferItem;
 import edu.hebtu.movingcampus.enums.NewsType;
@@ -71,12 +71,11 @@ public class InfoPreferItemAdapter extends AdapterBase<InfoPreferItem> {
 					boolean isChecked) {
 				info.setChecked(holder.check, isChecked, context);
 				if (!isChecked)
-					IPreference.getInstance(context).removeTitledNewsById(
+					IPreference.getInstance(context).removeListOfNewsSubjectById(
 							info.getId());
 				else
-					IPreference.getInstance(context).addTopic(
-							new NewsSubject(NewsType.values()[info.getId()],
-									context));
+					IPreference.getInstance(context).addListOfNewsSubject(
+							new NewsSubject(NewsType.values()[info.getId()]));
 			}
 		});
 

@@ -1,10 +1,12 @@
 package edu.hebtu.movingcampus.subject.base;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
 import android.app.Activity;
 import edu.hebtu.movingcampus.activity.base.Observer;
+import edu.hebtu.movingcampus.adapter.base.AdapterBase;
 
 /**
  * topic, user's single interest data collection
@@ -13,14 +15,16 @@ import edu.hebtu.movingcampus.activity.base.Observer;
  * @version 1.0
  * @created 14-Nov-2013 9:13:33 AM
  */
-public abstract class Subject {
+public abstract class Subject implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected Boolean enable = true;
-	protected List<Observer> observers = new LinkedList<Observer>();
-	protected static Activity ac;
+	protected volatile List<Observer> observers = new LinkedList<Observer>();
 
-	public Subject(Activity ac) {
-		Subject.ac = ac;
+	public Subject() {
 	}
 
 	/**
@@ -33,11 +37,13 @@ public abstract class Subject {
 		this.enable = enable;
 	}
 
-	public abstract Boolean mesureChange();
+	public abstract String getTag();
 
-	public void notifyObservers() {
+	public abstract Boolean mesureChange(Activity context);
+
+	public void notifyObservers(Activity context) {
 		for (Observer o : observers)
-			if (mesureChange())
+			if (mesureChange(context))
 				o.update();
 	}
 

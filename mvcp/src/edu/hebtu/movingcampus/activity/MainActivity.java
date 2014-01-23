@@ -38,6 +38,10 @@ import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.activity.setting.AccountSettingActivity;
 import edu.hebtu.movingcampus.activity.setting.FeedBack;
 import edu.hebtu.movingcampus.activity.setting.SettingActivity;
+import edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity;
+import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
+import edu.hebtu.movingcampus.activity.wrapper.LibraryActivity;
+import edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity;
 import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
 import edu.hebtu.movingcampus.utils.Utils;
 

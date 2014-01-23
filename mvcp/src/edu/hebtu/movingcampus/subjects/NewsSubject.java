@@ -9,14 +9,14 @@ import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.entity.NewsShort;
 import edu.hebtu.movingcampus.enums.NewsType;
 import edu.hebtu.movingcampus.subject.base.Subject;
-import edu.hebtu.movingcampus.subject.base.TitleNews;
+import edu.hebtu.movingcampus.subject.base.ListOfNews;
 
 /**
  * @author hippo
  * @version 1.0
  * @created 14-Nov-2013 9:13:32 AM
  */
-public class NewsSubject extends Subject implements Serializable, TitleNews {
+public class NewsSubject extends Subject implements Serializable, ListOfNews {
 	/**
 	 * 
 	 */
@@ -24,8 +24,7 @@ public class NewsSubject extends Subject implements Serializable, TitleNews {
 	private NewsType type;
 	private List<NewsShort> list = new ArrayList<NewsShort>();
 
-	public NewsSubject(NewsType type, Activity ac) {
-		super(ac);
+	public NewsSubject(NewsType type) {
 		this.type = type;
 	}
 
@@ -33,9 +32,9 @@ public class NewsSubject extends Subject implements Serializable, TitleNews {
 	 * notification center,news,notifications when have more news
 	 */
 	@Override
-	public Boolean mesureChange() {
+	public Boolean mesureChange(Activity ac) {
 		ArrayList<NewsShort> res;
-		res = new NewsDao(ac).mapperJson(true, type + "", (dump().size() + 1)
+		res = new NewsDao(ac).mapperJson(true, type + "", (dump(ac).size() + 1)
 				+ "", null);
 		if (res != null) {
 			list.addAll(res);
@@ -45,7 +44,7 @@ public class NewsSubject extends Subject implements Serializable, TitleNews {
 	}
 
 	@Override
-	public List<NewsShort> dump() {
+	public List<NewsShort> dump(Activity ac) {
 		return list;
 	}
 
@@ -67,5 +66,10 @@ public class NewsSubject extends Subject implements Serializable, TitleNews {
 	@Override
 	public void clear() {
 		list.clear();
+	}
+
+	@Override
+	public String getTag() {
+		return "subject"+getDesc();
 	}
 }

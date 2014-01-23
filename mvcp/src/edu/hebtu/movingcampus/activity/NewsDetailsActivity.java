@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -75,6 +76,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 	}
 
 	private void initControl() {
+		mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		detailDao = new NewsDao(this);
 		detailTitle = (TextView) findViewById(R.id.details_textview_title);
 		detailTitle.setText(mTitle);
@@ -84,13 +86,17 @@ public class NewsDetailsActivity extends BaseActivity implements
 
 		share = (RelativeLayout) findViewById(R.id.rlShare);
 
+	    // Initialize the WebView
 		mWebView = (WebView) findViewById(R.id.detail_webView);
 		this.mWebView.setBackgroundColor(0);
 		this.mWebView.setBackgroundResource(R.color.detail_bgColor);
-		mWebView.getSettings().setLoadsImagesAutomatically(true);
-		mWebView.getSettings().setBuiltInZoomControls(true);
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.getSettings().setDefaultTextEncodingName("utf-8");
+	    mWebView.getSettings().setSupportZoom(true);
+	    mWebView.getSettings().setBuiltInZoomControls(true);
+	    mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+	    mWebView.setScrollbarFadingEnabled(true);
+	    mWebView.getSettings().setLoadsImagesAutomatically(true);
 
 		share.setOnClickListener(this);
 

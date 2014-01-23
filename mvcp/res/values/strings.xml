@@ -6,6 +6,18 @@
     <string name="hand_school">掌上师大</string>
 
     <!--登陆界面  -->
+        <!-- Strings related to login -->
+    <string name="prompt_name">ID:学号</string>
+    <string name="prompt_password">身份证后6位</string>
+    <string name="action_sign_in_register"><b>Sign in</b> or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_forgot_password">Recover lost password</string>
+    <string name="login_progress_signing_in">载入中…</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    
     <string name="login_name_prompt">一卡通卡号</string>
     <string name="password">密码</string>
     <string name="login_password_prompt">身份证后6位</string>

@@ -19,11 +19,14 @@ import com.umeng.fb.FeedbackAgent;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.activity.setting.About;
+import edu.hebtu.movingcampus.activity.wrapper.IPreference;
 import edu.hebtu.movingcampus.adapter.InfoNewsAdapter;
 import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.db.DBHelper;
 import edu.hebtu.movingcampus.entity.NewsShort;
+import edu.hebtu.movingcampus.subjects.LocalNewsSubject;
+import edu.hebtu.movingcampus.subjects.NewsSubject;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
 import edu.hebtu.movingcampus.widget.XListView;
@@ -56,6 +59,8 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	// load responseData
 	private ArrayList<NewsShort> newsResponseData;
+	private NewsSubject subject=null;
+	private LocalNewsSubject localSubject=null;
 
 	// [end]
 
@@ -70,6 +75,10 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		loadfailed = findViewById(R.id.view_load_fail);
 		loading = findViewById(R.id.view_loading);
 		id = getIntent().getStringExtra("id");
+		if(Integer.parseInt(id)==0)
+			localSubject=(LocalNewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
+		else
+			subject=(NewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
 
 		initClass();
 		initControl();
@@ -186,7 +195,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 				adapter.clear();
 			if (id.equals("0"))
 				IPreference.getInstance(NewsListActivity.this)
-						.getTitledNewsByID(Integer.parseInt(id)).clear();
+						.getListOfNewsSubjectByID(Integer.parseInt(id)).clear();
 			loading.setVisibility(View.GONE);
 			super.onPreExecute();
 		}
@@ -197,7 +206,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 			if (id.equals("0"))
 				newsResponseData = (ArrayList<NewsShort>) IPreference
 						.getInstance(NewsListActivity.this)
-						.getTitledNewsByID(Integer.parseInt(id)).dump();
+						.getListOfNewsSubjectByID(Integer.parseInt(id)).dump(NewsListActivity.this);
 			else
 				newsResponseData = newsDao.mapperJson(true, id,
 						(adapter.getCount() + 1) + "", null);

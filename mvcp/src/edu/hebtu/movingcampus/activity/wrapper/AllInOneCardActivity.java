@@ -1,4 +1,4 @@
-package edu.hebtu.movingcampus.activity;
+package edu.hebtu.movingcampus.activity.wrapper;
 
 import android.app.Activity;
 import android.content.ComponentCallbacks2;
@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.CardTransferActivity;
+import edu.hebtu.movingcampus.activity.MainActivity;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.biz.CardDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;

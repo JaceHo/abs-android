@@ -1,4 +1,4 @@
-package edu.hebtu.movingcampus.activity;
+package edu.hebtu.movingcampus.activity.wrapper;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -13,6 +13,12 @@ import android.view.View;
 import android.widget.Toast;
 import edu.hebtu.movingcampus.AppInfo;
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.MainActivity;
+import edu.hebtu.movingcampus.activity.ShowCourse;
+import edu.hebtu.movingcampus.activity.Show_ExaminationStu;
+import edu.hebtu.movingcampus.activity.Show_FreedRoom;
+import edu.hebtu.movingcampus.activity.Show_Score;
+import edu.hebtu.movingcampus.activity.Show_Selectcourse;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.config.Constants;
 

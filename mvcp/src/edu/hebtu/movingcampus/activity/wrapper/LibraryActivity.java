@@ -1,4 +1,4 @@
-package edu.hebtu.movingcampus.activity;
+package edu.hebtu.movingcampus.activity.wrapper;
 
 import org.apache.http.util.EncodingUtils;
 
@@ -20,6 +20,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshWebView;
 
 import edu.hebtu.movingcampus.AppInfo;
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.MainActivity;
 import edu.hebtu.movingcampus.activity.base.Observer;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.config.Urls;

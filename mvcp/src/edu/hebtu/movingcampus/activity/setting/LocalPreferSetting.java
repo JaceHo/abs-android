@@ -9,8 +9,8 @@ import android.widget.TextView;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.config.Constants;
-import edu.hebtu.movingcampus.subjects.AllInOneCardNewsdump;
-import edu.hebtu.movingcampus.subjects.LibraryNewsdump;
+import edu.hebtu.movingcampus.subjects.CardSubject;
+import edu.hebtu.movingcampus.subjects.LibrarySubject;
 
 public class LocalPreferSetting extends BaseActivity {
 	private SeekBar seekBarlib;
@@ -29,14 +29,14 @@ public class LocalPreferSetting extends BaseActivity {
 		SharedPreferences pre= getSharedPreferences(
 		Constants.PREFER_FILE, 0);
 		seekBarlib=(SeekBar) findViewById(R.id.SeekBarlib);
-		seekBarlib.setProgress((int) ((100.0*LibraryNewsdump.days-libmin)/(1.0*(libmax-libmin))));
+		seekBarlib.setProgress((int) ((100.0*LibrarySubject.days-libmin)/(1.0*(libmax-libmin))));
 		libtip=(TextView) findViewById(R.id.lib_num);
 
 		libtip.setText(pre.getInt("lib.days", 10)+"天");
 
 		//3-30
 		seekBarcard=(SeekBar) findViewById(R.id.seekBarcard);
-		seekBarcard.setProgress((int) (100.0*(AllInOneCardNewsdump.loweast-cardmin)/(1.0*(cardmax-cardmin))));
+		seekBarcard.setProgress((int) (100.0*(CardSubject.loweast-cardmin)/(1.0*(cardmax-cardmin))));
 		cardtip=(TextView) findViewById(R.id.card_num);
 		cardtip.setText(pre.getInt("card.loweast", 10)+"元");
 
@@ -71,8 +71,8 @@ public class LocalPreferSetting extends BaseActivity {
 			public void onStopTrackingTouch(SeekBar bar){
 				SharedPreferences.Editor editor= LocalPreferSetting.this.getSharedPreferences(
 						Constants.PREFER_FILE, 0).edit();
-				LibraryNewsdump.days= (int) (bar.getProgress()*1.0/100.0*(libmax-libmin)+libmin);
-				editor.putInt("lib.days",LibraryNewsdump.days);
+				LibrarySubject.days= (int) (bar.getProgress()*1.0/100.0*(libmax-libmin)+libmin);
+				editor.putInt("lib.days",LibrarySubject.days);
 				editor.commit();
 			}
 		});
@@ -94,8 +94,8 @@ public class LocalPreferSetting extends BaseActivity {
 			public void onStopTrackingTouch(SeekBar bar){
 				SharedPreferences.Editor editor= LocalPreferSetting.this.getSharedPreferences(
 						Constants.PREFER_FILE, 0).edit();
-				AllInOneCardNewsdump.loweast=(int) (1.0*bar.getProgress()/100.0*(cardmax-cardmin)+cardmin);
-				editor.putInt("card.loweast",AllInOneCardNewsdump.loweast);
+				CardSubject.loweast=(int) (1.0*bar.getProgress()/100.0*(cardmax-cardmin)+cardmin);
+				editor.putInt("card.loweast",CardSubject.loweast);
 				editor.commit();
 			}
 		});

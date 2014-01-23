@@ -14,10 +14,10 @@ import android.widget.TextView;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.NewsListActivity;
 import edu.hebtu.movingcampus.adapter.base.AdapterBase;
-import edu.hebtu.movingcampus.subject.base.TitleNews;
+import edu.hebtu.movingcampus.subject.base.ListOfNews;
 
 //可选主题主页新闻+本地通知
-public class InfoSubjectAdapter extends AdapterBase<TitleNews> {
+public class InfoSubjectAdapter extends AdapterBase<ListOfNews> {
 	private Context context;
 	private int rowlayout;
 
@@ -31,7 +31,7 @@ public class InfoSubjectAdapter extends AdapterBase<TitleNews> {
 	 * @param resourceId
 	 *            :item xml view
 	 */
-	public InfoSubjectAdapter(List<TitleNews> list, final Context context,
+	public InfoSubjectAdapter(List<ListOfNews> list, final Context context,
 			int resourceId) {
 		super();
 		this.context = context;
@@ -57,7 +57,7 @@ public class InfoSubjectAdapter extends AdapterBase<TitleNews> {
 			convertView.setTag(viewHolder);
 		}
 		ViewHolder holder = (ViewHolder) convertView.getTag();
-		final TitleNews subject = (TitleNews) getItem(position);
+		final ListOfNews subject = (ListOfNews) getItem(position);
 
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override

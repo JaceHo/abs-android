@@ -41,7 +41,7 @@
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.MainActivity" >
         </activity>
-        <activity android:name="edu.hebtu.movingcampus.activity.InfoCenterActivity" >
+        <activity android:name="edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity" >
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.SearchActivity" >
         </activity>
@@ -51,7 +51,7 @@
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.MyWeather" >
         </activity>
-        <activity android:name="edu.hebtu.movingcampus.activity.StudyResourceActivity" >
+        <activity android:name="edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity" >
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.Show_ExaminationStu" >
         </activity>
@@ -63,9 +63,9 @@
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.ShowCourse" >
         </activity>
-        <activity android:name="edu.hebtu.movingcampus.activity.LibraryActivity" >
+        <activity android:name="edu.hebtu.movingcampus.activity.wrapper.LibraryActivity" >
         </activity>
-        <activity android:name="edu.hebtu.movingcampus.activity.AllInOneCardActivity" >
+        <activity android:name="edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity" >
         </activity>
         <activity android:name="edu.hebtu.movingcampus.activity.CardTransferActivity" >
         </activity>

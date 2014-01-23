@@ -1,4 +1,4 @@
-package edu.hebtu.movingcampus.activity;
+package edu.hebtu.movingcampus.activity.wrapper;
 
 import java.util.List;
 
@@ -10,11 +10,13 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.MainActivity;
+import edu.hebtu.movingcampus.activity.SearchActivity;
 import edu.hebtu.movingcampus.activity.base.Observer;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.adapter.InfoSubjectAdapter;
 import edu.hebtu.movingcampus.subject.base.Subject;
-import edu.hebtu.movingcampus.subject.base.TitleNews;
+import edu.hebtu.movingcampus.subject.base.ListOfNews;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
 
@@ -25,16 +27,12 @@ import edu.hebtu.movingcampus.utils.NetWorkHelper;
  */
 public class InfoCenterActivity implements Observer, PageWraper {
 
-	private List<TitleNews> titles;
 	private Activity mainActivity = MainActivity.instance;
 	private View content;
-	private final InfoSubjectAdapter adapter;
+	private ListView  list;
 
 	public InfoCenterActivity(View view) {
 		this.content = view;
-		titles = IPreference.getInstance(mainActivity).getTopics();
-		for (TitleNews s : titles)
-			((Subject) s).registObserver(this);
 		//API disabled 
 //		try{
 //		MyWeather.getWeather("石家庄");
@@ -43,13 +41,10 @@ public class InfoCenterActivity implements Observer, PageWraper {
 //		}catch(Exception e){
 //			e.printStackTrace();
 //		}
-		ListView list = (ListView) (content.findViewById(R.id.lv_infoitem));
+		list = (ListView) (content.findViewById(R.id.lv_infoitem));
 
-		// 2 new adapter
-		adapter = new InfoSubjectAdapter(titles, MainActivity.instance,
-				R.layout.infoitem);
-
-		list.setAdapter(adapter);
+		list.setAdapter( new InfoSubjectAdapter(IPreference.getInstance(mainActivity).getTopics(), MainActivity.instance,
+				R.layout.infoitem));
 
 		bindButton();
 	}
@@ -102,12 +97,14 @@ public class InfoCenterActivity implements Observer, PageWraper {
 
 	@Override
 	public void onResume() {
+        InfoSubjectAdapter adapter = new InfoSubjectAdapter(IPreference.getInstance(mainActivity).getTopics(), MainActivity.instance,
+				R.layout.infoitem);
+		list.setAdapter(adapter) ;
 		adapter.notifyDataSetChanged();
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
 
 	}
 
