@@ -17,10 +17,12 @@ import edu.hebtu.movingcampus.biz.CardDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.config.Constants;
 import edu.hebtu.movingcampus.entity.CardEntity;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
 import edu.hebtu.movingcampus.widget.PopupDialog;
 
-public class AllInOneCardActivity implements PageWraper {
+public class AllInOneCardActivity implements PageWraper,NetworkchangeListener {
 
 	private CardEntity bean;
 	private CardDao dao;
@@ -28,9 +30,11 @@ public class AllInOneCardActivity implements PageWraper {
 	private final View contentView;
 	private int loweast;
 	private AsyncTask<BaseDao, Integer, Boolean[]>mTask;
+	private boolean loaded;
 
 	public AllInOneCardActivity(View view) {
 		this.contentView = view;
+		loaded=false;
 		loweast = mainActivity.getSharedPreferences(Constants.PREFER_FILE,
 				ComponentCallbacks2.TRIM_MEMORY_MODERATE).getInt(
 				Constants.BALANCE_LOWEAST, 10);
@@ -83,6 +87,7 @@ public class AllInOneCardActivity implements PageWraper {
 
 	@Override
 	public void onResume() {
+		NetworkChangeReceiver.unRegistNetworkListener(this);
 	}
 
 	@Override
@@ -101,6 +106,7 @@ public class AllInOneCardActivity implements PageWraper {
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			loaded=false;
 			if (bean != null) {
 				Log.d("object:", bean + "status:" + bean.getStatus());
 				((TextView) (contentView.findViewById(R.id.tv_balance_left)))
@@ -169,6 +175,24 @@ public class AllInOneCardActivity implements PageWraper {
 				// ((TextView) (contentView.findViewById(R.id.tv_balance_left)))
 				// .setText("***" + "元");
 			}
+			loaded=true;
 		}
+	}
+
+	@Override
+	public void onPause() {
+		NetworkChangeReceiver.registNetWorkListener(this);
+	}
+
+	@Override
+	public void onDataEnabled() {
+		if(!loaded)
+			mTask.execute(dao);
+	}
+
+	@Override
+	public void onDataDisabled() {
+		// TODO Auto-generated method stub
+		
 	};
 }

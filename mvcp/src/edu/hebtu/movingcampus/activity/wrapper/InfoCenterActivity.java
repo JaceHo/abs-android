@@ -108,4 +108,10 @@ public class InfoCenterActivity implements Observer, PageWraper {
 
 	}
 
+	@Override
+	public void onPause() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

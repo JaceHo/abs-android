@@ -24,6 +24,8 @@ import edu.hebtu.movingcampus.activity.MainActivity;
 import edu.hebtu.movingcampus.activity.base.Observer;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.config.Urls;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 
 /**
  * @author hippo
@@ -31,7 +33,7 @@ import edu.hebtu.movingcampus.config.Urls;
  * @created 14-Nov-2013 9:13:32 AM
  */
 public class LibraryActivity implements Observer, OnRefreshListener<WebView>,
-		PageWraper {
+		PageWraper,NetworkchangeListener {
 	private WebView browser;
 	private Activity mainActivity = MainActivity.instance;
 	private View contentView;
@@ -150,11 +152,28 @@ public class LibraryActivity implements Observer, OnRefreshListener<WebView>,
 	public void onResume() {
 		if(browser.getUrl()==null);
 		browser.loadUrl(Urls.LIB_URL);
+		NetworkChangeReceiver.registNetWorkListener(this);
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void onPause() {
+		NetworkChangeReceiver.unRegistNetworkListener(this);
+	}
+
+	@Override
+	public void onDataEnabled() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void onDataDisabled() {
+		// TODO Auto-generated method stub
+		
 	}
 }

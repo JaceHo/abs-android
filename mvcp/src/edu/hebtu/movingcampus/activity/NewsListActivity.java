@@ -26,13 +26,15 @@ import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.db.DBHelper;
 import edu.hebtu.movingcampus.entity.NewsShort;
 import edu.hebtu.movingcampus.subjects.LocalNewsSubject;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 import edu.hebtu.movingcampus.subjects.NewsSubject;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
 import edu.hebtu.movingcampus.widget.XListView;
 
 public class NewsListActivity extends BaseActivity implements OnClickListener,
-		XListView.IXListViewListener {
+		XListView.IXListViewListener,NetworkchangeListener {
 	private final String LIST_TEXT = "text";
 	private final String LIST_IMAGEVIEW = "img";
 
@@ -61,6 +63,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	private ArrayList<NewsShort> newsResponseData;
 	private NewsSubject subject=null;
 	private LocalNewsSubject localSubject=null;
+	private boolean loaded;
 
 	// [end]
 
@@ -70,6 +73,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.news_list);
 
+		loaded=false;
 		imgQuery = (ImageView) findViewById(R.id.imageview_above_query);
 		imgMore = (ImageView) findViewById(R.id.imageview_above_more);
 		loadfailed = findViewById(R.id.view_load_fail);
@@ -191,6 +195,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 		@Override
 		protected void onPreExecute() {
+			loaded=false;
 			if (clear)
 				adapter.clear();
 			if (id.equals("0"))
@@ -226,9 +231,11 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 				adapter.appendToList((List<NewsShort>) result);
 				loading.setVisibility(View.GONE);
 				loadfailed.setVisibility(View.GONE);
+				loaded=true;
 			} else {
 				loading.setVisibility(View.GONE);
 				loadfailed.setVisibility(View.VISIBLE);
+				loaded=false;
 			}
 		}
 	}
@@ -245,11 +252,29 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		mRunningTask = new MyTask(true).execute(newsDao);
 		else listview.stopLoadMore();
 	}
+	@Override
+	public void onResume(){
+		super.onResume();
+		NetworkChangeReceiver.registNetWorkListener(this);
+	}
 
 	@Override
 	public void onPause() {
+		super.onPause();
 		listview.stopRefresh();
 		listview.stopLoadMore();
-		super.onPause();
+		NetworkChangeReceiver.unRegistNetworkListener(this);
+	}
+
+	@Override
+	public void onDataEnabled() {
+		if(!loaded)
+			mRunningTask.execute(newsDao);
+	}
+
+	@Override
+	public void onDataDisabled() {
+		// TODO Auto-generated method stub
+		
 	}
 }

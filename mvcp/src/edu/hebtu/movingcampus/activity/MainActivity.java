@@ -340,11 +340,12 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 				}
 				break;
 			}
-			wrapers.get(arg0).onResume();
+			wrapers.get(currIndex).onPause();
 			currIndex = arg0;
 			animation.setFillAfter(true);
 			animation.setDuration(Math.abs(currIndex-arg0)*500);
 			mTabImg.startAnimation(animation);
+			wrapers.get(arg0).onResume();
 		}
 
 		@Override

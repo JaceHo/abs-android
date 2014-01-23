@@ -85,6 +85,15 @@
         </activity>
         
         
+        <receiver
+            android:name="edu.hebtu.movingcampus.subjects.NetworkChangeReceiver"
+            android:label="NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+
                 <!-- push富媒体，不使用富媒体推送不需要 -->
         <activity
             android:name="com.baidu.android.pushservice.richmedia.MediaViewActivity"

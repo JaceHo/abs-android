@@ -21,11 +21,13 @@ import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.activity.login.LoginActivity;
 import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.entity.NewsMore;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 import edu.hebtu.movingcampus.utils.CommonUtil;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class NewsDetailsActivity extends BaseActivity implements
-		OnClickListener {
+		OnClickListener,NetworkchangeListener {
 
 	private NewsDao detailDao;
 	static final String mimeType = "text/html";
@@ -51,12 +53,14 @@ public class NewsDetailsActivity extends BaseActivity implements
 
 	private SharedPreferences sharePre;
 	private String mKey;
+	public boolean loaded;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details_activity);
+		loaded=false;
 		Intent i = getIntent();
 		id = i.getStringExtra("id");
 		mTitle = i.getStringExtra("title");
@@ -76,7 +80,6 @@ public class NewsDetailsActivity extends BaseActivity implements
 	}
 
 	private void initControl() {
-		mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		detailDao = new NewsDao(this);
 		detailTitle = (TextView) findViewById(R.id.details_textview_title);
 		detailTitle.setText(mTitle);
@@ -90,12 +93,14 @@ public class NewsDetailsActivity extends BaseActivity implements
 		mWebView = (WebView) findViewById(R.id.detail_webView);
 		this.mWebView.setBackgroundColor(0);
 		this.mWebView.setBackgroundResource(R.color.detail_bgColor);
+		mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.getSettings().setDefaultTextEncodingName("utf-8");
 	    mWebView.getSettings().setSupportZoom(true);
 	    mWebView.getSettings().setBuiltInZoomControls(true);
 	    mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 	    mWebView.setScrollbarFadingEnabled(true);
+	    mWebView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
 	    mWebView.getSettings().setLoadsImagesAutomatically(true);
 
 		share.setOnClickListener(this);
@@ -131,6 +136,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
+			loaded=false;
 			loadLayout.setVisibility(View.VISIBLE);
 			failLayout.setVisibility(View.GONE);
 			mWebView.setVisibility(View.GONE);
@@ -169,6 +175,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 				mWebView.setBackgroundResource(R.color.detail_bgColor);
 				mWebView.loadDataWithBaseURL(null, content, "text/html",
 						"utf-8", null);
+				loaded=true;
 			} else {
 				loadLayout.setVisibility(View.GONE);
 				mWebView.setVisibility(View.GONE);
@@ -208,4 +215,27 @@ public class NewsDetailsActivity extends BaseActivity implements
 		});
 	}
 
+	@Override
+	public void onDataEnabled() {
+		if(!loaded){
+			MyTask mTask = new MyTask();
+			mTask.execute();
+		}
+	}
+
+	@Override
+	public void onDataDisabled() {
+		mWebView.stopLoading();
+	}
+
+	@Override
+	public void onResume(){
+		super.onResume();
+		NetworkChangeReceiver.registNetWorkListener(this);
+	}
+	@Override
+	public void onPause(){
+		super.onPause();
+		NetworkChangeReceiver.unRegistNetworkListener(this);
+	}
 }

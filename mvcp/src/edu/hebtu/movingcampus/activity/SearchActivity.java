@@ -22,10 +22,12 @@ import edu.hebtu.movingcampus.adapter.InfoNewsAdapter;
 import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.entity.NewsShort;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
+import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 import edu.hebtu.movingcampus.widget.XListView;
 
 public class SearchActivity extends BaseFragmentActivity implements
-		OnClickListener, XListView.IXListViewListener {
+		OnClickListener, XListView.IXListViewListener,NetworkchangeListener{
 
 	private ImageView btnGohome;
 	private String searchContent;
@@ -38,6 +40,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 	private List<NewsShort> newsResponse;
 	private NewsDao newsDao;
 	private ImageView mWait;
+	private boolean loaded;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 		setContentView(R.layout.search_layout);
 		Intent i = getIntent();
 		mTag = i.getStringExtra("tag");
+		loaded=false;
 		initData();
 		initView();
 		bindButton();
@@ -148,6 +152,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 		protected void onPreExecute() {
 			if (clear)
 				adapter.clear();
+			loaded=false;
 			mWait.setVisibility(View.GONE);
 			loadLayout.setVisibility(View.VISIBLE);
 			super.onPreExecute();
@@ -175,6 +180,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 
 			loadLayout.setVisibility(View.GONE);
 			mWait.setVisibility(View.GONE);
+			loaded=true;
 		}
 	}
 
@@ -201,10 +207,28 @@ public class SearchActivity extends BaseFragmentActivity implements
 			listview.stopLoadMore();
 	}
 
+	@Override 
+	public void onResume(){
+		super.onResume();
+		NetworkChangeReceiver.unRegistNetworkListener(this);
+	}
 	@Override
 	public void onPause() {
+		super.onPause();
 		listview.stopRefresh();
 		listview.stopLoadMore();
-		super.onPause();
+		NetworkChangeReceiver.registNetWorkListener(this);
+	}
+
+	@Override
+	public void onDataEnabled() {
+		if(!loaded)
+			new MyTask(searchContent, true).execute(newsDao);
+	}
+
+	@Override
+	public void onDataDisabled() {
+		// TODO Auto-generated method stub
+		
 	}
 }
