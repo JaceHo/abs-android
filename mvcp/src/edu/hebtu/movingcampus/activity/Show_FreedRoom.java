@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -39,8 +37,6 @@ import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.biz.ExamDao;
 import edu.hebtu.movingcampus.biz.RoomDao;
 import edu.hebtu.movingcampus.entity.ClassRoom;
-import edu.hebtu.movingcampus.entity.ExamScore;
-import edu.hebtu.movingcampus.view.CustSpinner;
 
 public class Show_FreedRoom extends BaseActivity {
 	private static int buildingid = 0;
