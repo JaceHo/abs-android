@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="library">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/assets/Android-PullToRefresh-master/library/bin/library.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

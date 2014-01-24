@@ -7,8 +7,10 @@ import java.util.List;
 
 import org.apache.http.message.BasicNameValuePair;
 
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListen
 import edu.hebtu.movingcampus.subjects.NewsSubject;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
+import edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback;
 import edu.hebtu.movingcampus.widget.XListView;
 
 public class NewsListActivity extends BaseActivity implements OnClickListener,
@@ -65,8 +68,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	private LocalNewsSubject localSubject=null;
 	private boolean loaded;
 
-	// [end]
-
 	// [start]生命周期
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -83,6 +84,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 			localSubject=(LocalNewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
 		else
 			subject=(NewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
+
 
 		initClass();
 		initControl();
@@ -101,7 +103,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		}
 	}
 
-	// [end]
 
 	private void initControl() {
 
@@ -113,7 +114,9 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 		listview = (XListView) findViewById(R.id.xlistview_news);
 		listview.setXListViewListener(this);
-		adapter = new InfoNewsAdapter(this, R.layout.news_item_layout);
+		listview.setPullLoadEnable(true);
+		listview.setPullRefreshEnable(false);
+		adapter = new InfoNewsAdapter(this, R.layout.news_item_layout,listview);
 
 		listview.setAdapter(adapter);
 
@@ -148,11 +151,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 			break;
 		}
 
-	}
-
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
 	}
 
 	@Override
@@ -237,6 +235,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 				loadfailed.setVisibility(View.VISIBLE);
 				loaded=false;
 			}
+			onLoaded();
 		}
 	}
 
@@ -248,14 +247,21 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onLoadMore() {
 		//上一次获取不为空显示加载
-		if(newsResponseData!=null&&newsResponseData.size()>0)
-		mRunningTask = new MyTask(true).execute(newsDao);
-		else listview.stopLoadMore();
+		if(newsResponseData==null||newsResponseData.size()>0)
+			listview.stopLoadMore();
+		else 
+			mRunningTask = new MyTask(true).execute(newsDao);
 	}
 	@Override
 	public void onResume(){
 		super.onResume();
 		NetworkChangeReceiver.registNetWorkListener(this);
+	}
+
+	protected void onLoaded() {
+		listview.stopRefresh();
+		listview.stopLoadMore();
+		listview.setRefreshTime("刚刚");
 	}
 
 	@Override
@@ -268,8 +274,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	public void onDataEnabled() {
-		if(!loaded)
-			mRunningTask.execute(newsDao);
+		if(!loaded) mRunningTask.execute(newsDao);
 	}
 
 	@Override

@@ -183,7 +183,7 @@ public class NewsFragment extends BaseListFragment {
 			public void run() {
 				ArrayList<NewsShort> response = new NewsDao(mActivity)
 						.mapperJson(true, type, "" + (mAdapter.getCount() - 1),
-								"" + 20);
+								null);
 				if (response != null) {
 					loadMoreEntity = response;
 					mHandler.sendEmptyMessage(0);

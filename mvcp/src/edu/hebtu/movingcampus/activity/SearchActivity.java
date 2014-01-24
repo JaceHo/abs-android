@@ -16,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseFragmentActivity;
 import edu.hebtu.movingcampus.adapter.InfoNewsAdapter;
@@ -79,7 +80,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 		listview = (XListView) findViewById(R.id.xlistview_news);
 		newsDao = new NewsDao(this);
 		listview.setXListViewListener(this);
-		adapter = new InfoNewsAdapter(this, R.layout.news_item_layout);
+		adapter = new InfoNewsAdapter(this, R.layout.news_item_layout,listview);
 		listview.setAdapter(adapter);
 		imm = (InputMethodManager) getApplicationContext().getSystemService(
 				Context.INPUT_METHOD_SERVICE);

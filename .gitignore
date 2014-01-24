@@ -3,6 +3,9 @@
 #  please consider a global .gitignore https://help.github.com/articles/ignoring-files
 
 mvcp/.* 
+.classpath
+.project
+.settings
 mvcp/bin
 mvcp/gen
 mvcp/build
