@@ -42,7 +42,9 @@ import edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity;
 import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
 import edu.hebtu.movingcampus.activity.wrapper.LibraryActivity;
 import edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity;
+import edu.hebtu.movingcampus.activity.wrapper.UlitiesActivity;
 import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
+import edu.hebtu.movingcampus.utils.Utility;
 import edu.hebtu.movingcampus.utils.Utils;
 
 public class MainActivity extends BaseSlidingFragmentActivity {
@@ -55,12 +57,9 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	private SimpleAdapter lvAdapter;
 	private ImageView mTabImg;
 	private ListView lvTitle;
-	private ImageView mTab1, mTab2, mTab3, mTab4;
 	private int zero = 0;
 	private int currIndex = 0;
 	private int one;
-	private int two;
-	private int three;
 	//private PopupWindow menuWindow;
 	//private LayoutInflater inflater;
 
@@ -89,28 +88,19 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		instance = this;
+		initViewPager();
+		initSlidingMenu();
+		bindButton();
+	}
 
+	private void initViewPager() {
 		mTabPager = (ViewPager) findViewById(R.id.tabpager);
 		mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-		mTab1 = (ImageView) findViewById(R.id.img_weixin);
-		mTab2 = (ImageView) findViewById(R.id.img_address);
-		mTab3 = (ImageView) findViewById(R.id.img_friends);
-		mTab4 = (ImageView) findViewById(R.id.img_settings);
-		mTabImg = (ImageView) findViewById(R.id.img_tab_now);
-		findViewById(R.id.tab_infocenter).setOnClickListener(
-				new MyOnClickListener(0));
-		findViewById(R.id.tab_studyresource).setOnClickListener(
-				new MyOnClickListener(1));
-		findViewById(R.id.tab_lib).setOnClickListener(new MyOnClickListener(2));
-		findViewById(R.id.tab_card)
-				.setOnClickListener(new MyOnClickListener(3));
 		Display currDisplay = getWindowManager().getDefaultDisplay();
 		int displayWidth = currDisplay.getWidth();
 		int displayHeight = currDisplay.getHeight();
 		one = displayWidth / 4;
-		two = one * 2;
-		three = one * 3;
 		// Log.i("info", "" + one + two + three + "X" + displayHeight);
 		final ArrayList<View> views = new ArrayList<View>();
 
@@ -120,6 +110,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		View studyResource = mLi.inflate(R.layout.main_tab_studyresource, null);
 		View library = mLi.inflate(R.layout.main_tab_library, null);
 		View card = mLi.inflate(R.layout.main_tab_card, null);
+		View ulities = mLi.inflate(R.layout.main_tab_ulities, null);
 
 		views.add(infoCenter);
 		wrapers.add(new InfoCenterActivity(infoCenter));
@@ -129,6 +120,8 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		wrapers.add(new LibraryActivity(library));
 		views.add(card);
 		wrapers.add(new AllInOneCardActivity(card));
+		views.add(ulities);
+		wrapers.add(new UlitiesActivity(ulities));
 
 		PagerAdapter mPagerAdapter = new PagerAdapter() {
 
@@ -156,9 +149,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 		mTabPager.setAdapter(mPagerAdapter);
 
-		initSlidingMenu();
-		initListView();
-		bindButton();
+		
 	}
 
 	@Override
@@ -181,6 +172,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
 		// sm.setShadowWidth(20);
 		sm.setBehindScrollScale(0);
+		initListView();
 	}
 
 	/**
@@ -266,80 +258,12 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		}
 	};
 
-	public class MyOnPageChangeListener implements OnPageChangeListener {
+	private class MyOnPageChangeListener implements OnPageChangeListener {
 		@Override
 		public void onPageSelected(int arg0) {
 			Animation animation = null;
-			switch (arg0) {
-			case 0:
-				mTab1.setImageDrawable(getResources().getDrawable(
-						R.drawable.tab_weixin_pressed));
-				if (currIndex == 1) {
-					animation = new TranslateAnimation(one, 0, 0, 0);
-					mTab2.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_address_normal));
-				} else if (currIndex == 2) {
-					animation = new TranslateAnimation(two, 0, 0, 0);
-					mTab3.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_find_frd_normal));
-				} else if (currIndex == 3) {
-					animation = new TranslateAnimation(three, 0, 0, 0);
-					mTab4.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_settings_normal));
-				}
-				break;
-			case 1:
-				mTab2.setImageDrawable(getResources().getDrawable(
-						R.drawable.tab_address_pressed));
-				if (currIndex == 0) {
-					animation = new TranslateAnimation(zero, one, 0, 0);
-					mTab1.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_weixin_normal));
-				} else if (currIndex == 2) {
-					animation = new TranslateAnimation(two, one, 0, 0);
-					mTab3.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_find_frd_normal));
-				} else if (currIndex == 3) {
-					animation = new TranslateAnimation(three, one, 0, 0);
-					mTab4.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_settings_normal));
-				}
-				break;
-			case 2:
-				mTab3.setImageDrawable(getResources().getDrawable(
-						R.drawable.tab_find_frd_pressed));
-				if (currIndex == 0) {
-					animation = new TranslateAnimation(zero, two, 0, 0);
-					mTab1.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_weixin_normal));
-				} else if (currIndex == 1) {
-					animation = new TranslateAnimation(one, two, 0, 0);
-					mTab2.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_address_normal));
-				} else if (currIndex == 3) {
-					animation = new TranslateAnimation(three, two, 0, 0);
-					mTab4.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_settings_normal));
-				}
-				break;
-			case 3:
-				mTab4.setImageDrawable(getResources().getDrawable(
-						R.drawable.tab_settings_pressed));
-				if (currIndex == 0) {
-					animation = new TranslateAnimation(zero, three, 0, 0);
-					mTab1.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_weixin_normal));
-				} else if (currIndex == 1) {
-					animation = new TranslateAnimation(one, three, 0, 0);
-					mTab2.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_address_normal));
-				} else if (currIndex == 2) {
-					animation = new TranslateAnimation(two, three, 0, 0);
-					mTab3.setImageDrawable(getResources().getDrawable(
-							R.drawable.tab_find_frd_normal));
-				}
-				break;
-			}
+			if(currIndex!=arg0)
+				animation = new TranslateAnimation(one*currIndex, one*arg0, 0, 0);
 			wrapers.get(currIndex).onPause();
 			currIndex = arg0;
 			animation.setFillAfter(true);
@@ -414,8 +338,8 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		wrapers.get(currIndex).onActivityResult(requestCode, resultCode, data);
 		super.onActivityResult(requestCode, resultCode, data);
+		wrapers.get(currIndex).onActivityResult(requestCode, resultCode, data);
 	}
 
 	protected void bindButton() {

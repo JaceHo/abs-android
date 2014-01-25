@@ -54,28 +54,28 @@ public class StudyResourceActivity implements Handler.Callback, PageWraper {
 						StudyResourceActivity.this.toClassCourse();
 					}
 				});
-		content.findViewById(R.id.personcourse).setOnClickListener(
+		content.findViewById(R.id.classcourse).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View paramAnonymousView) {
 						StudyResourceActivity.this.toPresonCources();
 					}
 				});
-		content.findViewById(R.id.examconsult).setOnClickListener(
+		content.findViewById(R.id.exam_consult).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View paramAnonymousView) {
 						StudyResourceActivity.this.toCoursesScore();
 					}
 				});
-		content.findViewById(R.id.freeroom).setOnClickListener(
+		content.findViewById(R.id.free_room).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View paramAnonymousView) {
 						StudyResourceActivity.this.toFreedClassRoom();
 					}
 				});
-		content.findViewById(R.id.examschedule).setOnClickListener(
+		content.findViewById(R.id.exam_infor).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View paramAnonymousView) {

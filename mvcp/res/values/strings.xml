@@ -148,6 +148,14 @@
     <string name="todo">TODO</string>
     <string name="title_activity_custom">todo</string>
 
+    <!-- 实用工具 -->
+    <string name="ulities_title">实用工具</string>
+    <string name="ulities_calls">校园常用电话</string>
+    <string name="ulities_street_map">师大街景地图</string>
+    <string name="ulities_map">师大地图</string>
+    <string name="ulities_process_notice">流程须知</string>
+    <string name="ulities_wish">还期望什么功能?</string>
+
 
     
 </resources>

@@ -2,22 +2,15 @@ package edu.hebtu.movingcampus.activity.wrapper;
 
 import org.apache.http.util.EncodingUtils;
 
-import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.TelephonyManager;
-import android.text.Layout;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
-import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
-import com.handmark.pulltorefresh.library.PullToRefreshWebView;
-
 import edu.hebtu.movingcampus.AppInfo;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.MainActivity;
@@ -32,8 +25,7 @@ import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListen
  * @version 1.0
  * @created 14-Nov-2013 9:13:32 AM
  */
-public class LibraryActivity implements Observer, OnRefreshListener<WebView>,
-		PageWraper,NetworkchangeListener {
+public class LibraryActivity implements Observer, PageWraper,NetworkchangeListener {
 	private WebView browser;
 	private Activity mainActivity = MainActivity.instance;
 	private View contentView;
@@ -43,16 +35,13 @@ public class LibraryActivity implements Observer, OnRefreshListener<WebView>,
 	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	public LibraryActivity(View view) {
 		this.contentView = view;
-		PullToRefreshWebView pullRefreshWebView = (PullToRefreshWebView) view
+		WebView pullRefreshWebView = (WebView) view
 				.findViewById(R.id.webkit);
 		Log.d("aaaaaaa", pullRefreshWebView.toString());
 		
 		loadingLayout= view.findViewById(R.id.loading_layout);
 		loadfailedLayout= view.findViewById(R.id.loadfailed_layout);
 
-		pullRefreshWebView.setOnRefreshListener(this);
-
-		browser = pullRefreshWebView.getRefreshableView();
 		browser.getSettings().setJavaScriptEnabled(true);
 		browser.setWebViewClient(new SampleWebViewClient());
 
@@ -125,23 +114,6 @@ public class LibraryActivity implements Observer, OnRefreshListener<WebView>,
 			loadingLayout.setVisibility(View.GONE);
 			loadfailedLayout.setVisibility(View.GONE);
         } 
-	}
-
-	@Override
-	public void onRefresh(final PullToRefreshBase<WebView> refreshView) {
-		// This is very contrived example, we just wait 2 seconds, then call
-		// onRefreshComplete()
-		loadingLayout.setVisibility(View.VISIBLE);
-		loadfailedLayout.setVisibility(View.GONE);
-		browser.loadUrl(browser.getUrl());
-//		refreshView.postDelayed(new Runnable() {
-//			@Override
-//			public void run() {
-//			}
-//		}, 2 * 1000);
-		refreshView.onRefreshComplete();
-		loadingLayout.setVisibility(View.GONE);
-		loadfailedLayout.setVisibility(View.GONE);
 	}
 
 	@Override

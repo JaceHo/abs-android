@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/study_resource_title"
+            android:text="@string/ulities_title"
             android:textColor="#ffffff"
             android:textSize="20sp"
             app:ignore="HardcodedText" />
@@ -40,23 +40,13 @@
                 android:clickable="true"
                 android:gravity="center_vertical" >
 
-                <ImageView
-                    android:id="@+id/ImageView05"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/tv_balance_left"
-                    android:layout_alignParentLeft="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/btn_course" />
-
                 <TextView
                     android:id="@+id/tv_pesoncourse"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/ImageView05"
                     android:padding="8dp"
-                    android:text="@string/presonalcourses"
+                    android:text="@string/ulities_calls"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
@@ -70,7 +60,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/exam_consult"
+                android:id="@+id/ulities_process_notice"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
@@ -78,23 +68,41 @@
                 android:clickable="true"
                 android:gravity="center_vertical" >
 
-                <ImageView
-                    android:id="@+id/ImageView04"
+                <TextView
+                    android:id="@+id/TextView01"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:padding="8dp"
+                    android:text="@string/ulities_process_notice"
+                    android:textColor="#000"
+                    android:textSize="17sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:scaleType="matrix"
-                    android:src="@drawable/btn_score" />
+                    android:src="@drawable/mm_submenu" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/ulities_street_map"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/preference_single_item"
+                android:clickable="true"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:id="@+id/tv_scoreconsult"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/ImageView04"
                     android:padding="8dp"
-                    android:text="@string/scoreconsult"
+                    android:text="@string/ulities_street_map"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
@@ -108,31 +116,21 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/free_room"
+                android:id="@+id/ulities_map"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/preference_single_item"
                 android:clickable="true"
                 android:gravity="center_vertical" >
-
-                <ImageView
-                    android:id="@+id/ImageView03"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/btn_classroom" />
 
                 <TextView
                     android:id="@+id/tv_freeroom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/ImageView03"
                     android:padding="8dp"
-                    android:text="@string/freeroom"
+                    android:text="@string/ulities_map"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
@@ -143,111 +141,25 @@
                     android:layout_centerVertical="true"
                     android:scaleType="matrix"
                     android:src="@drawable/mm_submenu" />
+
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/choosecourse"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/preference_single_item"
-                android:clickable="true"
-                android:gravity="center_vertical" 
-                android:visibility="gone">
-
-                <ImageView
-                    android:id="@+id/ImageView02"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/btn_selectcourse" />
-
-                <TextView
-                    android:id="@+id/tv_choosecourse"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/ImageView02"
-                    android:padding="8dp"
-                    android:text="@string/choosecource"
-                    android:textColor="#000"
-                    android:textSize="17sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/mm_submenu" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/classcourse"
+                android:id="@+id/ulities_function_wish"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/preference_single_item"
                 android:clickable="true"
                 android:gravity="center_vertical" >
-
-                <ImageView
-                    android:id="@+id/ImageView01"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/btn_course" />
-
-                <TextView
-                    android:id="@+id/tv_class_course"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/ImageView01"
-                    android:padding="8dp"
-                    android:text="@string/classcourse"
-                    android:textColor="#000"
-                    android:textSize="17sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/mm_submenu" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/exam_infor"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:background="@drawable/preference_single_item"
-                android:clickable="true"
-                android:gravity="center_vertical" >
-
-                <ImageView
-                    android:id="@+id/add_friend"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="matrix"
-                    android:src="@drawable/btn_exams" />
 
                 <TextView
                     android:id="@+id/tv_examschedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/add_friend"
                     android:padding="8dp"
-                    android:text="@string/examschedule"
+                    android:text="@string/ulities_wish"
                     android:textColor="#000"
                     android:textSize="17sp" />
 
