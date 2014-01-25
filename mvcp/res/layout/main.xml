@@ -14,6 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/bottom_bar"
+            android:visibility="gone"
         android:orientation="vertical" >
       
         <ImageView

@@ -177,7 +177,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		// sm.setFadeDegree(0.35f);
 
 		//屏幕左右滑动不能显示menu,显示上一页，下一页
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
 		// sm.setShadowWidth(20);
 		sm.setBehindScrollScale(0);
@@ -346,6 +346,10 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			animation.setDuration(Math.abs(currIndex-arg0)*500);
 			mTabImg.startAnimation(animation);
 			wrapers.get(arg0).onResume();
+			
+			//最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
+			if(currIndex!=0) sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+			else sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		}
 
 		@Override
@@ -363,6 +367,10 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			//menuWindow.dismiss();
+			if(sm.isMenuShowing()){
+				sm.toggle();
+				return super.onKeyDown(keyCode, event);
+			}
 			switch (keyBackClickCount++) {
 			case 0:
 				Toast.makeText(this,
