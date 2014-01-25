@@ -35,9 +35,8 @@ public class LibraryActivity implements Observer, PageWraper,NetworkchangeListen
 	@SuppressLint({ "JavascriptInterface", "SetJavaScriptEnabled" })
 	public LibraryActivity(View view) {
 		this.contentView = view;
-		WebView pullRefreshWebView = (WebView) view
+		browser = (WebView) view
 				.findViewById(R.id.webkit);
-		Log.d("aaaaaaa", pullRefreshWebView.toString());
 		
 		loadingLayout= view.findViewById(R.id.loading_layout);
 		loadfailedLayout= view.findViewById(R.id.loadfailed_layout);

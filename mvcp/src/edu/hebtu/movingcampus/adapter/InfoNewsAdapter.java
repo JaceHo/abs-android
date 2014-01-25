@@ -90,10 +90,11 @@ public class InfoNewsAdapter extends AdapterBase<NewsShort> {
 		// show
 		holder.title.setText(news.getTitle());
 		holder.content.setText(news.getContent());
+		if(news.getDate()!=null)
 		holder.time.setText(news.getDate().toLocaleString());
-		String img_url = news.getThumbnail_url();
 		holder.icon.setImageResource(news.getIcon());
-		if (img_url.equals(null) || img_url.equals("")) {
+		String img_url = news.getThumbnail_url();
+		if (img_url==null || img_url.equals("")) {
 			holder.icon.setVisibility(View.GONE);
 		} else {
 			holder.icon.setVisibility(View.VISIBLE);

@@ -7,10 +7,8 @@ import java.util.List;
 
 import org.apache.http.message.BasicNameValuePair;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -27,17 +25,12 @@ import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.db.DBHelper;
 import edu.hebtu.movingcampus.entity.NewsShort;
-import edu.hebtu.movingcampus.subjects.LocalNewsSubject;
-import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
-import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
-import edu.hebtu.movingcampus.subjects.NewsSubject;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
-import edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback;
 import edu.hebtu.movingcampus.widget.XListView;
 
 public class NewsListActivity extends BaseActivity implements OnClickListener,
-		XListView.IXListViewListener,NetworkchangeListener {
+		XListView.IXListViewListener {
 	private final String LIST_TEXT = "text";
 	private final String LIST_IMAGEVIEW = "img";
 
@@ -64,9 +57,8 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	// load responseData
 	private ArrayList<NewsShort> newsResponseData;
-	private NewsSubject subject=null;
-	private LocalNewsSubject localSubject=null;
-	private boolean loaded;
+
+	// [end]
 
 	// [start]生命周期
 	@Override
@@ -74,17 +66,11 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.news_list);
 
-		loaded=false;
 		imgQuery = (ImageView) findViewById(R.id.imageview_above_query);
 		imgMore = (ImageView) findViewById(R.id.imageview_above_more);
 		loadfailed = findViewById(R.id.view_load_fail);
 		loading = findViewById(R.id.view_loading);
 		id = getIntent().getStringExtra("id");
-		if(Integer.parseInt(id)==0)
-			localSubject=(LocalNewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
-		else
-			subject=(NewsSubject) IPreference.getInstance(this).getListOfNewsSubjectByID(Integer.parseInt(id));
-
 
 		initClass();
 		initControl();
@@ -103,6 +89,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		}
 	}
 
+	// [end]
 
 	private void initControl() {
 
@@ -131,26 +118,30 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		switch (v.getId()) {
-		case R.id.imageview_above_query:
+				switch (v.getId()) {
+				case R.id.imageview_above_query:
 
-			if (NetWorkHelper.isNetworkAvailable(NewsListActivity.this)) {
-				IntentUtil.start_activity(this, SearchActivity.class,
-						new BasicNameValuePair("tag", "0"));
-			} else {
-				Toast.makeText(getApplicationContext(), "网络连接失败,请检查网络",
-						Toast.LENGTH_LONG).show();
-			}
-			break;
-		case R.id.cbFeedback:
-			FeedbackAgent agent = new FeedbackAgent(this);
-			agent.startFeedbackActivity();
-			break;
-		case R.id.cbSetting:
-			IntentUtil.start_activity(this, About.class);
-			break;
-		}
+					if (NetWorkHelper.isNetworkAvailable(NewsListActivity.this)) {
+						IntentUtil.start_activity(this, SearchActivity.class,
+								new BasicNameValuePair("tag", "0"));
+					} else {
+						Toast.makeText(getApplicationContext(), "网络连接失败,请检查网络",
+								Toast.LENGTH_LONG).show();
+					}
+					break;
+				case R.id.cbFeedback:
+					FeedbackAgent agent = new FeedbackAgent(this);
+					agent.startFeedbackActivity();
+					break;
+				case R.id.cbSetting:
+					IntentUtil.start_activity(this, About.class);
+					break;
+				}
+	}
 
+	@Override
+	public void onSaveInstanceState(Bundle outState) {
+		super.onSaveInstanceState(outState);
 	}
 
 	@Override
@@ -177,6 +168,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 		private boolean mUseCache;
 		private boolean clear;
+		private boolean loaded;
 
 		public MyTask() {
 			mUseCache = true;
@@ -229,13 +221,10 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 				adapter.appendToList((List<NewsShort>) result);
 				loading.setVisibility(View.GONE);
 				loadfailed.setVisibility(View.GONE);
-				loaded=true;
 			} else {
 				loading.setVisibility(View.GONE);
 				loadfailed.setVisibility(View.VISIBLE);
-				loaded=false;
 			}
-			onLoaded();
 		}
 	}
 
@@ -247,39 +236,15 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onLoadMore() {
 		//上一次获取不为空显示加载
-		if(newsResponseData==null||newsResponseData.size()>0)
-			listview.stopLoadMore();
-		else 
-			mRunningTask = new MyTask(true).execute(newsDao);
-	}
-	@Override
-	public void onResume(){
-		super.onResume();
-		NetworkChangeReceiver.registNetWorkListener(this);
-	}
-
-	protected void onLoaded() {
-		listview.stopRefresh();
-		listview.stopLoadMore();
-		listview.setRefreshTime("刚刚");
+		if(newsResponseData!=null&&newsResponseData.size()>0)
+		mRunningTask = new MyTask(true).execute(newsDao);
+		else listview.stopLoadMore();
 	}
 
 	@Override
 	public void onPause() {
-		super.onPause();
 		listview.stopRefresh();
 		listview.stopLoadMore();
-		NetworkChangeReceiver.unRegistNetworkListener(this);
-	}
-
-	@Override
-	public void onDataEnabled() {
-		if(!loaded) mRunningTask.execute(newsDao);
-	}
-
-	@Override
-	public void onDataDisabled() {
-		// TODO Auto-generated method stub
-		
+		super.onPause();
 	}
 }

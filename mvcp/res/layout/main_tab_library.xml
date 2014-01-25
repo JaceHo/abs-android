@@ -36,12 +36,11 @@
             android:layout_height="fill_parent"
             layout="@layout/load_failed_layout" />
 
-        <com.handmark.pulltorefresh.library.PullToRefreshWebView
+        <WebView
             android:id="@+id/webkit"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:gravity="bottom" >
-        </com.handmark.pulltorefresh.library.PullToRefreshWebView>
+            android:gravity="bottom" />
 
     </FrameLayout>
 

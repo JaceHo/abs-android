@@ -55,7 +55,6 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 	private ViewPager mTabPager;
 	private SimpleAdapter lvAdapter;
-	private ImageView mTabImg;
 	private ListView lvTitle;
 	private int zero = 0;
 	private int currIndex = 0;
@@ -198,6 +197,10 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		map.put(LIST_TEXT, getResources().getString(R.string.card_title));
 		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_blog);
 		list.add(map);
+		map = new HashMap<String, Object>();
+		map.put(LIST_TEXT, getResources().getString(R.string.ulities_title));
+		map.put(LIST_IMAGEVIEW, R.drawable.dis_menu_blog);
+		list.add(map);
 		return list;
 	}
 
@@ -268,7 +271,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			currIndex = arg0;
 			animation.setFillAfter(true);
 			animation.setDuration(Math.abs(currIndex-arg0)*500);
-			mTabImg.startAnimation(animation);
+			//mTabImg.startAnimation(animation);
 			wrapers.get(arg0).onResume();
 			
 			//最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
