@@ -10,9 +10,13 @@ public class NewsShort {
 	protected String content;
 	protected NewsType type;
 	protected int id;
+	private int readStatus=0;//0 未读 1 读过
 
 	// 该字段暂不使用
 	private String thumbnail_url;
+	public NewsShort(){
+		setReadStatus(0);//0 未读 1 读过
+	}
 
 	public void setDate(Date date) {
 		this.date = date;
@@ -68,5 +72,13 @@ public class NewsShort {
 
 	public void setThumbnail_url(String thumbnail_url) {
 		this.thumbnail_url = thumbnail_url;
+	}
+
+	public int getReadStatus() {
+		return readStatus;
+	}
+
+	public void setReadStatus(int readStatus) {
+		this.readStatus = readStatus;
 	}
 }

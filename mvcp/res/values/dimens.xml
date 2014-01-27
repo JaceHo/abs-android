@@ -46,4 +46,8 @@
 	<dimen name="dp10">10dp</dimen>
 	<dimen name="sp14">14sp</dimen>
 	<dimen name="sp20">20sp</dimen>
+	
+   <dimen name="news_item_padding_top">8dp</dimen>
+    <dimen name="list_foot_view_height">8dp</dimen>
+      <dimen name="web_view_title_height">48dp</dimen>
 </resources>

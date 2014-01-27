@@ -15,17 +15,9 @@ public class About extends Activity {
 		bindButton();
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.about, menu);
-		return true;
-	}
-
 	private void bindButton() {
 		findViewById(R.id.btn_back).setOnClickListener(
 				new View.OnClickListener() {
-
 					@Override
 					public void onClick(View v) {
 						About.this.finish();

@@ -32,6 +32,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 	private NewsDao detailDao;
 	static final String mimeType = "text/html";
 	static final String encoding = "utf-8";
+	public static final String ACTION_RESULT = null;
 
 	private RelativeLayout share;
 
@@ -117,8 +118,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 				finish();
 			}
 		});
-		MyTask mTask = new MyTask();
-		mTask.execute();
+		new MyTask().execute();
 	}
 
 	class MyTask extends AsyncTask<String, Integer, String> {

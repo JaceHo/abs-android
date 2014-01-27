@@ -3,7 +3,6 @@
 
     <color name="window_bg">#ffeef1f3</color>
     <color name="qqblue">#ff54acea</color>
-    <color name="transparent">#00000000</color>
     <color name="background">#EAEAEA</color>
     <color name="white">#ffffffff</color>
     <color name="alpha_bg">#01000000</color>
@@ -37,4 +36,9 @@
     <color name="green">#009999</color>
     <color name="purple">#CC3366</color>
     <color name="backColor">#2000</color>
+    <color name="transparent">#00000000</color>
+    <color name="selectable_item_background_pressed_color">#e0a1c5df</color>
+    <color name="news_title_read_color">#9C9C9C</color>
+    <color name="news_title_unread_color">#000000</color>
+    <color name="news_summary_color">#9A9C9C</color>
 </resources>

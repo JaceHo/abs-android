@@ -2,6 +2,8 @@ package edu.hebtu.movingcampus.activity.setting;
 
 import java.io.File;
 
+import com.umeng.fb.FeedbackAgent;
+
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.Toast;
 import edu.hebtu.movingcampus.AppInfo;
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.MainActivity;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.activity.login.SplashActivity;
 import edu.hebtu.movingcampus.config.Constants;
@@ -86,8 +89,7 @@ public class SettingActivity extends BaseActivity {
 
 					@Override
 					public void onClick(View v) {
-						startActivity(new Intent(SettingActivity.this,
-								FeedBack.class));
+						   new FeedbackAgent(SettingActivity.this).startFeedbackActivity();
 					}
 				});
 

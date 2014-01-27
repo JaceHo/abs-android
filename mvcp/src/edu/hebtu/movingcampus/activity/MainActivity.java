@@ -23,20 +23,19 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupWindow;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.baidu.android.pushservice.PushConstants;
 import com.baidu.android.pushservice.PushManager;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.update.UmengUpdateAgent;
 
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseSlidingFragmentActivity;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.activity.setting.AccountSettingActivity;
-import edu.hebtu.movingcampus.activity.setting.FeedBack;
 import edu.hebtu.movingcampus.activity.setting.SettingActivity;
 import edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity;
 import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
@@ -44,7 +43,6 @@ import edu.hebtu.movingcampus.activity.wrapper.LibraryActivity;
 import edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity;
 import edu.hebtu.movingcampus.activity.wrapper.UlitiesActivity;
 import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
-import edu.hebtu.movingcampus.utils.Utility;
 import edu.hebtu.movingcampus.utils.Utils;
 
 public class MainActivity extends BaseSlidingFragmentActivity {
@@ -74,6 +72,9 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		//更新app api->umeng.com
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+		UmengUpdateAgent.update(this);
 
 		setContentView(R.layout.main);
 		setBehindContentView(R.layout.behind_slidingmenu);
@@ -346,30 +347,12 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	}
 
 	protected void bindButton() {
-		// inflater = (LayoutInflater) this
-		// .getSystemService(LAYOUT_INFLATER_SERVICE);
-		// View layout = inflater.inflate(R.layout.main_menu, null);
-		//
-		// menuWindow = new PopupWindow(layout,
-		// android.view.ViewGroup.LayoutParams.FILL_PARENT,
-		// android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-		// menuWindow.setOutsideTouchable(true);
-		// menuWindow.setBackgroundDrawable(new BitmapDrawable());
-		//
-		// Button mSetting = (Button) layout.findViewById(R.id.btn_setting);
-		// Button mAccount = (Button) layout.findViewById(R.id.btn_account);
-		// TODO weatcher xxx
-
 		findViewById(R.id.cbFeedback).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
+					//feedback activity from umeng sdk.
 					public void onClick(View arg0) {
-						// Toast.makeText(Main.this, "�˳�",
-						// Toast.LENGTH_LONG).show();
-						Intent intent = new Intent();
-						intent.setClass(MainActivity.this, FeedBack.class);
-						// menuWindow.dismiss();
-						startActivity(intent);
+		                new FeedbackAgent(MainActivity.this).startFeedbackActivity();
 					}
 				});
 		findViewById(R.id.cbSetting).setOnClickListener(

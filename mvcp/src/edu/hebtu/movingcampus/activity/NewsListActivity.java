@@ -13,12 +13,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.umeng.fb.FeedbackAgent;
-
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
-import edu.hebtu.movingcampus.activity.setting.About;
 import edu.hebtu.movingcampus.activity.wrapper.IPreference;
 import edu.hebtu.movingcampus.adapter.InfoNewsAdapter;
 import edu.hebtu.movingcampus.biz.NewsDao;
@@ -53,7 +49,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	private NewsDao newsDao;
 	private InfoNewsAdapter adapter;
 
-	private String id;
+	private String typeID;
 
 	// load responseData
 	private ArrayList<NewsShort> newsResponseData;
@@ -70,7 +66,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		imgMore = (ImageView) findViewById(R.id.imageview_above_more);
 		loadfailed = findViewById(R.id.view_load_fail);
 		loading = findViewById(R.id.view_loading);
-		id = getIntent().getStringExtra("id");
+		typeID = getIntent().getStringExtra("id");
 
 		initClass();
 		initControl();
@@ -79,7 +75,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void onDestroy() {
-		// TODO Auto-generated method stub
 		super.onDestroy();
 		try {
 			DBHelper db = DBHelper.getInstance(this);
@@ -129,13 +124,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 								Toast.LENGTH_LONG).show();
 					}
 					break;
-				case R.id.cbFeedback:
-					FeedbackAgent agent = new FeedbackAgent(this);
-					agent.startFeedbackActivity();
-					break;
-				case R.id.cbSetting:
-					IntentUtil.start_activity(this, About.class);
-					break;
 				}
 	}
 
@@ -146,14 +134,6 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	@Override
 	protected void bindButton() {
-		findViewById(R.id.btn_refresh).setOnClickListener(
-				new View.OnClickListener() {
-
-					@Override
-					public void onClick(View v) {
-						onRefresh();
-					}
-				});
 		findViewById(R.id.btn_back).setOnClickListener(
 				new View.OnClickListener() {
 
@@ -188,9 +168,9 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 			loaded=false;
 			if (clear)
 				adapter.clear();
-			if (id.equals("0"))
+			if (typeID.equals("0"))
 				IPreference.getInstance(NewsListActivity.this)
-						.getListOfNewsSubjectByID(Integer.parseInt(id)).clear();
+						.getListOfNewsSubjectByID(Integer.parseInt(typeID)).clear();
 			loading.setVisibility(View.GONE);
 			super.onPreExecute();
 		}
@@ -198,12 +178,12 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		@Override
 		protected Object doInBackground(BaseDao... params) {
 			// 本地信息
-			if (id.equals("0"))
+			if (typeID.equals("0"))
 				newsResponseData = (ArrayList<NewsShort>) IPreference
 						.getInstance(NewsListActivity.this)
-						.getListOfNewsSubjectByID(Integer.parseInt(id)).dump(NewsListActivity.this);
+						.getListOfNewsSubjectByID(Integer.parseInt(typeID)).dump(NewsListActivity.this);
 			else
-				newsResponseData = newsDao.mapperJson(true, id,
+				newsResponseData = newsDao.mapperJson(true, typeID,
 						(adapter.getCount() + 1) + "", null);
 			return newsResponseData;
 		}
@@ -240,7 +220,19 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		mRunningTask = new MyTask(true).execute(newsDao);
 		else listview.stopLoadMore();
 	}
-
+//    @Override
+//	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//		if (mUpdateView != null && data != null) {
+//			int result = data.getIntExtra(NewsDetailsActivity.ACTION_RESULT, 0);
+//			if (result > 0) {
+//				mNewsItem.readStatus = 1;
+//				((TextView) mUpdateView.getTag(R.id.new_item_title_view)).setTextColor(0xff9C9C9C);
+//				mUpdateView = null;
+//				mNewsItem = null;
+//			}
+//		}
+//	}
+    
 	@Override
 	public void onPause() {
 		listview.stopRefresh();
