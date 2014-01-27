@@ -90,6 +90,10 @@
         </activity>
         
         
+        <!-- umeng feedback -> umeng.com -->
+        <activity android:name="com.umeng.fb.ConversationActivity"/>
+        <activity android:name="com.umeng.fb.ContactActivity"/>
+
         <receiver
             android:name="edu.hebtu.movingcampus.subjects.NetworkChangeReceiver"
             android:label="NetworkChangeReceiver" >
@@ -115,7 +119,7 @@
 
 
         <!-- push应用定义消息receiver声明 -->
-        <receiver android:name="edu.hebtu.movingcampus.utils.PushMessageReceiver" >
+        <receiver android:name="edu.hebtu.movingcampus.subjects.PushMessageReceiver" >
             <intent-filter>
 
                 <!-- 接收push消息 -->

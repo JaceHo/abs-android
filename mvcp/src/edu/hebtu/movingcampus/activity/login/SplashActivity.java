@@ -37,9 +37,6 @@ public class SplashActivity extends BaseActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		//更新app api->umeng.com
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
 
 		View view = View.inflate(this, R.layout.activity_preview, null);
 		setContentView(view);
@@ -88,8 +85,6 @@ public class SplashActivity extends BaseActivity {
 				}
 			}
 		});
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
 
 		try {
 			// 此段代码什么意思？？

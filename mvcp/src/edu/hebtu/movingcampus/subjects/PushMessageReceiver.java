@@ -1,4 +1,4 @@
-﻿package edu.hebtu.movingcampus.utils;
+﻿package edu.hebtu.movingcampus.subjects;
 
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;

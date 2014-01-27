@@ -57,6 +57,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	private int zero = 0;
 	private int currIndex = 0;
 	private int one;
+	public final FeedbackAgent agent=new FeedbackAgent(MainActivity.this) ;
 	//private PopupWindow menuWindow;
 	//private LayoutInflater inflater;
 
@@ -76,18 +77,30 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		setContentView(R.layout.main);
 		setBehindContentView(R.layout.behind_slidingmenu);
 
-		lvTitle = (ListView) findViewById(R.id.behind_list_show);
-		// PushSettings.enableDebugMode(this, true);
-
-		PushManager.startWork(getApplicationContext(),
-				PushConstants.LOGIN_TYPE_API_KEY,
-				Utils.getMetaValue(MainActivity.this, "api_key"));
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 		instance = this;
+
 		initViewPager();
 		initSlidingMenu();
 		bindButton();
+
+		//baidu push
+		// PushSettings.enableDebugMode(this, true);
+		PushManager.startWork(getApplicationContext(),
+				PushConstants.LOGIN_TYPE_API_KEY,
+				Utils.getMetaValue(MainActivity.this, "api_key"));
+		//更新app api->umeng.com
+		UmengUpdateAgent.setUpdateOnlyWifi(false);
+		UmengUpdateAgent.update(this);
+
+//	    设置新回复通知
+//
+//	当开发者回复用户反馈后，如果需要提醒用户，请在应用程序的入口Activity的OnCreate()方法中下添加以下代码
+
+		agent.sync();
+
 	}
 
 	private void initViewPager() {
@@ -158,6 +171,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 	// [start]初始化函数
 	private void initSlidingMenu() {
+		lvTitle = (ListView) findViewById(R.id.behind_list_show);
 		// customize the SlidingMenu
 		sm = getSlidingMenu();
 		sm.setShadowWidthRes(R.dimen.shadow_width);
@@ -265,12 +279,16 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			Animation animation = null;
 			if(currIndex!=arg0)
 				animation = new TranslateAnimation(one*currIndex, one*arg0, 0, 0);
+			else return;
 			wrapers.get(currIndex).onPause();
 			currIndex = arg0;
 			animation.setFillAfter(true);
 			animation.setDuration(Math.abs(currIndex-arg0)*500);
 			//mTabImg.startAnimation(animation);
 			wrapers.get(arg0).onResume();
+			
+			//TODO menu 选择 滑动
+			//lvTitle.getOnItemClickListener().onItemClick(null, null, currIndex , (Long) null);
 			
 			//最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
 			if(currIndex!=0) sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
@@ -349,7 +367,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 					@Override
 					//feedback activity from umeng sdk.
 					public void onClick(View arg0) {
-		                new FeedbackAgent(MainActivity.this).startFeedbackActivity();
+		                agent.startFeedbackActivity();
 					}
 				});
 		findViewById(R.id.cbSetting).setOnClickListener(
