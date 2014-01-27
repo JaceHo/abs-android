@@ -45,7 +45,6 @@ public class LoginActivity extends BaseActivity {
 	public static String xn;
 	public static String xq;
 	private ProgressDialog processBar;
-	private Button btn_login;
 	private CheckBox cb_save;
 	private InputMethodManager manager;
 	private EditText passwordET;

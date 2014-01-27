@@ -72,9 +72,6 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//更新app api->umeng.com
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
 
 		setContentView(R.layout.main);
 		setBehindContentView(R.layout.behind_slidingmenu);
@@ -359,8 +356,6 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
-						// Toast.makeText(Main.this, "�˳�",
-						// Toast.LENGTH_LONG).show();
 						Intent intent = new Intent();
 						intent.setClass(MainActivity.this,
 								SettingActivity.class);
@@ -372,8 +367,6 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 				new View.OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
-						// Toast.makeText(Main.this, "�˳�",
-						// Toast.LENGTH_LONG).show();
 						Intent intent = new Intent();
 						intent.setClass(MainActivity.this,
 								AccountSettingActivity.class);

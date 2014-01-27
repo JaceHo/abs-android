@@ -38,10 +38,6 @@ public class SettingActivity extends BaseActivity {
 	public void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.settings);
-		if (SplashActivity.upgradeAble)
-			findViewById(R.id.newapp).setVisibility(View.VISIBLE);
-		else
-			findViewById(R.id.newapp).setVisibility(View.GONE);
 		bindButton();
 	}
 
@@ -98,8 +94,7 @@ public class SettingActivity extends BaseActivity {
 
 					@Override
 					public void onClick(View v) {
-						if (SplashActivity.upgradeAble)
-							showUpdateDialog();
+						//TODO
 					}
 				});
 
@@ -170,63 +165,5 @@ public class SettingActivity extends BaseActivity {
 					}
 				});
 
-	}
-	protected void showUpdateDialog() {
-		AlertDialog.Builder localBuilder = new AlertDialog.Builder(this);
-		localBuilder.setTitle("版本升级");
-		localBuilder.setMessage("请注意，河北师大移动校园有新版本，需要进行版本升级吗？"
-				+ SplashActivity.info.getInformation().toString());
-		localBuilder.setPositiveButton("确定",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(
-							DialogInterface paramAnonymousDialogInterface,
-							int paramAnonymousInt) {
-						SettingActivity.this.downLoadApk();
-					}
-				});
-		localBuilder.setNegativeButton("取消",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(
-							DialogInterface paramAnonymousDialogInterface,
-							int paramAnonymousInt) {
-					}
-				});
-		localBuilder.create().show();
-	}
-	protected void downLoadApk() {
-		final ProgressDialog localProgressDialog = new ProgressDialog(this);
-		localProgressDialog.setProgressStyle(1);
-		localProgressDialog.setMessage("正在下载更新");
-		localProgressDialog.show();
-		new Thread() {
-			@Override
-			public void run() {
-				try {
-					File localFile = new ToolUtils(SettingActivity.this)
-							.getFileFromServer(SplashActivity.info.getUrl(),
-									localProgressDialog,
-									SplashActivity.info.getApk());
-					sleep(3000L);
-					installApk(localFile);
-					localProgressDialog.dismiss();
-					return;
-				} catch (Exception localException) {
-					Message localMessage = new Message();
-					localMessage.what = 3;
-					// SettingActivity.this.handler.sendMessage(localMessage);
-					localException.printStackTrace();
-				}
-			}
-		}.start();
-	}
-
-	protected void installApk(File paramFile) {
-		Intent localIntent = new Intent();
-		localIntent.setAction("android.intent.action.VIEW");
-		localIntent.setDataAndType(Uri.fromFile(paramFile),
-				"application/vnd.android.package-archive");
-		startActivity(localIntent);
 	}
 }
