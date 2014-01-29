@@ -2,6 +2,7 @@ package edu.hebtu.movingcampus.biz;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -11,48 +12,19 @@ import android.app.Activity;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.config.Constants;
 import edu.hebtu.movingcampus.config.Urls;
+import edu.hebtu.movingcampus.entity.CategorysEntity;
 import edu.hebtu.movingcampus.entity.NewsMore;
 import edu.hebtu.movingcampus.entity.NewsShort;
+import edu.hebtu.movingcampus.enums.NewsType;
 import edu.hebtu.movingcampus.utils.RequestCacheUtil;
 import edu.hebtu.movingcampus.utils.Utility;
 
 public class NewsDao extends BaseDao {
+	private List<CategorysEntity> tabs = new ArrayList<CategorysEntity>();
+
 	public NewsDao(Activity activity) {
+
 		super(activity);
-	}
-
-	/*
-	 * 
-	 * news search, brief news json mapper
-	 */
-	public ArrayList<NewsShort> mapperJson(boolean useCache, String key) {
-		ArrayList<NewsShort> newsJson;
-		try {
-			String result;
-			result = RequestCacheUtil.getRequestContentByGet(
-					mActivity,
-					String.format(Urls.NEWS_SEARCH, key)
-							+ Utility.getScreenParams(mActivity),
-					Constants.WebSourceType.Json,
-					Constants.DBContentType.Content_list, useCache);
-			newsJson = mObjectMapper.readValue(result,
-					new TypeReference<ArrayList<NewsShort>>() {
-					});
-			if (newsJson == null) {
-				return null;
-			}
-			return newsJson;
-
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	/*
@@ -111,15 +83,56 @@ public class NewsDao extends BaseDao {
 					});
 			return response;
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	  /*
+    *
+    * news search, brief news json mapper
+    */
+   public ArrayList<NewsShort> mapperJson(boolean useCache, String key) {
+           ArrayList<NewsShort> newsJson;
+           try {
+                   String result;
+                   result = RequestCacheUtil.getRequestContentByGet(
+                                   mActivity,
+                                   String.format(Urls.NEWS_SEARCH, key)
+                                                   + Utility.getScreenParams(mActivity),
+                                   Constants.WebSourceType.Json,
+                                   Constants.DBContentType.Content_list, useCache);
+                   newsJson = mObjectMapper.readValue(result,
+                                   new TypeReference<ArrayList<NewsShort>>() {
+                                   });
+                   if (newsJson == null) {
+                           return null;
+                   }
+                   return newsJson;
+
+           } catch (JsonParseException e) {
+                   e.printStackTrace();
+           } catch (JsonMappingException e) {
+                   e.printStackTrace();
+           } catch (IOException e) {
+                   e.printStackTrace();
+           } catch (Exception e) {
+                   e.printStackTrace();
+           }
+           return null;
+   }
+
+
+	public List<CategorysEntity> getCategorys() {
+		for(int i=1;i<NewsType.values().length;i++){
+			CategorysEntity cate = new CategorysEntity();
+			cate.setName(NewsType.values()[i].name());
+			tabs.add(cate);
+		}
+		return tabs;
 	}
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.activity.wrapper.IPreference;
-import edu.hebtu.movingcampus.adapter.InfoNewsAdapter;
+import edu.hebtu.movingcampus.adapter.NewsListAdapter;
 import edu.hebtu.movingcampus.biz.NewsDao;
 import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.db.DBHelper;
@@ -47,7 +47,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 
 	// init dao
 	private NewsDao newsDao;
-	private InfoNewsAdapter adapter;
+	private NewsListAdapter adapter;
 
 	private String typeID;
 
@@ -60,7 +60,7 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.news_list);
+		//setContentView(R.layout.news_list);
 
 		imgQuery = (ImageView) findViewById(R.id.imageview_above_query);
 		imgMore = (ImageView) findViewById(R.id.imageview_above_more);
@@ -94,12 +94,11 @@ public class NewsListActivity extends BaseActivity implements OnClickListener,
 		loading.setVisibility(View.VISIBLE);
 		loadfailed.setVisibility(View.GONE);
 
-		listview = (XListView) findViewById(R.id.xlistview_news);
+		//listview = (XListView) findViewById(R.id.xlistview_news);
 		listview.setXListViewListener(this);
 		listview.setPullLoadEnable(true);
 		listview.setPullRefreshEnable(false);
-		adapter = new InfoNewsAdapter(this, R.layout.news_item_layout,listview);
-
+		//adapter = new NewsListAdapter(this, R.layout.news_item_layout,listview); 
 		listview.setAdapter(adapter);
 
 		mRunningTask = new MyTask(true).execute(newsDao);

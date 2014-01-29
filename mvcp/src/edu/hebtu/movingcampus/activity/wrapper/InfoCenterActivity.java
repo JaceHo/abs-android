@@ -1,7 +1,5 @@
 package edu.hebtu.movingcampus.activity.wrapper;
 
-import java.util.List;
-
 import org.apache.http.message.BasicNameValuePair;
 
 import android.app.Activity;
@@ -15,15 +13,18 @@ import edu.hebtu.movingcampus.activity.SearchActivity;
 import edu.hebtu.movingcampus.activity.base.Observer;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.adapter.InfoSubjectAdapter;
-import edu.hebtu.movingcampus.subject.base.Subject;
-import edu.hebtu.movingcampus.subject.base.ListOfNews;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
-
 /**
  * @author hippo
  * @version 1.0
  * @created 14-Nov-2013 9:13:32 AM
+ */
+
+/**
+ * 
+ * @author zhangjiantian
+ *
  */
 public class InfoCenterActivity implements Observer, PageWraper {
 
@@ -47,6 +48,7 @@ public class InfoCenterActivity implements Observer, PageWraper {
 				R.layout.infoitem));
 
 		bindButton();
+
 	}
 
 	private void bindButton() {
@@ -105,7 +107,6 @@ public class InfoCenterActivity implements Observer, PageWraper {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
 	}
 
 	@Override

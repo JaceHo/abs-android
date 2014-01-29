@@ -20,6 +20,7 @@ import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.base.BaseActivity;
 import edu.hebtu.movingcampus.activity.login.LoginActivity;
 import edu.hebtu.movingcampus.biz.NewsDao;
+import edu.hebtu.movingcampus.config.Urls;
 import edu.hebtu.movingcampus.entity.NewsMore;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
@@ -27,7 +28,7 @@ import edu.hebtu.movingcampus.utils.CommonUtil;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class NewsDetailsActivity extends BaseActivity implements
-		OnClickListener,NetworkchangeListener {
+		OnClickListener, NetworkchangeListener {
 
 	private NewsDao detailDao;
 	static final String mimeType = "text/html";
@@ -37,8 +38,6 @@ public class NewsDetailsActivity extends BaseActivity implements
 	private RelativeLayout share;
 
 	private TextView detailTitle;
-	private ImageView imgShare;
-
 	private LinearLayout loadLayout;
 	private LinearLayout failLayout;
 	private Button bn_refresh;
@@ -46,8 +45,6 @@ public class NewsDetailsActivity extends BaseActivity implements
 	private WebView mWebView;
 	private String id;
 	private String mTitle;
-	private String shareUrl;
-	private String shareTitle;
 
 	private int screen_width;
 	private NewsMore responseEntity;
@@ -55,17 +52,20 @@ public class NewsDetailsActivity extends BaseActivity implements
 	private SharedPreferences sharePre;
 	private String mKey;
 	public boolean loaded;
+	private ImageView mHome;
+	private ImageView mBack;
+	private ImageView mFroward;
+	private ImageView mRefresh;
+	private String mHomeURL;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.details_activity);
-		loaded=false;
+		loaded = false;
 		Intent i = getIntent();
 		id = i.getStringExtra("id");
-		mTitle = i.getStringExtra("title");
-		shareTitle = i.getStringExtra("sharetitle");
 		sharePre = getSharedPreferences(LoginActivity.SharedName,
 				Context.MODE_PRIVATE);
 		mKey = sharePre.getString(LoginActivity.KEY, "");
@@ -88,27 +88,36 @@ public class NewsDetailsActivity extends BaseActivity implements
 		failLayout = (LinearLayout) findViewById(R.id.view_load_fail);
 		bn_refresh = (Button) findViewById(R.id.btn_refresh);
 
-		share = (RelativeLayout) findViewById(R.id.rlShare);
+		mHome = (ImageView) findViewById(R.id.imgview_browser_home);
+		mBack = (ImageView) findViewById(R.id.imgview_browser_back);
+		mFroward = (ImageView) findViewById(R.id.imgview_browser_forward);
+		mRefresh = (ImageView) findViewById(R.id.imgview_browser_refresh);
 
-	    // Initialize the WebView
+		mHome.setOnClickListener(this);
+		mBack.setOnClickListener(this);
+		mFroward.setOnClickListener(this);
+		mRefresh.setOnClickListener(this);
+
+		mHomeURL = String.format(Urls.NEWS_MORE, id);
+
+		// Initialize the WebView
 		mWebView = (WebView) findViewById(R.id.detail_webView);
 		this.mWebView.setBackgroundColor(0);
 		this.mWebView.setBackgroundResource(R.color.detail_bgColor);
-		mWebView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+		mWebView.getSettings()
+				.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
 		mWebView.getSettings().setJavaScriptEnabled(true);
 		mWebView.getSettings().setDefaultTextEncodingName("utf-8");
-	    mWebView.getSettings().setSupportZoom(true);
-	    mWebView.getSettings().setBuiltInZoomControls(true);
-	    mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-	    mWebView.setScrollbarFadingEnabled(true);
-	    mWebView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
-	    mWebView.getSettings().setLoadsImagesAutomatically(true);
+		mWebView.getSettings().setSupportZoom(true);
+		mWebView.getSettings().setBuiltInZoomControls(true);
+		mWebView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
+		mWebView.setScrollbarFadingEnabled(true);
+		mWebView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
+		mWebView.getSettings().setLoadsImagesAutomatically(true);
 
 		share.setOnClickListener(this);
 
 		bn_refresh.setOnClickListener(this);
-
-		imgShare = (ImageView) findViewById(R.id.imageview_details_share);
 
 		imgGoHome = (ImageView) findViewById(R.id.details_imageview_gohome);
 		imgGoHome.setOnClickListener(new OnClickListener() {
@@ -136,7 +145,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 		@Override
 		protected void onPreExecute() {
 			super.onPreExecute();
-			loaded=false;
+			loaded = false;
 			loadLayout.setVisibility(View.VISIBLE);
 			failLayout.setVisibility(View.GONE);
 			mWebView.setVisibility(View.GONE);
@@ -144,9 +153,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 
 		@Override
 		protected String doInBackground(String... params) {
-			// TODO Auto-generated method stub
 			if ((responseEntity = detailDao.mapperJson(id)) != null) {
-				shareUrl = responseEntity.getShareURL();
 				return responseEntity.getDetail();
 			}
 			return null;
@@ -175,7 +182,7 @@ public class NewsDetailsActivity extends BaseActivity implements
 				mWebView.setBackgroundResource(R.color.detail_bgColor);
 				mWebView.loadDataWithBaseURL(null, content, "text/html",
 						"utf-8", null);
-				loaded=true;
+				loaded = true;
 			} else {
 				loadLayout.setVisibility(View.GONE);
 				mWebView.setVisibility(View.GONE);
@@ -192,32 +199,46 @@ public class NewsDetailsActivity extends BaseActivity implements
 		}
 		if (responseEntity == null)
 			return;
-//		if (mKey.equals(null) || mKey.equals("")) {
-//			showLongToast(getResources().getString(R.string.user_login_prompt));
-//			return;
-//		}
 		switch (v.getId()) {
-		case R.id.rlShare:
-			recommandToYourFriend(shareUrl, shareTitle);
+		// case R.id.rlShare:
+		// recommandToYourFriend(shareUrl, shareTitle);
+		// break;
+		case R.id.imgview_browser_home: {
+			if (mHomeURL != null) {
+				mWebView.loadUrl(mHomeURL);
+			}
+		}
 			break;
+		case R.id.imgview_browser_refresh: {
+			mWebView.reload();
+		}
+			break;
+		case R.id.imgview_browser_forward: {
+			mWebView.goForward();
+		}
+			break;
+		case R.id.imgview_browser_back: {
+			mWebView.goBack();
+		}
 		}
 
 	}
 
 	@Override
 	protected void bindButton() {
-		findViewById(R.id.details_imageview_gohome).setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				NewsDetailsActivity.this.finish();
-			}
-		});
+		findViewById(R.id.details_imageview_gohome).setOnClickListener(
+				new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						NewsDetailsActivity.this.finish();
+					}
+				});
 	}
 
 	@Override
 	public void onDataEnabled() {
-		if(!loaded){
+		if (!loaded) {
 			MyTask mTask = new MyTask();
 			mTask.execute();
 		}
@@ -229,12 +250,13 @@ public class NewsDetailsActivity extends BaseActivity implements
 	}
 
 	@Override
-	public void onResume(){
+	public void onResume() {
 		super.onResume();
 		NetworkChangeReceiver.registNetWorkListener(this);
 	}
+
 	@Override
-	public void onPause(){
+	public void onPause() {
 		super.onPause();
 		NetworkChangeReceiver.unRegistNetworkListener(this);
 	}

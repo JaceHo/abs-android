@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -33,13 +34,16 @@ import com.umeng.fb.FeedbackAgent;
 import com.umeng.update.UmengUpdateAgent;
 
 import edu.hebtu.movingcampus.R;
+import edu.hebtu.movingcampus.activity.base.ActionDispatcher;
 import edu.hebtu.movingcampus.activity.base.BaseSlidingFragmentActivity;
 import edu.hebtu.movingcampus.activity.base.PageWraper;
 import edu.hebtu.movingcampus.activity.setting.AccountSettingActivity;
 import edu.hebtu.movingcampus.activity.setting.SettingActivity;
 import edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity;
+import edu.hebtu.movingcampus.activity.wrapper.IPreference;
 import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
 import edu.hebtu.movingcampus.activity.wrapper.LibraryActivity;
+import edu.hebtu.movingcampus.activity.wrapper.MainTabActivity;
 import edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity;
 import edu.hebtu.movingcampus.activity.wrapper.UlitiesActivity;
 import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
@@ -57,9 +61,9 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	private int zero = 0;
 	private int currIndex = 0;
 	private int one;
-	public final FeedbackAgent agent=new FeedbackAgent(MainActivity.this) ;
-	//private PopupWindow menuWindow;
-	//private LayoutInflater inflater;
+	public FeedbackAgent agent ;
+	// private PopupWindow menuWindow;
+	// private LayoutInflater inflater;
 
 	/**
 	 * 连续按两次返回键就退出
@@ -73,6 +77,8 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		instance = this;
+		agent = new FeedbackAgent(MainActivity.this);
 
 		setContentView(R.layout.main);
 		setBehindContentView(R.layout.behind_slidingmenu);
@@ -80,29 +86,33 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-		instance = this;
 
 		initViewPager();
 		initSlidingMenu();
 		bindButton();
 
-		//baidu push
+		// baidu push
 		// PushSettings.enableDebugMode(this, true);
 		PushManager.startWork(getApplicationContext(),
 				PushConstants.LOGIN_TYPE_API_KEY,
 				Utils.getMetaValue(MainActivity.this, "api_key"));
-		//更新app api->umeng.com
+		// 更新app api->umeng.com
 		UmengUpdateAgent.setUpdateOnlyWifi(false);
 		UmengUpdateAgent.update(this);
 
-//	    设置新回复通知
-//
-//	当开发者回复用户反馈后，如果需要提醒用户，请在应用程序的入口Activity的OnCreate()方法中下添加以下代码
+		// 设置新回复通知
+		//
+		// 当开发者回复用户反馈后，如果需要提醒用户，请在应用程序的入口Activity的OnCreate()方法中下添加以下代码
 
 		agent.sync();
 
 	}
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+    	((ActionDispatcher)wrapers.get(0)).dispatchTouchEvent(event);
+    	return super.dispatchTouchEvent(event);
+    }
 	private void initViewPager() {
 		mTabPager = (ViewPager) findViewById(R.id.tabpager);
 		mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());
@@ -116,14 +126,17 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 		// InitImageView();//
 		LayoutInflater mLi = LayoutInflater.from(this);
-		View infoCenter = mLi.inflate(R.layout.main_tab_infocenter, null);
+		//View infoCenter = mLi.inflate(R.layout.main_tab_infocenter, null);
+		View infoCenter = mLi.inflate(R.layout.maintab_infocenter, null);
 		View studyResource = mLi.inflate(R.layout.main_tab_studyresource, null);
 		View library = mLi.inflate(R.layout.main_tab_library, null);
 		View card = mLi.inflate(R.layout.main_tab_card, null);
 		View ulities = mLi.inflate(R.layout.main_tab_ulities, null);
 
+//		views.add(infoCenter);
+//		wrapers.add(new InfoCenterActivity(infoCenter));
 		views.add(infoCenter);
-		wrapers.add(new InfoCenterActivity(infoCenter));
+		wrapers.add(new MainTabActivity(infoCenter));
 		views.add(studyResource);
 		wrapers.add(new StudyResourceActivity(studyResource));
 		views.add(library);
@@ -159,7 +172,6 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 		mTabPager.setAdapter(mPagerAdapter);
 
-		
 	}
 
 	@Override
@@ -178,7 +190,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		// sm.setFadeDegree(0.35f);
 
-		//屏幕左右滑动不能显示menu,显示上一页，下一页
+		// 屏幕左右滑动不能显示menu,显示上一页，下一页
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		sm.setShadowDrawable(R.drawable.slidingmenu_shadow);
 		// sm.setShadowWidth(20);
@@ -188,6 +200,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 	/**
 	 * 左侧栏菜单初始化，可以加入删除模块
+	 * 
 	 * @return
 	 */
 	private List<Map<String, Object>> getData() {
@@ -216,7 +229,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		return list;
 	}
 
-	//初始化左侧菜单列表按Mainactivity 中currentInx指定
+	// 初始化左侧菜单列表按Mainactivity 中currentInx指定
 	private void initListView() {
 		lvAdapter = new SimpleAdapter(this, getData(),
 				R.layout.behind_list_show, new String[] { LIST_TEXT,
@@ -241,7 +254,8 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				if(position==currIndex)return ;
+				if (position == currIndex)
+					return;
 				mTabPager.setCurrentItem(position);
 				if (lvTitle.getTag() != null) {
 					if (lvTitle.getTag() == view) {
@@ -277,22 +291,27 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		@Override
 		public void onPageSelected(int arg0) {
 			Animation animation = null;
-			if(currIndex!=arg0)
-				animation = new TranslateAnimation(one*currIndex, one*arg0, 0, 0);
-			else return;
+			if (currIndex != arg0)
+				animation = new TranslateAnimation(one * currIndex, one * arg0,
+						0, 0);
+			else
+				return;
 			wrapers.get(currIndex).onPause();
 			currIndex = arg0;
 			animation.setFillAfter(true);
-			animation.setDuration(Math.abs(currIndex-arg0)*500);
-			//mTabImg.startAnimation(animation);
+			animation.setDuration(Math.abs(currIndex - arg0) * 500);
+			// mTabImg.startAnimation(animation);
 			wrapers.get(arg0).onResume();
-			
-			//TODO menu 选择 滑动
-			//lvTitle.getOnItemClickListener().onItemClick(null, null, currIndex , (Long) null);
-			
-			//最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
-			if(currIndex!=0) sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-			else sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+
+			// TODO menu 选择 滑动
+			// lvTitle.getOnItemClickListener().onItemClick(null, null,
+			// currIndex , (Long) null);
+
+			// 最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
+			if (currIndex != 0)
+				sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+			else
+				sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		}
 
 		@Override
@@ -309,8 +328,8 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		// TODO Auto-generated method stub
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			//menuWindow.dismiss();
-			if(sm.isMenuShowing()){
+			// menuWindow.dismiss();
+			if (sm.isMenuShowing()) {
 				sm.toggle();
 				return super.onKeyDown(keyCode, event);
 			}
@@ -365,9 +384,9 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		findViewById(R.id.cbFeedback).setOnClickListener(
 				new View.OnClickListener() {
 					@Override
-					//feedback activity from umeng sdk.
+					// feedback activity from umeng sdk.
 					public void onClick(View arg0) {
-		                agent.startFeedbackActivity();
+						agent.startFeedbackActivity();
 					}
 				});
 		findViewById(R.id.cbSetting).setOnClickListener(
@@ -392,7 +411,16 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 						startActivity(intent);
 					}
 				});
+	}
 
+
+	public void finalize(){
+		try {
+			IPreference.save(this);
+			super.finalize();
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -9,7 +9,16 @@ import android.widget.BaseAdapter;
 
 public abstract class AdapterBase<T> extends BaseAdapter {
 
-	protected List<T> mList = new LinkedList<T>();
+	protected List<T> mList =null;
+
+	public AdapterBase(){
+		super();
+		mList=new LinkedList<T>();
+	}
+
+	public void setList(List<T> list){
+		this.mList=list;
+	}
 
 	public List<T> getList() {
 		return mList;

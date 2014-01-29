@@ -20,7 +20,7 @@ import edu.hebtu.movingcampus.utils.ImageUtil;
 import edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback;
 
 //主页新闻+本地通知数据展示
-public class InfoNewsAdapter extends AdapterBase<NewsShort> {
+public class NewsListAdapter extends AdapterBase<NewsShort> {
 	private Context context;
 	private int rowlayout;
 	private ListView list;
@@ -49,7 +49,7 @@ public class InfoNewsAdapter extends AdapterBase<NewsShort> {
 	 * @param resourceId
 	 *            :item xml view
 	 */
-	public InfoNewsAdapter(final Context context, int resourceId,ListView list) {
+	public NewsListAdapter(final Context context, int resourceId,ListView list) {
 		super();
 		this.list=list;
 		this.context = context;
@@ -111,8 +111,8 @@ public class InfoNewsAdapter extends AdapterBase<NewsShort> {
 			this.title = (TextView) convertView.findViewById(R.id.news_title);
 			this.time = (TextView) convertView.findViewById(R.id.news_time);
 			this.content = (TextView) convertView
-					.findViewById(R.id.news_short_content);
-			this.icon = (ImageView) convertView.findViewById(R.id.img_thu);
+					.findViewById(R.id.news_context_item);
+			this.icon = (ImageView) convertView.findViewById(R.id.news_img);
 		}
 
 		public TextView title;

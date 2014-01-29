@@ -18,6 +18,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.activity.NewsDetailsActivity;
+import edu.hebtu.movingcampus.utils.ImageUtil;
 import edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback;
 import edu.hebtu.movingcampus.utils.IntentUtil;
 import edu.hebtu.movingcampus.widget.XListView;
@@ -39,8 +40,8 @@ public abstract class BaseListFragment extends Fragment implements
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		mInflater = inflater;
-		view = inflater.inflate(R.layout.main, null);
-		listview = (XListView) view.findViewById(R.id.xlistview_news);
+		view = inflater.inflate(R.layout.newsxlist, null);
+		listview = (XListView) view.findViewById(R.id.list_view);
 		initListView();
 		listview.setPullLoadEnable(true);
 		listview.setPullRefreshEnable(false);
@@ -50,25 +51,21 @@ public abstract class BaseListFragment extends Fragment implements
 	private void initListView() {
 	}
 
-	public void startDetailActivity(Activity mContext, String id, String title,
-			String shareTitle) {
+	public void startDetailActivity(Activity mContext, String id) {
 		IntentUtil.start_activity(mContext, NewsDetailsActivity.class,
-				new BasicNameValuePair("id", id), new BasicNameValuePair(
-						"title", title), new BasicNameValuePair("sharetitle",
-						shareTitle));
+				new BasicNameValuePair("id", id));
 	}
 
-	protected void onLoad() {
+	protected void onStopLoad() {
 		listview.stopRefresh();
 		listview.stopLoadMore();
 		listview.setRefreshTime("刚刚");
 	}
 
-	edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback callback1 = new ImageCallback() {
+	ImageUtil.ImageCallback callback1 = new ImageCallback() {
 
 		@Override
 		public void loadImage(Bitmap bitmap, String imagePath) {
-			// TODO Auto-generated method stub
 			try {
 				ImageView img = (ImageView) listview.findViewWithTag(imagePath);
 				img.setImageBitmap(bitmap);

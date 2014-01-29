@@ -16,9 +16,9 @@ public class Urls {
 	// 新闻请求格式 /news?type=1&from=10&size=20
 	public static final String NEWS_LIST = BASE + "/" + Constants.TAGS.NEWS
 			+ "?type=%s&from=%s&size=%s";
-	// searchURL,type=0为所有类型
+	// searchURL,type=0为所有类型 1-...所对应类型
 	public static final String NEWS_SEARCH = BASE + "/" + Constants.TAGS.NEWS
-			+ "?type=0&keyword=%s";
+			+ "?type=%s&keyword=%s";
 	public static final String NEWS_MORE = BASE + "/" + Constants.TAGS.NEWS
 			+ "?type=" + Constants.NEWS_MORE + "&id=%s";// +screen params;
 	// 新闻标题图片

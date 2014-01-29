@@ -22,15 +22,29 @@
         android:layout_alignParentRight="true"
         android:src="@drawable/button_title_more" />
 
-    <Button
-        android:id="@+id/btn_back"
-        android:layout_width="70dp"
-        android:layout_height="wrap_content"
+    <LinearLayout
+        android:id="@+id/Linear_above_toHome"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/title_btn_back"
-        android:text="@string/back"
-        android:textColor="#fff"
-        android:textSize="14sp" />
+        android:layout_margin="5dp"
+        android:background="@drawable/back_above_menushow_style"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            android:src="@drawable/button_above_more" />
+
+        <TextView
+            android:id="@+id/tv_above_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff" />
+    </LinearLayout>
 
 </RelativeLayout>

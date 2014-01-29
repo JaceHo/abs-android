@@ -70,6 +70,6 @@ public class NewsSubject extends Subject implements Serializable, ListOfNews {
 
 	@Override
 	public String getTag() {
-		return "subject"+getDesc();
+		return "subject."+getId();
 	}
 }

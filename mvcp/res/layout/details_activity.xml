@@ -30,24 +30,43 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/details_bottom_height"
-        android:layout_gravity="bottom"
-        android:background="@drawable/back_behind_menu"
-        android:orientation="horizontal" >
+        android:id="@+id/webview_navigate"
+        android:layout_width="fill_parent"
+        android:layout_height="52dip"
+        android:background="@drawable/webview_bottom_main_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="5dip"
+        android:paddingRight="5dip" >
 
-        <edu.hebtu.movingcampus.widget.CustomButton 
-            android:id="@+id/rlShare"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/imgview_browser_home"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            Image="@drawable/button_details_share_default"
-            ImageID="@+id/imageview_details_share"
-            Text="@string/DetailsShare"
-            TextID="@+id/textview_details_share"
-            android:background="@drawable/back_button_default_style"
-            android:clickable="true" >
-        </edu.hebtu.movingcampus.widget.CustomButton>
+            android:contentDescription="TODO"
+            android:src="@drawable/button_brower_home" />
+
+        <ImageView
+            android:id="@+id/imgview_browser_back"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/button_brower_back" />
+
+        <ImageView
+            android:id="@+id/imgview_browser_forward"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/button_brower_forward" />
+
+        <ImageView
+            android:id="@+id/imgview_browser_refresh"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/button_brower_refresh" />
     </LinearLayout>
 
 </LinearLayout>

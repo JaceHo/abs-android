@@ -72,8 +72,8 @@ public class IPreference {
 
 		for (int i = 1; i < NewsType.values().length; i++) {
 			if (pre.getBoolean("news_" + i, true)) {
-				ListOfNews s=new NewsSubject(NewsType.values()[i]);
-				subjects.put(((Subject)s).getTag(),(Subject) s); // 每次接受20条|默认,学校新闻...
+				NewsSubject s=new NewsSubject(NewsType.values()[i]);
+				subjects.put(s.getTag(),s); // 每次接受20条|默认,学校新闻...
 			}
 		}
 	}
@@ -139,7 +139,7 @@ public class IPreference {
 	 * @param id
 	 * @return
 	 */
-	public ListOfNews getListOfNewsSubjectByID(long id) {
+	public ListOfNews getListOfNewsSubjectByID(int id) {
 		if(id==0){
 			LocalNewsSubject ls=new LocalNewsSubject();
 			for (Subject n : subjects.values())
@@ -147,11 +147,7 @@ public class IPreference {
 					ls.addLocalSubject((OneofNews) n);
 			return ls;
 		}
-		for (Subject n : subjects.values())
-			if(n instanceof ListOfNews)
-			if (((ListOfNews)n).getId() == id)
-				return (ListOfNews) n;
-		return null;
+		return (ListOfNews) subjects.get("subject."+id);
 	}
 
 	/**
@@ -174,4 +170,5 @@ public class IPreference {
 	public void addListOfNewsSubject(NewsSubject newsSubject) {
 		subjects.put(newsSubject.getTag(),newsSubject);
 	}
+
 }

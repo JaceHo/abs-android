@@ -5,7 +5,6 @@ import android.content.ComponentCallbacks2;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +19,6 @@ import edu.hebtu.movingcampus.entity.CardEntity;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
 import edu.hebtu.movingcampus.utils.NetWorkHelper;
-import edu.hebtu.movingcampus.widget.PopupDialog;
 
 public class AllInOneCardActivity implements PageWraper,NetworkchangeListener {
 

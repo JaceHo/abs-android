@@ -156,6 +156,7 @@
     <string name="ulities_process_notice">流程须知</string>
     <string name="ulities_wish">还期望什么功能?</string>
 
+    <string name="listview_header_load_fail">刷新失败</string>
 
     
 </resources>
