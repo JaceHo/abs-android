@@ -18,6 +18,7 @@ import edu.hebtu.movingcampus.adapter.base.AdapterBase;
 import edu.hebtu.movingcampus.entity.NewsShort;
 import edu.hebtu.movingcampus.utils.ImageUtil;
 import edu.hebtu.movingcampus.utils.ImageUtil.ImageCallback;
+import edu.hebtu.movingcampus.view.NewsFragment;
 
 //主页新闻+本地通知数据展示
 public class NewsListAdapter extends AdapterBase<NewsShort> {
@@ -37,6 +38,7 @@ public class NewsListAdapter extends AdapterBase<NewsShort> {
 			}
 		}
 	};
+	private NewsFragment fragment;
 	// [end]
 
 	/**
@@ -49,11 +51,12 @@ public class NewsListAdapter extends AdapterBase<NewsShort> {
 	 * @param resourceId
 	 *            :item xml view
 	 */
-	public NewsListAdapter(final Context context, int resourceId,ListView list) {
+	public NewsListAdapter(final Context context, int resourceId,ListView list,NewsFragment fragment) {
 		super();
 		this.list=list;
 		this.context = context;
 		this.rowlayout = resourceId;
+		this.fragment=fragment;
 	}
 
 	// position MK
@@ -89,16 +92,21 @@ public class NewsListAdapter extends AdapterBase<NewsShort> {
 
 		// show
 		holder.title.setText(news.getTitle());
+		//TODO
+		holder.source.setText("教务处");
 		holder.content.setText(news.getContent());
 		if(news.getDate()!=null)
 		holder.time.setText(news.getDate().toLocaleString());
 		holder.icon.setImageResource(news.getIcon());
 		String img_url = news.getThumbnail_url();
 		if (img_url==null || img_url.equals("")) {
-			holder.icon.setVisibility(View.GONE);
+			//TODO default image icon for test
+			holder.icon.setVisibility(View.VISIBLE);
 		} else {
 			holder.icon.setVisibility(View.VISIBLE);
-			ImageUtil.setThumbnailView(img_url, holder.icon, context,
+			ImageUtil.setThumbnailView( 
+					"http://t3.baidu.com/it/u=4287900930,2181484254&fm=21&gp=0.jpg"
+					, holder.icon, context,
 					callback1, true);
 		}
 
@@ -109,20 +117,22 @@ public class NewsListAdapter extends AdapterBase<NewsShort> {
 	static class ViewHolder {
 		public ViewHolder(View convertView) {
 			this.title = (TextView) convertView.findViewById(R.id.news_title);
-			this.time = (TextView) convertView.findViewById(R.id.news_time);
+			this.time = (TextView) convertView.findViewById(R.id.news_pub_date_time);
+			this.source= (TextView)convertView.findViewById(R.id.news_source);
 			this.content = (TextView) convertView
-					.findViewById(R.id.news_context_item);
+					.findViewById(R.id.news_summary);
 			this.icon = (ImageView) convertView.findViewById(R.id.news_img);
 		}
 
 		public TextView title;
 		public TextView time;
 		public TextView content;
+		public TextView source;
 		public ImageView icon;
 	}
 
 	@Override
 	protected void onReachBottom() {
-		// TODO Auto-generated method stub
+		fragment.onLoadMore();
 	}
 }

@@ -156,7 +156,14 @@
     <string name="ulities_process_notice">流程须知</string>
     <string name="ulities_wish">还期望什么功能?</string>
 
-    <string name="listview_header_load_fail">刷新失败</string>
-
-    
+    <string name="listview_header_hint_normal">下拉刷新</string>
+    <string name="listview_header_hint_ready">松开刷新数据</string>
+    <string name="listview_header_hint_loading">正在刷新...</string>
+    <string name="listview_header_last_time">初始化更新</string>
+    <string name="listview_header_last_time_for_min">%1$s分钟前更新</string>
+    <string name="listview_header_last_time_for_hour">%1$s小时前更新</string>
+    <string name="listview_header_last_time_for_day">%1$s天前更新</string>
+    <string name="listview_header_last_time_for_date">%1$s更新</string>
+    <string name="load_more_text">载入中...</string>
+    <string name="listview_header_load_fail">更新失败!</string>    
 </resources>

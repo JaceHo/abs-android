@@ -17,6 +17,8 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.PopupWindow;
 import edu.hebtu.movingcampus.R;
 import edu.hebtu.movingcampus.entity.CategorysEntity;
+import edu.hebtu.movingcampus.enums.NewsType;
+import edu.hebtu.movingcampus.view.NewsFragment;
 
 public class PopupWindowUtil<T> implements OnClickListener {
 	private PopupWindow popupWindow;
@@ -64,27 +66,13 @@ public class PopupWindowUtil<T> implements OnClickListener {
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.setBackgroundResource(R.drawable.back_popup_more);
 		for (int i = 0; i < tabs.size(); i++) {
+			String name = NewsType.values()[i+1].getDesc();
+			Button btn = getButton(context, name, i);
 			if (i != tabs.size() - 1) {
-				String name = "";
-				if (tabs.get(i) instanceof String) {
-					name = ((List<String>) tabs).get(i);
-				} else if (tabs.get(i) instanceof CategorysEntity) {
-					name = ((List<CategorysEntity>) tabs).get(i).getName();
-				}
-				Button btn = getButton(context, name, i);
 				ImageView img = getImageView(context);
-				layout.addView(btn);
 				layout.addView(img);
-			} else {
-				String name = "";
-				if (tabs.get(i) instanceof String) {
-					name = ((List<String>) tabs).get(i);
-				} else if (tabs.get(i) instanceof CategorysEntity) {
-					name = ((List<CategorysEntity>) tabs).get(i).getName();
-				}
-				Button btn = getButton(context, name, i);
-				layout.addView(btn);
 			}
+			layout.addView(btn);
 		}
 
 		return layout;

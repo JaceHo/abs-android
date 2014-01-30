@@ -25,6 +25,7 @@ import edu.hebtu.movingcampus.biz.base.BaseDao;
 import edu.hebtu.movingcampus.entity.NewsShort;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver;
 import edu.hebtu.movingcampus.subjects.NetworkChangeReceiver.NetworkchangeListener;
+import edu.hebtu.movingcampus.view.NewsFragment;
 import edu.hebtu.movingcampus.widget.XListView;
 
 public class SearchActivity extends BaseFragmentActivity implements
@@ -80,7 +81,7 @@ public class SearchActivity extends BaseFragmentActivity implements
 		listview = (XListView) findViewById(R.id.list_view);
 		newsDao = new NewsDao(this);
 		listview.setXListViewListener(this);
-		adapter = new NewsListAdapter(this, R.layout.news_item,listview);
+		adapter = new NewsListAdapter(this, R.layout.news_item,listview,new NewsFragment());
 		listview.setAdapter(adapter);
 		imm = (InputMethodManager) getApplicationContext().getSystemService(
 				Context.INPUT_METHOD_SERVICE);

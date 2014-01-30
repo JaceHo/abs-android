@@ -47,4 +47,13 @@
             android:textColor="#fff" />
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/info_center_title"
+        android:textColor="#ffffff"
+        android:textSize="20sp" />
+
 </RelativeLayout>

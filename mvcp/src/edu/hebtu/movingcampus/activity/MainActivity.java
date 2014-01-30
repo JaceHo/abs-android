@@ -17,6 +17,7 @@ import android.view.Display;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -41,13 +42,13 @@ import edu.hebtu.movingcampus.activity.setting.AccountSettingActivity;
 import edu.hebtu.movingcampus.activity.setting.SettingActivity;
 import edu.hebtu.movingcampus.activity.wrapper.AllInOneCardActivity;
 import edu.hebtu.movingcampus.activity.wrapper.IPreference;
-import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
 import edu.hebtu.movingcampus.activity.wrapper.LibraryActivity;
-import edu.hebtu.movingcampus.activity.wrapper.MainTabActivity;
+import edu.hebtu.movingcampus.activity.wrapper.InfoCenterActivity;
 import edu.hebtu.movingcampus.activity.wrapper.StudyResourceActivity;
 import edu.hebtu.movingcampus.activity.wrapper.UlitiesActivity;
 import edu.hebtu.movingcampus.slidingmenu.SlidingMenu;
 import edu.hebtu.movingcampus.utils.Utils;
+import edu.hebtu.movingcampus.view.ParentViewPager;
 
 public class MainActivity extends BaseSlidingFragmentActivity {
 
@@ -55,11 +56,11 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 	private final String LIST_IMAGEVIEW = "img";
 	public static MainActivity instance = null;
 
-	private ViewPager mTabPager;
+	private ParentViewPager mTabPager;
 	private SimpleAdapter lvAdapter;
 	private ListView lvTitle;
 	private int zero = 0;
-	private int currIndex = 0;
+	private static int currIndex = 0;
 	private int one;
 	public FeedbackAgent agent ;
 	// private PopupWindow menuWindow;
@@ -108,13 +109,16 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 
 	}
 
+	public TouchDelegate getTouchDelegate(){
+		return mTabPager.getTouchDelegate();
+	}
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-    	((ActionDispatcher)wrapers.get(0)).dispatchTouchEvent(event);
-    	return super.dispatchTouchEvent(event);
+    	super.dispatchTouchEvent(event);
+    	return ((ActionDispatcher)wrapers.get(0)).dispatchTouchEvent(event);
     }
 	private void initViewPager() {
-		mTabPager = (ViewPager) findViewById(R.id.tabpager);
+		mTabPager = (ParentViewPager) findViewById(R.id.tabpager);
 		mTabPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
 		Display currDisplay = getWindowManager().getDefaultDisplay();
@@ -127,7 +131,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		// InitImageView();//
 		LayoutInflater mLi = LayoutInflater.from(this);
 		//View infoCenter = mLi.inflate(R.layout.main_tab_infocenter, null);
-		View infoCenter = mLi.inflate(R.layout.maintab_infocenter, null);
+		View infoCenter = mLi.inflate(R.layout.main_tab_infocenter, null);
 		View studyResource = mLi.inflate(R.layout.main_tab_studyresource, null);
 		View library = mLi.inflate(R.layout.main_tab_library, null);
 		View card = mLi.inflate(R.layout.main_tab_card, null);
@@ -136,7 +140,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 //		views.add(infoCenter);
 //		wrapers.add(new InfoCenterActivity(infoCenter));
 		views.add(infoCenter);
-		wrapers.add(new MainTabActivity(infoCenter));
+		wrapers.add(new InfoCenterActivity(infoCenter));
 		views.add(studyResource);
 		wrapers.add(new StudyResourceActivity(studyResource));
 		views.add(library);
@@ -308,10 +312,10 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			// currIndex , (Long) null);
 
 			// 最左侧pager让右滑出现左侧栏,其他pager左右滑切换pager
-			if (currIndex != 0)
-				sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
-			else
+			if (currIndex == 0&&Integer.parseInt(InfoCenterActivity.current_page)==0)
 				sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+			else 
+				sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 		}
 
 		@Override
@@ -331,7 +335,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 			// menuWindow.dismiss();
 			if (sm.isMenuShowing()) {
 				sm.toggle();
-				return super.onKeyDown(keyCode, event);
+				return false;
 			}
 			switch (keyBackClickCount++) {
 			case 0:
@@ -423,4 +427,7 @@ public class MainActivity extends BaseSlidingFragmentActivity {
 		}
 	}
 
+	public int getCurrentIndex(){
+		return currIndex;
+	}
 }
