@@ -1,0 +1,180 @@
+apply plugin: 'com.android.application'
+apply plugin: 'checkstyle'
+def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("GMT+8:00"))
+}
+
+// Manifest version information!
+def versionMajor = 1 //0-9
+def versionMinor = 0 //0-9
+def versionPatch = 1 //0-9
+def versionBuild = 1 //0-99 bump for dogfood builds, public betas, etc.
+
+def API_VERSION = "v2" // http header with API_VERSION specified
+def itsmcode = "mvs";
+def BUILD_VERSION = 23 //target sdk and compile sdk
+def APP_ID = "info.futureme.abs.example"
+def desKey = KEY_DES
+def buildTime = new Date().format("yyyy-MM-dd_HH-mm", TimeZone.getTimeZone("GMT+8:00"))
+
+android {
+    signingConfigs {
+        config {
+            try {
+                // Define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties
+                // (Only where you do release builds; do NOT commit those into version control.)
+                storeFile file("abs.keystore")
+                storePassword KEYSTORE_PASSWORD
+                keyAlias "appname"
+                keyPassword KEY_PASSWORD
+            }
+            catch (ex) {
+                logger.warning('NB: For release builds, you must define KEYSTORE_PASSWORD and KEY_PASSWORD in gradle.properties.')
+            }
+        }
+    }
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+    defaultConfig {
+        applicationId APP_ID
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
+        // dex突破65535的限制
+        multiDexEnabled true
+        jackOptions.enabled = false
+
+       //jackOptions.enabled true
+        signingConfig signingConfigs.config
+        //master key tQFxWuUhgcA3A45zJjUnW9
+        manifestPlaceholders = [
+                GETUI_APP_ID    : "KvuTQK8Jos74r6XcF9dRC",
+                GETUI_APP_KEY   : "bFZtxcuRQe72UWNp7FoSD1",
+                GETUI_APP_SECRET: "iBVS3mB9yF9AdADhUkTfs1",
+                PACKAGE_NAME    : applicationId
+        ]
+        buildConfigField "String", "BUILD_TIME", "\"${buildTime}\""
+        buildConfigField "String", "DES_KEY", "\"${desKey}\""
+        buildConfigField "String", "API_VERSION", "\"${API_VERSION}\""
+        buildConfigField "String", "ITSMCODE", "\"${itsmcode}\""
+        buildConfigField "int", "BUILD_VERSION", "${BUILD_VERSION}"
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                File outputDirectory = new File(outputFile.parent);
+                def fileName
+                if (variant.buildType.name == "release") {
+                    fileName = "abs_v${defaultConfig.versionName}.${versionBuild}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+                } else {
+                    fileName = "abs_v${defaultConfig.versionName}_${buildTime}_debug.apk"
+                }
+                output.outputFile = new File(outputDirectory, fileName)
+            }
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'LICENSE.txt'
+    }
+    lintOptions {
+        disable 'InvalidPackage'
+        abortOnError false
+        warningsAsErrors false
+    }
+    buildTypes {
+        release {
+            shrinkResources true
+            pseudoLocalesEnabled true
+            zipAlignEnabled true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            minifyEnabled false
+            pseudoLocalesEnabled true
+            zipAlignEnabled false
+            signingConfig signingConfigs.config
+        }
+    }
+    dexOptions {
+        //optimize true
+        javaMaxHeapSize "4g"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+    productFlavors {
+        branchDev {
+            buildConfigField "String", "CONFIG_ITSM_ENDPOINT", "\"https://10.103.236.96:8443/mvs-itsm/\""
+            buildConfigField "String", "CONFIG_ENDPOINT", "\"https://10.103.236.96:7001/\""
+        }
+        branchQa {
+            buildConfigField "String", "CONFIG_ITSM_ENDPOINT", "\"https://124.127.255.6:443/mvs-itsm/\""
+            buildConfigField "String", "CONFIG_ENDPOINT", "\"https://124.127.255.6:7001/\""
+        }
+        branchPro {
+            buildConfigField "String", "CONFIG_ITSM_ENDPOINT", "\"https://api.com.cn/itsm/mvs-itsm/\""
+            buildConfigField "String", "CONFIG_ENDPOINT", "\"https://file.api.com.cn:7001/\""
+        }
+    }
+    sourceSets {
+        main {
+            //自定义jni目录
+            jni.srcDirs "jni", "src/main/jni"
+            //自定义libs目录
+            jniLibs.srcDirs "src/main/jinLibs"
+        }
+    }
+}
+
+dependencies {
+    //test lib
+    // use Robolectric for unit test
+    /*  https://github.com/futurice/android-best-practices#test-frameworks
+            Use Robolectric only for unit tests, not for views. It is a test framework seeking to provide tests "disconnected from device" for the sake of development speed, suitable specially for unit tests on models and view models. However, testing under Robolectric is inaccurate and incomplete regarding UI tests. You will have problems testing UI elements related to animations, dialogs, etc, and this will be complicated by the fact that you are "walking in the dark" (testing without seeing the screen being controlled).
+            */
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'org.robolectric:robolectric:3.0'
+    /*
+            Robotium makes writing UI tests easy. You do not need Robotium for running connected tests for UI cases, but it will probably be beneficial to you because of its many helpers to get and analyse views, and control the screen. Test cases will look as simple as:
+            */
+    androidTestCompile 'com.jayway.android.robotium:robotium-solo:5.5.3'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    //libs
+    compile project(':framework')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    //GETUI config
+    compile 'com.getui:sdk:2.7.0.0'
+    compile ('com.getui:ext:2.0.3'){
+        exclude group: 'com.google.android', module: 'android'
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+    }
+    compile 'com.tonicartos:superslim:0.4.13'
+    compile 'me.relex:circleindicator:1.2.1@aar'
+
+    //qrcode view
+    compile('me.dm7.barcodescanner:zxing:1.8.4')
+}
+
+
+task checkstyle(type: Checkstyle) {
+    description 'Checks if the code is somewhat acceptable'
+    configFile file('./checkstyle.xml')
+    source 'src/main/java'
+    include '**/*.java'
+    exclude '**/gen/**'
+    classpath = files() // empty because unnecessary for checkstyle
+}
+

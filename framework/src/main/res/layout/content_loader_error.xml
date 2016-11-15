@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/error_view"
+    android:orientation="vertical" 
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+    <!--android:src="@drawable/error"-->
+    <ImageView
+        android:id="@+id/error_loading_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/error_net"
+        />
+    <TextView
+        android:id="@+id/error_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络连接错误"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/ripple_bg_refresh"
+        android:textColor="@color/framwork_default_blue"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/btn_error_retry"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:text="@string/btn_error_retry"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/error_btn_selector"
+        />
+</LinearLayout>

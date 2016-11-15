@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    android:orientation="vertical"
+    android:background="@drawable/intro2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v4.view.ViewPager android:layout_height="match_parent"
+                                       android:id="@+id/viewpager"
+                                       android:layout_width="match_parent">
+    </android.support.v4.view.ViewPager>
+    <me.relex.circleindicator.CircleIndicator
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="76dp"
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="18dp"/>
+</merge>

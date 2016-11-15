@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:color = "#3982d1" android:state_checked="true" android:state_selected="true"></item>
+<item android:color = "#404040" android:state_checked="false" android:state_selected="false"></item>
+</selector>

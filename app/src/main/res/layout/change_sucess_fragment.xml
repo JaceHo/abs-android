@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_default_bg"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c8c7cc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/iv_change_pass_word_succeed"
+            android:layout_height="@dimen/iv_change_pass_word_succeed"
+            android:background="@drawable/iv_change_pass_word_succeed" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/forget_pass_word_left_interval"
+            android:gravity="center_horizontal"
+            android:id="@+id/success_title"
+            android:text="密码修改成功"
+            android:textColor="@color/veritfy_number_not_active"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c8c7cc" />
+
+        <Button
+            android:id="@+id/over"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/btn_app_blue_selector"
+            android:text="@string/next_confirm"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+</LinearLayout>

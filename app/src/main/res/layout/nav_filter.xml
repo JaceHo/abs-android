@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                                        android:id="@+id/action_bar"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/action_bar_size"
+                                        android:elevation="2dp"
+                                        app:cardCornerRadius="0dp"
+                                        app:cardElevation="2dp"
+                                        app:cardPreventCornerOverlap="false"
+                                        app:contentPadding="0dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="@string/filter"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="@dimen/action_bar_size"/>
+    </android.support.v7.widget.CardView>
+        <ScrollView
+            android:id="@+id/filter_scrollview_condition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:scrollbars="none"
+            android:visibility="visible">
+
+            <RelativeLayout
+                android:id="@+id/conditions"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ffffff">
+
+                <LinearLayout
+                    android:id="@+id/linearProjects"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:id="@+id/linear_orderstate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="15dp"
+                                android:text="时间检索"
+                                android:textColor="@color/order_filter_button_textcolor"
+                                android:textSize="@dimen/order_filter_text_size" />
+
+                            <RelativeLayout
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginRight="13dp"
+                                android:clickable="true"
+                                android:gravity="center">
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <CheckBox
+                            android:id="@+id/rb_order_time_start"
+                            android:layout_width="73dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_height="23dp"
+                            android:background="@drawable/filtrate_check_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="@string/start_time"
+                            android:textColor="@drawable/textcolor_fifter_selector" />
+                        <CheckBox
+                            android:id="@+id/rb_order_end_time"
+                            android:layout_width="73dp"
+                            android:layout_height="23dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/filtrate_check_selector"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="@string/end_time"
+                            android:textColor="@drawable/textcolor_fifter_selector" />
+
+                    </LinearLayout>
+                    <ImageView style="@style/order_list_line_style"
+                               android:visibility="gone"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/linear_orderstate"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="15dp"
+                                android:text="订单状态"
+                                android:textColor="@color/order_filter_button_textcolor"
+                                android:textSize="@dimen/order_filter_text_size" />
+
+                            <RelativeLayout
+
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="right|center_vertical"
+                                android:layout_marginRight="13dp"
+                                android:clickable="true"
+                                android:gravity="center">
+
+                            </RelativeLayout>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/rb_order_status_close"
+                        android:layout_width="73dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/filtrate_check_selector"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        android:text="快速关单"
+                        android:textColor="@drawable/textcolor_fifter_selector" />
+                    <CheckBox
+                        android:id="@+id/rb_order_status_done"
+                        android:visibility="gone"
+                        android:layout_width="73dp"
+                        android:layout_height="23dp"
+                        android:layout_marginLeft="8dp"
+                        android:background="@drawable/filtrate_check_selector"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="已完成"
+                        android:textColor="@drawable/textcolor_fifter_selector" />
+
+                    </LinearLayout>
+                    <ImageView style="@style/order_list_line_style" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_orderStatus"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="客户打分"
+                            android:textColor="@color/order_filter_button_textcolor"
+                            android:textSize="@dimen/order_filter_text_size" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <CheckBox
+                                android:id="@+id/rb_order_grade_low"
+                                android:layout_width="73dp"
+                                android:layout_height="23dp"
+                                android:background="@drawable/filtrate_check_selector"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="3分以下"
+                                android:textColor="@drawable/textcolor_fifter_selector" />
+
+                            <CheckBox
+                                android:id="@+id/rb_order_grade_middle"
+                                android:layout_width="73dp"
+                                android:layout_height="23dp"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/filtrate_check_selector"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="3-4分"
+                                android:textColor="@drawable/textcolor_fifter_selector" />
+
+                            <CheckBox
+                                android:id="@+id/rb_order_grade_high"
+                                android:layout_width="73dp"
+                                android:layout_height="23dp"
+                                android:layout_marginLeft="8dp"
+                                android:background="@drawable/filtrate_check_selector"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="4-5分"
+                                android:textColor="@drawable/textcolor_fifter_selector" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <ImageView style="@style/order_list_line_style" />
+                </LinearLayout>
+
+            </RelativeLayout>
+        </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent"
+        android:layout_gravity="bottom"
+        android:padding="5dp"
+        android:gravity="bottom">
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_alignParentBottom="true"
+            android:text="@string/reset"
+            android:background="@drawable/btn_white_selector"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/btn_blue_selector"
+            android:text="@string/ok1"
+            android:textColor="#ffffff"
+            android:textSize="14dp" />
+    </LinearLayout>
+</LinearLayout>

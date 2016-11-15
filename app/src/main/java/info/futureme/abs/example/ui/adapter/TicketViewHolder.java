@@ -1,0 +1,117 @@
+package info.futureme.abs.example.ui.adapter;
+
+import android.support.annotation.Nullable;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import info.futureme.abs.example.R;
+import info.futureme.abs.example.widget.swipe.SwipeLayout;
+
+public class TicketViewHolder extends RecyclerView.ViewHolder {
+    @Nullable @Bind(R.id.text_orderListItem_top1)
+    TextView topTV1;
+    @Nullable @Bind(R.id.text_orderListItem_top2)
+    TextView topTV2;
+    @Nullable @Bind(R.id.image_orderListItem_top3)
+    ImageView topTV3;
+    @Nullable @Bind(R.id.text_orderListItem_content1)
+    TextView contentTV1;
+    @Nullable @Bind(R.id.layout_text_orderListItem_content1)
+    LinearLayout layoutContentTV1;
+    @Nullable @Bind(R.id.text_orderListItem_content2)
+    TextView contentTV2;
+    @Nullable @Bind(R.id.layout_text_orderListItem_content2)
+    LinearLayout layoutContentTV2;
+    @Nullable @Bind(R.id.text_orderListItem_content2_2)
+    TextView contentDistanceTV;
+    @Nullable @Bind(R.id.text_orderListItem_content3)
+    TextView contentTV3;
+    @Nullable @Bind(R.id.layout_text_orderListItem_content3)
+    LinearLayout layoutContentTV3;
+    @Nullable @Bind(R.id.relative_orderListItem_buttonMain)
+    RelativeLayout contentRelative;
+    @Nullable @Bind(R.id.text_orderListItem_BtnText)
+    TextView contentBtnTV;
+    @Nullable @Bind(R.id.linear_orderListItem_bottom)
+    LinearLayout bottomLinear;
+    @Nullable @Bind(R.id.text_orderListItem_bottom1)
+    TextView bottom1;
+    @Nullable @Bind(R.id.text_orderListItem_bottom2)
+    TextView bottom2;
+    @Nullable @Bind(R.id.loadingPb)
+    ProgressBar progressBar;
+    @Nullable @Bind(R.id.shortcut_image)
+    ImageView imageView;
+    @Nullable @Bind(R.id.repo_card)
+    SwipeLayout swipeLayout;
+    @Nullable @Bind(R.id.cardView)
+    CardView cardView;
+    @Nullable @Bind(R.id.shortcut_action)
+    TextView shortcutAction;
+    @Nullable @Bind(R.id.bottom_wrapper)
+    LinearLayout bottom;
+    @Nullable @Bind(R.id.action_icon)
+    ImageView actionIcon;
+    @Nullable @Bind(R.id.catalog_icon_iv)
+    ImageView catalogIcon;
+    @Nullable @Bind(R.id.action_name)
+    TextView actionName;
+    @Nullable @Bind(R.id.layout_pencil)
+    LinearLayout layoutPencil;
+
+    @Nullable @Bind(R.id.action_time)
+    TextView actionTime;
+    @Nullable @Bind(R.id.action_name_tip)
+    TextView actionNameTip;
+    @Nullable @Bind(R.id.action_time_tip)
+    TextView actionTimeTip;
+    @Nullable @Bind(R.id.shop_name)
+    TextView shopName;
+    @Nullable @Bind(R.id.sumary)
+    RelativeLayout sumary;
+    @Nullable @Bind(R.id.ticket_desc)
+    TextView ticketDesc;
+    @Nullable @Bind(R.id.rating_grade)
+    TextView ratingGrade;
+    @Nullable @Bind(R.id.no_score)
+    TextView noScore;
+    @Nullable @Bind(R.id.rating_bar)
+    RatingBar ratingBar;
+    @Nullable @Bind(R.id.ticket_id)
+    TextView ticketId;
+    @Nullable @Bind(R.id.distance)
+    TextView distance;
+    @Nullable @Bind(R.id.vip_text)
+    TextView vipText;
+    @Nullable @Bind(R.id.res_level)
+    TextView resLevel;
+    @Nullable @Bind(R.id.speaker_frame)
+    FrameLayout speaker;
+    @Nullable @Bind(R.id.new_msg_speaker)
+    ImageView speakerImageView;
+    @Nullable @Bind(R.id.left_action)
+    TextView leftAction;
+    @Nullable @Bind(R.id.right_action)
+    TextView rightAction;
+    @Nullable @Bind(R.id.desc_text)
+    TextView descText;
+    @Nullable @Bind(R.id.notes_text)
+    TextView noteText;
+    @Nullable @Bind(R.id.expected_time_text)
+    TextView expectedText;
+
+    public TicketViewHolder(View itemView) {
+        super(itemView);
+        ButterKnife.bind(this, itemView);
+    }
+}

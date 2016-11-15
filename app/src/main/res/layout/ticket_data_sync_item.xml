@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/client_name"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textSize="14dp"
+        />
+
+    <TextView
+        android:id="@+id/ticket_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_gravity="center_horizontal"
+        android:text="Medium Text"
+        android:textSize="14dp"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/child_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="horizontal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:background="#E7ECEF"
+        android:layout_height="10dp"/>
+</LinearLayout>

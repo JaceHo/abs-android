@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/tab_item_view_interval"
+    android:paddingTop="@dimen/tab_item_view_interval">
+
+    <RelativeLayout
+        android:id="@+id/imageview_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/imageview"
+            android:layout_width="@dimen/tab_item_view_imageview_size"
+            android:layout_height="@dimen/tab_item_view_imageview_size"
+            android:focusable="false"
+            android:src="@drawable/icon_home_nor"></ImageView>
+
+        <ImageView
+            android:id="@+id/imageviewblue"
+            android:layout_width="@dimen/tab_item_view_imageview_size"
+            android:layout_height="@dimen/tab_item_view_imageview_size"
+            android:focusable="false"
+            android:src="@drawable/icon_home_sel"></ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageview_layout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="3dp">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="首页"
+            android:textColor="@color/tab_item_text_color"
+            android:textSize="10sp"></TextView>
+
+        <TextView
+            android:id="@+id/textview_blue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:visibility="gone"></TextView>
+    </RelativeLayout>
+</RelativeLayout>

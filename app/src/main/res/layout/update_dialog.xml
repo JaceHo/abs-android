@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="245dp"
+        android:orientation="vertical"
+        android:layout_height="288dp"
+                  android:background="@drawable/update_bg"
+        >
+
+        <ImageView
+            android:layout_width="22dp"
+            android:src="@drawable/update_close"
+            android:layout_height="22dp"
+            android:id="@+id/update_close"
+            android:layout_marginTop="111dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="12dp"
+            android:layout_marginEnd="12dp"/>
+
+
+    <Button
+            android:id="@+id/update_ok"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/btn_update_selector"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/update__version"
+            android:textColor="@color/login_text_color"
+            android:textStyle="bold"
+            android:layout_marginBottom="13dp"
+            android:layout_alignParentBottom="true"
+            />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="90dp"
+        android:id="@+id/update_log"
+        android:lines="5"
+        android:maxLines="5"
+        android:scrollbars = "vertical"
+        android:layout_below="@+id/update_close"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+            android:layout_width="160dp"
+            android:layout_height="40dp"
+            android:id="@+id/update_title"
+            android:gravity="bottom|left"
+            android:textSize="20dp"
+            android:textColor="@color/black"
+            android:layout_above="@+id/update_log"
+            android:layout_alignLeft="@+id/update_log"
+            android:layout_alignStart="@+id/update_log"/>
+</RelativeLayout>

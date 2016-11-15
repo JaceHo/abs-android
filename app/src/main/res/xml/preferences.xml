@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+
+    <PreferenceCategory
+
+        android:widgetLayout="@layout/preference_category_widget"
+        android:title="常规"
+        >
+
+        <CheckBoxPreference
+            android:widgetLayout="@layout/cut_setting_item"
+            android:defaultValue="true"
+            android:key="checkbox_notifymsg"
+            android:title="消息提醒" />
+
+        <Preference
+            android:key="preference_clearcache"
+            android:defaultValue="false"
+            android:widgetLayout="@layout/preference_item"
+            android:title="清除缓存"
+            android:summary="包括图片，数据等 "/>
+        <CheckBoxPreference
+            android:widgetLayout="@layout/cut_setting_item"
+            android:defaultValue="true"
+            android:key="checkbox_voice"
+            android:title="声音" />
+        <CheckBoxPreference
+            android:widgetLayout="@layout/cut_setting_item"
+            android:defaultValue="true"
+            android:key="checkbox_vibrate"
+            android:title="震动" />
+        <CheckBoxPreference
+            android:widgetLayout="@layout/cut_setting_item"
+            android:defaultValue="true"
+            android:key="checkbox_useloudspeaker"
+            android:title="使用扬声器" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:widgetLayout="@layout/preference_category_widget"
+        android:title="帮助">
+        <Preference
+            android:key="preference_response"
+            android:widgetLayout="@layout/preference_item"
+            android:title="意见反馈">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="http://fir.im/seashell" />
+        </Preference>
+
+        <Preference
+            android:key="preference_update"
+            android:widgetLayout="@layout/preference_item"
+            android:title="版本更新"
+            android:summary="当前版本 0.0.1"
+
+            >
+            <!--<intent-->
+                <!--android:action="android.intent.action.VIEW"-->
+                <!--android:data="http://fir.im/seashell" />-->
+        </Preference>
+
+    </PreferenceCategory>
+</PreferenceScreen>

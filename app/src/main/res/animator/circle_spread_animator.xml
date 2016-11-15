@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+<objectAnimator
+    android:valueFrom="1.0"
+    android:valueTo="0.0"
+    android:propertyName="alpha"
+    android:duration="1000" />
+<objectAnimator
+    android:duration="1000"
+    android:propertyName="scaleY"
+    android:valueFrom="1.0"
+    android:valueTo="2.0"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:valueType="floatType">
+</objectAnimator>
+<objectAnimator
+    android:duration="1000"
+    android:propertyName="scaleX"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    android:valueFrom="1.0"
+    android:valueTo="2.0"
+    android:valueType="floatType">
+</objectAnimator>
+</set>

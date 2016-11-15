@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="22dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/setting_shortcut_key_layout_margin"
+        android:layout_marginRight="@dimen/setting_shortcut_key_layout_margin"
+        android:background="@color/setting_shortcut_key_short_line_color" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            style="@style/itemSettingStyle"
+android:layout_width="fill_parent"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="horizontal">
+
+            <TextView
+android:id="@android:id/title"
+style="@style/titleSettingStyle"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/fastbilling" />
+
+            <CheckBox
+                android:id="@+id/switch_fast"
+style="@style/checkboxSettingStyle"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+                android:tag="FASTBILLING" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/setting_shortcut_key_layout_margin"
+        android:layout_marginRight="@dimen/setting_shortcut_key_layout_margin"
+        android:background="@color/setting_shortcut_key_short_line_color" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <RelativeLayout
+            style="@style/itemSettingStyle"
+android:layout_width="fill_parent"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:orientation="horizontal">
+
+            <TextView
+android:id="@android:id/title"
+style="@style/titleSettingStyle"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="@string/mymessage" />
+
+            <CheckBox
+android:id="@+id/switch_message"
+style="@style/checkboxSettingStyle"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+                android:tag="MYMESSAGE" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/setting_shortcut_key_layout_margin"
+        android:layout_marginRight="@dimen/setting_shortcut_key_layout_margin"
+        android:background="@color/setting_shortcut_key_long_line_color" />
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="18dp"
+    android:layout_marginTop="@dimen/default_margin_top"
+    android:layout_height="25dp">
+
+    <ImageView
+        android:background="@drawable/time_icon"
+        android:id="@+id/image_icon"
+        android:layout_gravity="center_vertical"
+        android:layout_width="18dp"
+        android:layout_height="18dp" />
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="6dip"
+        android:layout_gravity="center"
+        android:textColor="#EFF2F5"
+        android:layoutDirection="locale"
+        android:textDirection="locale"
+        android:textSize="15sp"
+        android:background="@android:color/transparent"
+        android:shadowColor="#aa000000"
+        android:text="Test Shadow"
+        android:shadowRadius="1"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:id="@+id/total_number"
+        android:gravity="center_vertical"
+        android:shadowColor="#aa000000"
+        android:visibility="gone"
+        android:shadowRadius="1"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:textColor="#EFF2F5"
+        android:layoutDirection="locale"
+        android:textDirection="locale"
+        android:textSize="15sp"
+        android:background="@android:color/transparent"
+        android:text="(0)"
+        android:layout_height="match_parent" />
+    <!--
+    app:slm_headerDisplay="inline|sticky"
+    app:slm_headerEndMargin="56dip"-->
+</LinearLayout>

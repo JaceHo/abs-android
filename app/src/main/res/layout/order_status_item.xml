@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:descendantFocusability="blocksDescendants"
+    >
+
+    <Button
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:id="@+id/order_status_btn"
+        android:layout_width="@dimen/order_filter_radiobutton_width"
+        android:layout_height="25dp"
+        android:clickable="false"
+        android:background="@drawable/filtrate_check_selector"
+        android:text="已接单"
+        android:maxLines="1"
+        android:textColor="@drawable/textcolor_fifter_selector"
+        android:textSize="@dimen/order_filter_button_size" />
+</RelativeLayout>

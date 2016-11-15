@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+    android:background="@drawable/home_bg">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        >
+
+        <include layout="@layout/action_bar"
+                 android:id="@+id/include2"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/include2">
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tickets_done_textview"
+            android:text="@string/tickets_done"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:layout_marginBottom="180dp"
+            android:singleLine="false"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/include2"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_container">
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:clipChildren="false"
+        android:gravity="center_vertical|bottom"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="center_horizontal|bottom"
+        >
+
+
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/tickets_mapview"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="31dp"
+            android:clickable="true"
+            android:src="@drawable/tickets_mapview"
+            app:backgroundTint="#ffffff"
+            app:borderWidth="0dp"
+            app:rippleColor="#ccffff"
+            android:layout_marginEnd="31dp"
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+
+</FrameLayout>
+

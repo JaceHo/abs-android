@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<info.futureme.abs.view.WebFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:id="@+id/web_frame"
+                                       android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:id="@+id/error_frame"
+        android:visibility="invisible"
+        android:layout_height="match_parent">
+        <include layout="@layout/content_loader_error"/>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/WebViewProgressBar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="3dip"
+        android:minHeight="3dip" />
+</info.futureme.abs.view.WebFrameLayout>
+

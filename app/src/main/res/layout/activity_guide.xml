@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <include
+        layout="@layout/action_bar"
+        android:visibility="gone"></include>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/actionbar_guide_title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_size"
+        android:background="@drawable/actionbar_bg">
+
+        <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/actionbar_left_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ripple_bg_trans"
+            android:onClick="backClick"
+            card_view:cardBackgroundColor="@android:color/transparent"
+            card_view:cardElevation="0dp">
+
+            <ImageView
+                android:id="@+id/actionbar_left"
+                android:layout_width="@dimen/action_bar_imageView_size"
+                android:layout_height="@dimen/action_bar_imageView_size"
+                android:layout_margin="10dp"
+                android:src="@drawable/icon_back" />
+        </android.support.v7.widget.CardView>
+
+        <RadioGroup
+            android:id="@+id/radioGroup_guideWays"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/actionbar_left_layout"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radiobtn_busGuide"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:alpha="1.0"
+                android:background="@drawable/icon_busguide"
+                android:button="@null"
+                android:checked="true" />
+
+            <RadioButton
+
+                android:id="@+id/radiobtn_taxiGuide"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="40dp"
+                android:alpha="0.6"
+                android:background="@drawable/icon_taxiguide"
+                android:button="@null" />
+
+            <RadioButton
+                android:id="@+id/radiobtn_walkGuide"
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="40dp"
+                android:alpha="0.6"
+                android:background="@drawable/icon_walkguide"
+                android:button="@null" />
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/actionbar_guide_title"
+        android:clickable="true"></com.baidu.mapapi.map.MapView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/actionbar_guide_title"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/image_guideFollow"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_alphgray"
+            android:onClick="followClick"
+            android:padding="5dp"
+            android:src="@drawable/icon_guidefollow" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/actionbar_guide_title"
+        android:gravity="bottom">
+
+        <RelativeLayout
+            android:id="@+id/relative_guideTab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="15dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/image_guideInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:padding="5dp"
+                android:src="@drawable/icon_arrowup_guide"></ImageView>
+
+            <LinearLayout
+                android:id="@+id/linear_guideInfo_infoContainner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/image_guideInfo"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_guideInfo_scheme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="xxxxxxxxxxxx"
+                    android:textColor="@color/veritfy_number_not_active"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_guideInfo_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="路费9元"
+                        android:textColor="@color/nav_header_engineer_job_text_color"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_guideInfo_trafficlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:text="红路灯有4个"
+                        android:textColor="@color/nav_header_engineer_job_text_color"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/lin_guideInfo_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/relative_guideTab"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone">
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/setting_shortcut_key_short_line_color" />
+
+                    <TextView
+                        android:id="@+id/text_guideStartpoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_bluecircle_guide"
+                        android:drawablePadding="15dp"
+                        android:drawableStart="@drawable/icon_bluecircle_guide"
+                        android:padding="15dp"
+                        android:text="ssssss"
+                        android:textColor="@color/guide_startpoint_text"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_processDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:lineSpacingExtra="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="15dp"
+                        android:text="55555555555555555555"
+                        android:textColor="@color/veritfy_number_not_active"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/text_guideEndpoint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/icon_greencircle_guide"
+                        android:drawablePadding="15dp"
+                        android:drawableStart="@drawable/icon_greencircle_guide"
+                        android:padding="15dp"
+                        android:text="llllllllllllll"
+                        android:textColor="@color/guide_endpoint_text" />
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

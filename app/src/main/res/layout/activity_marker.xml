@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/action_bar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:clickable="true" />
+
+
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="10dip" />
+
+        <include
+            android:id="@+id/layout_orderItemMap"
+            layout="@layout/order_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"></include>
+
+        <LinearLayout
+            android:id="@+id/linear_node"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <Button
+                android:onClick="nodeClick"
+                android:id="@+id/node_pre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="上一个" />
+
+            <Button
+                android:onClick="nodeClick"
+                android:id="@+id/node_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="下一个" />
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/radioGroup_route"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:weightSum="3">
+
+            <RadioButton
+                android:id="@+id/radioBtn_walk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:checked="true"
+                android:text="WALK" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_transition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="TRANSITION" />
+
+            <RadioButton
+                android:id="@+id/radioBtn_drive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="DRIVE" />
+        </RadioGroup>
+    </RelativeLayout>
+</LinearLayout>

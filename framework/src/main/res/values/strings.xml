@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">framework</string>
+    <string name="unknown_error">unknown error</string>
+    <string name="network_error">network error</string>
+    <string name="loading_text">loading</string>
+    <string name="btn_empty_retry">refresh</string>
+    <string name="btn_error_retry">retry</string>
+    <string name="network_connection_timeout">connect timeout，please check your network</string>
+    <string name="nothing">暂无订单</string>
+    <string name="home_page_status_on_line">在岗</string>
+    <string name="grab_nothing">"来晚了，订单被抢走了..."</string>
+    <string name="active_nothing">"赞，订单都完成了~"</string>
+    <string name="allow_permission_request">please allow the permission request</string>
+    <string name="location_invalid_info">locate error</string>
+    <string name="msg_nothing">"暂无消息"</string>
+    <string name="network_not_stable">network not stable</string>
+    <string name="data_format_wrong">data format wrong</string>
+
+    <string name="listview_header_hint_normal">下拉更新</string>
+    <string name="listview_header_hint_release">释放更新</string>
+    <string name="listview_header_last_time">上次更新时间：</string>
+    <string name="listview_loading">更新中...</string>
+    <string name="nomore_loading">没有了</string>
+    <string name="refresh_done">下拉更新</string>
+    <string name="refreshing">正在更新...</string>
+    <string name="successes">操作成功!</string>
+    <string name="failed">操作失败!</string>
+    <string name="net_error_title">网络错误</string>
+    <string name="server_error">系统运行异常,请联系管理员!</string>
+    <string name="ok">操作成功!</string>
+
+    <!-- incremental update -->
+    <string name="android_auto_update_dialog_title">有新版本</string>
+
+    <string name="android_auto_update_notify_ticker">发现新版本,点击进行升级</string>
+    <string name="android_auto_update_notify_content">发现新版本,点击进行升级</string>
+
+    <string name="android_auto_update_dialog_btn_download">立即下载</string>
+    <string name="android_auto_update_dialog_btn_cancel">以后再说</string>
+
+    <string name="android_auto_update_toast_no_new_update">已经是最新版本</string>
+
+    <string name="android_auto_update_download_progress">正在下载:%1$d%%</string>
+
+    <string name="android_auto_update_dialog_checking">正在检查版本</string>
+</resources>

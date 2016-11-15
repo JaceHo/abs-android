@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginBottom="@dimen/default_margin_top"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <RelativeLayout
+            android:id="@+id/sumary"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="WINCOR大悦城店"
+                android:textColor="@color/black_accent"
+                android:visibility="gone"
+                android:textSize="@dimen/text_size_title_big" />
+
+            <ImageView
+                android:id="@+id/location_icon_imageview"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@+id/shop_name"
+                android:src="@drawable/location_icon"
+                android:minWidth="15dp"/>
+
+            <TextView
+                android:id="@+id/res_level"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:background="@drawable/res_level_red_shape"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="7/8/4"
+                android:textColor="#D3706F"
+                android:textSize="@dimen/text_size_title_very_small"
+                android:layout_alignTop="@+id/vip_text"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"/>
+
+            <TextView
+                android:id="@+id/vip_text"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:background="@drawable/shape_rectagle_vip_red"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:text="VIP"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title_very_small"
+                android:layout_toLeftOf="@+id/res_level"
+                android:layout_toStartOf="@+id/res_level"
+                android:layout_alignTop="@+id/location_icon_imageview"/>
+
+            <TextView
+                android:id="@+id/distance"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="3dp"
+                android:paddingRight="10dp"
+                android:text="3.3KM"
+                android:textColor="@color/item_text_gray"
+                android:textSize="12sp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/location_icon_imageview"
+                android:layout_toEndOf="@+id/location_icon_imageview"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/line_color_gray"></View>
+        <!-- 订单编号!-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ticket_id" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingLeft="7dp"
+                android:text="@string/ticketid"
+                android:textColor="#758694"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/ticket_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black_accent"
+                android:textSize="@dimen/text_size_title_small" />
+        </LinearLayout>
+
+        <!--期望上门时间-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/expected_time" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:paddingLeft="7dp"
+                android:text="@string/expected_time"
+                android:textColor="#758694"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/expected_time_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black_accent"
+                android:textSize="@dimen/text_size_title_small" />
+        </LinearLayout>
+        <!--描述-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/desc_tip" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/desc_tip"
+                android:textColor="#758694"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/desc_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black_accent"
+                android:textSize="@dimen/text_size_title_small" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/notes_icon" />
+            <!--备注-->
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:text="@string/notes_tip"
+                android:textColor="#758694"
+                android:textSize="14sp"
+                />
+
+            <TextView
+                android:id="@+id/notes_text"
+                android:textSize="@dimen/text_size_title_small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:singleLine="true"
+                android:text=""
+                android:textColor="@color/black_accent" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey_divi"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/left_action"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/grab_countdown"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="退单"
+                android:background="@drawable/ripple_bg_white"
+                android:textColor="@color/black_accent"
+                android:textSize="20sp" />
+
+            <View
+                android:layout_width="3px"
+                android:layout_height="match_parent"
+                android:background="@color/grey_divi" />
+
+            <info.futureme.abs.example.view.SuperTextView
+                android:id="@+id/right_action"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/grab_icon"
+                android:drawablePadding="7dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:background="@drawable/ripple_bg_white"
+                android:text="@string/graborder"
+                android:textColor="#F39800"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

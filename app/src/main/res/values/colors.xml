@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <color name="ticket_hint_red">#da4e47</color>
+    <color name="grab_color">#F39800</color>
+    <color name="recieve_color">#00ADE9</color>
+    <color name="recieve_tint_color">#0090E9</color>
+    <color name="receive_btn_color">#D3E6F5</color>
+    <color name="actionbar_text">#ffffff</color>
+    <color name="dialog_background">#40000000</color>
+    <color name="no_order_textcolor">#939393</color>
+
+    <!--
+    http://developer.android.com/training/material/theme.html
+    !-->
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">@android:color/background_dark</color>
+    <!--<color name="colorPrimaryDark">#303F9F</color>!-->
+    <color name="colorAccent">#FF4081</color>
+    <color name="gray_dark">#666666</color>
+    <color name="red_default">#FFE6524A</color>
+
+    <color name="blue_primary">#2196F3</color>
+    <color name="blue_primary_dark">@android:color/background_dark</color>
+    <!--<color name="blue_primary_dark">#1976D2</color>!-->
+    <color name="blue_primary_light">#90CAF9</color>
+    <color name="blue_accent">#2196F3</color>
+
+
+    <color name="indigo_primary">#3F51B5</color>
+    <color name="indigo_primary_dark">@android:color/background_dark</color>
+    <!--<color name="indigo_primary_dark">#303F9F</color>!-->
+    <color name="indigo_primary_light">#C5CAE9</color>
+    <color name="indigo_accent">#3F51B5</color>
+
+
+    <color name="green_primary">#4CAF50</color>
+    <color name="green_primary_dark">@android:color/background_dark</color>
+    <!--<color name="green_primary_dark">#388E3C</color>!-->
+    <color name="green_primary_light">#C8E6C9</color>
+    <color name="green_accent">#4CAF50</color>
+
+
+    <color name="red_primary">#DA4E47</color>
+    <color name="red_primary_dark">@android:color/background_dark</color>
+    <!-- <color name="red_primary_dark">#d32f2f</color> !-->
+    <color name="red_primary_light">#ef9a9a</color>
+    <color name="red_accent">#f44336</color>
+
+
+    <color name="blue_grey_primary">#607D8B</color>
+    <color name="blue_grey_primary_dark">@android:color/background_dark</color>
+    <!-- <color name="blue_grey_primary_dark">#455A64</color> !-->
+    <color name="blue_grey_primary_light">#B0BEC5</color>
+    <color name="blue_grey_accent">#607D8B</color>
+
+    <color name="black_primary">#000</color>
+    <color name="black_primary_dark">@android:color/background_dark</color>
+    <!--<color name="black_primary_dark">#000</color>-->
+    <color name="black_primary_light">#666</color>
+    <color name="black_accent">#000</color>
+
+    <color name="purple_primary">#9C27B0</color>
+    <color name="purple_primary_dark">@android:color/background_dark</color>
+    <!--<color name="purple_primary_dark">#7B1FA2</color>!-->
+    <color name="purple_primary_light">#CE93D8</color>
+    <color name="purple_accent">#9C27B0</color>
+
+
+    <color name="orange_primary">#FF9800</color>
+    <color name="orange_primary_dark">@android:color/background_dark</color>
+    <!--<color name="orange_primary_dark">#F57C00</color>!-->
+    <color name="orange_primary_light">#FFCC80</color>
+    <color name="orange_accent">#FF9800</color>
+
+
+    <color name="pink_primary">#E91E63</color>
+    <color name="pink_primary_dark">@android:color/background_dark</color>
+    <!--<color name="pink_primary_dark">#C2185B</color>!-->
+    <color name="pink_primary_light">#F48FB1</color>
+    <color name="pink_accent">#E91E63</color>
+
+    <color name="common_top_bar_blue">#4ebcd3</color>
+    <color name="btn_login_normal">#00acff</color>
+    <color name="btn_login_pressed">#46678d</color>
+    <color name="btn_logout_normal">#d33f3f</color>
+    <color name="btn_logout_pressed">#DA5A4D</color>
+    <color name="btn_register_normal">#ffffff</color>
+    <color name="btn_register_pressed">#00acff</color>
+    <color name="common_bottom_bar_normal_bg">#2d2f31</color>
+    <color name="common_bottom_bar_selected_bg">#161718</color>
+    <color name="common_botton_bar_blue">#2ea7e0</color>
+    <color name="common_bg">#fcfcfc</color>
+    <color name="btn_pressed_green_solid">#B6DA53</color>
+    <color name="divider_list">#d4d4d4</color>
+    <color name="top_bar_normal_bg">#00acff</color>
+    <color name="error_item_color">#F6EBE6</color>
+    <color name="bottom_bar_normal_bg">#2D2F31</color>
+    <color name="bottom_text_color_normal">#ffffff</color>
+    <color name="btn_white_normal">#f7f8f8</color>
+    <color name="btn_white_pressed">#b5b5b6</color>
+    <color name="btn_green_noraml">#68C270</color>
+    <color name="btn_green_pressed">#6FCD78</color>
+    <color name="btn_gray_normal">#c0c0c0</color>
+    <color name="btn_gray_pressed_status">#b5b5b6</color>
+    <color name="btn_gray_pressed">#666667</color>
+    <color name="btn_blue_normal">#1e90ff</color>
+    <color name="btn_blue_pressed">#0066FF</color>
+    <color name="orange">#FFA500</color>
+    <color name="gray_pressed">#b5b5b6</color>
+    <color name="gray_normal">#666667</color>
+    <color name="grid_state_pressed">#1Affffff</color>
+    <color name="grid_state_focused">#80000000</color>
+    <color name="voip_interface_text_color">#bababa</color>
+    <color name="black_deep">#FF000000</color>
+    <color name="btn_answer_pressed">#4ebcd3</color>
+    <color name="btn_answer_normal">#2dafa3</color>
+
+    <!--Material Colors-->
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="secondary_text_transparent_70">#B3727272</color>
+
+    <color name="divider">#B6B6B6</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="chrome_grey">#F2F2F2</color>
+
+
+    <color name="red">#F44336</color>
+    <color name="pink">#FF4081</color>
+    <color name="purple">#9C27B0</color>
+    <color name="deepblue">#7C4DFF</color>
+    <color name="indigo">#3F51B5</color>
+    <color name="blue">#448AFF</color>
+    <color name="lightblue">#03A9F4</color>
+    <color name="cyan">#00BCD4</color>
+    <color name="teal">#009688</color>
+    <color name="green">#4CAF50</color>
+    <color name="lightgreen">#8BC34A</color>
+    <color name="lime">#CDDC39</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="amber">#FFC107</color>
+    <color name="deeporange">#FF5722</color>
+    <color name="brown">#795548</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="bluegrey">#607D8B</color>
+    <color name="line_color_gray">#DFE7EB</color>
+
+    <color name="trans_black_75">#BF000000</color>
+
+    <color name="trans_black_50">#80000000</color>
+
+    <color name="trans_black_25">#40000000</color>
+
+    <color name="green_theme">#017C67</color>
+    <color name="green_theme_dark">#00715C</color>
+    <color name="green_theme_pink">#AF3F3F</color>
+    <color name="item_text_gray">#758694</color>
+
+    <!--列表分割线-->
+    <color name="select_drawable_bg">#F0F0F0</color>
+    <color name="order_list_divider">#c8c7cc</color>
+    <color name="order_filter_button_textcolor">#404040</color>
+    <color name="province_line_border">#C7C7C7</color>
+    <!--首页颜色值-->
+    <color name="home_page_status_on_line_text_color">#44a2fc</color>
+    <color name="home_page_status_busy_text_color">#d73839</color>
+    <color name="home_page_status_off_line_text_color">#b1b1b1</color>
+    <color name="home_page_status_large_image_text_color">#c9dcfc</color>
+    <color name="home_page_status_large_text_color">#617bb8</color>
+    <color name="home_page_status_large_text_color_1">#ffffff</color>
+    <color name="tab_item_text_selected_color">#3783d1</color>
+    <color name="tab_item_text_unselect_color">#a9a9a9</color>
+    <color name="time_picker_title_text_color">#404040</color>
+    <color name="time_picker_title_set_color">#3783d1</color>
+    <!--忘记密码-->
+    <color name="forget_pass_word_auth_code">#b9b9b9</color>
+    <color name="veritfy_number_not_active">#404040</color>
+    <color name="forget_pass_word_next">#603783d1</color>
+    <color name="forget_pass_word_next_selected">#009FE8</color>
+    <color name="nav_header_engineer_text_color">#404040</color>
+    <color name="nav_header_engineer_job_text_color">#808080</color>
+    <color name="nav_view_drawer_item_text_color">#404040</color>
+    <color name="nav_view_drawer_item_line_color">#c5c5c5</color>
+    <color name="nav_view_copyright_information_text_color">#808080</color>
+    <color name="setting_shortcut_key_short_line_color">#e0e0e0</color>
+    <color name="setting_shortcut_key_long_line_color">#c8c7cc</color>
+    <color name="setting_shortcut_text_color">#404040</color>
+    <color name="login_text_color">#daeaf9</color>
+    <color name="btn_login_blue_normal">#3f90e2</color>
+
+    <!--个人信息标签描边色-->
+    <color name="marker_stork_blue">#3982d1</color>
+    <!-- 透明的背景颜色 -->
+    <color name="ripple_bg_trans">#00000000</color>
+    <!-- 指定水波纹的颜色 -->
+    <color name="ripple_bg_defaul">#FF21272B</color>
+    <color name="ripple_on_white_press">#DDDEDE</color>
+    <color name="ripple_on_trans_press">#1F2436</color>
+    <color name="ripple_on_refresh_press">#D3D4D4</color>
+    <!--导航起点位置字体颜色-->
+    <color name="guide_startpoint_text">#3E8DDD</color>
+    <color name="guide_endpoint_text">#6ABF4A</color>
+    <color name="blue_tip">#70b359</color>
+    <color name="btn_app_white_pressed">#DCDCDC</color>
+    <color name="grab_color_time">#D85451</color>
+    <color name="grey_divi">#F2F5F6</color>
+</resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/web_work"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="WorkOrder" />
+        <item
+            android:id="@+id/nav_camara"
+            android:icon="@android:drawable/ic_menu_camera"
+            android:title="Chat" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="Choose theme" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="map_poi_search" />
+        <item
+            android:id="@+id/nav_marker"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="map_marker" />
+        <item
+            android:id="@+id/nav_routeplane"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="map_routeplane" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+            android:id="@+id/nav_share"
+            android:icon="@android:drawable/ic_menu_share"
+            android:title="GETUI" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

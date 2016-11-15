@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/app_default_bg"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/forget_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/forget_pass_word_left_interval"
+            android:background="#c8c7cc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/forget_pass_word_left_interval"
+                android:text="@string/login_pass"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/number_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4.5"
+                android:background="@null"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/forget_password_layout"
+        android:background="@drawable/btn_app_blue_selector"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</RelativeLayout>

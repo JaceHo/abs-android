@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:gravity="center_vertical"
+    android:background="@android:color/white">
+    
+	  <RelativeLayout
+			android:layout_width="fill_parent"
+			android:layout_height="48dip"
+			android:layout_gravity="center_vertical">
+		
+	       <LinearLayout
+	           android:id="@+id/comm_title_img_back_layout"
+	           android:layout_width="50dip"
+	           android:layout_height="fill_parent"
+	           android:gravity="center_vertical"
+	           android:layout_alignParentLeft="true">
+
+		       <ImageView
+				    android:src="@drawable/back_bg"
+				    android:layout_width="14dp"
+				    android:layout_height="16dp"
+				    android:layout_marginLeft="12dp"
+				    android:layout_marginRight="20dp"/>
+	        </LinearLayout>
+			<TextView
+			    android:id="@+id/comm_title_img_title_tv"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:textSize="22sp"
+			    android:textColor="@color/gray_dark"
+			    android:layout_centerInParent="true"
+			    android:text="@string/title"/>
+			
+			<LinearLayout 
+			    android:id="@+id/comm_title_img_op_layout"
+			    android:layout_width="60dp"
+			    android:layout_height="match_parent"
+			    android:layout_alignParentRight="true"
+				android:layout_centerVertical="true"
+				android:gravity="center"
+				android:visibility="visible">
+				<ImageView 
+				    android:id="@+id/comm_title_img_op_iv"
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:textColor="@color/gray_dark"
+				    android:src="@drawable/menu_btn_gray"/>
+			</LinearLayout>
+		</RelativeLayout>
+		
+	  	<View 
+	  	    android:layout_width="match_parent"
+	  	    android:layout_height="2dp"
+	  	    android:background="@color/red_default"/>
+</LinearLayout>

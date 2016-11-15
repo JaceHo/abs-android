@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingRight="@dimen/setting_shortcut_key_layout_margin"
+    android:paddingLeft="@dimen/setting_shortcut_key_layout_margin"
+    >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@android:id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:ellipsize="marquee"
+            android:fadingEdge="horizontal"
+            android:singleLine="true"
+            android:text="title"
+            android:textColor="@color/order_filter_button_textcolor"
+            android:textSize="@dimen/set_shortcut_text_size" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:id="@android:id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@android:id/title"
+            android:text="summary"
+            android:textColor="#AAAAAA"
+            android:textSize="11sp"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/switch_scheme"
+            android:layout_width="@dimen/setting_back_size"
+            android:layout_height="@dimen/setting_back_size"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/setting_back" />
+
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginRight="20dp"
+            android:id="@+id/update_scheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/switch_scheme"
+            android:src="@drawable/icon_meassage_sel" />
+
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="@dimen/setting_shortcut_key_layout_margin"
+        android:background="@color/setting_shortcut_key_short_line_color" />
+    <!-- <LinearLayout
+         android:id="@android:id/widget_frame"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_gravity="right|center_vertical"
+         android:orientation="vertical">
+
+     </LinearLayout>-->
+
+</LinearLayout>

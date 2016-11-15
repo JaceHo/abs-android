@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<info.futureme.abs.example.widget.swipe.SwipeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/repo_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="@dimen/default_margin_top"
+    android:gravity="center">
+    <!-- Bottom View Start-->
+    <!--android:background="@android:color/transparent"-->
+    <LinearLayout
+        android:id="@+id/bottom_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/swipe_margin"
+        android:layout_marginBottom="@dimen/swipe_margin"
+        android:layout_gravity="center"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+        <!--What you want to show-->
+        <!--android:background="@drawable/selector_appoint_clicked"-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginEnd="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginStart="9dp"
+            android:background="@drawable/selector_appoint_clicked"
+            android:gravity="center|right">
+            <TextView
+                android:id="@+id/shortcut_action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:clickable="true"
+                android:text="Action"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+        </RelativeLayout>
+    </LinearLayout>
+    <!-- Bottom View End-->
+
+    <!-- Surface View Start -->
+    <!--card_view:cardUseCompatPadding="true"-->
+    <!--android:layout_marginBottom="2dp"-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:paddingLeft="9dp"
+        android:paddingRight="9dp"
+        >
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardCornerRadius="8dp"
+            card_view:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp">
+
+                <!--wincor中关村店 3.3 km vip 7*8*8 小喇叭-->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:id="@+id/sumary"
+                    android:layout_height="33dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/shop_name"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:singleLine="true"
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:text="name"
+                        android:textColor="@color/item_text_gray"
+                        android:textSize="@dimen/item_title_some_time"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"/>
+
+                    <ImageView
+                        android:id="@+id/location_icon_imageview"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginTop="11dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="3dp"
+                        android:layout_toRightOf="@+id/shop_name"
+                        android:src="@drawable/location_icon"
+                        android:contentDescription=""
+                        android:visibility="gone"/>
+
+                    <TextView
+                        android:id="@+id/distance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="3dp"
+                        android:paddingRight="3dp"
+                        android:singleLine="true"
+                        android:text="3.3KM"
+                        android:textColor="@color/app_default_blue"
+                        android:textSize="@dimen/item_title_some_time"
+                        android:layout_toRightOf="@+id/location_icon_imageview"
+                        android:visibility="gone"/>
+
+                    <FrameLayout
+                        android:id="@+id/speaker_frame"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="8dp"
+                        android:layout_centerVertical="true"
+                        android:visibility="visible"
+                        >
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="4dp"
+                            android:layout_gravity="right|top"
+                            android:background="@drawable/msg_circle"/>
+
+                        <ImageView
+                            android:id="@+id/new_msg_speaker"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/speaker_bg"
+                            android:layout_gravity="center_horizontal|bottom"/>
+                    </FrameLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:id="@+id/relativeLayout"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/distance"
+                        android:layout_toLeftOf="@+id/speaker_frame"
+                        android:layout_toStartOf="@+id/speaker_frame">
+
+                        <TextView
+                            android:id="@+id/res_level"
+                            android:layout_width="wrap_content"
+                            android:layout_height="14dp"
+                            android:background="@drawable/res_level_red_shape"
+                            android:gravity="center_vertical"
+                            android:paddingLeft="4dp"
+                            android:paddingRight="4dp"
+                            android:textColor="@color/red_primary"
+                            android:text="7*12*8"
+                            android:textSize="@dimen/item_date_some_time"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentEnd="true"/>
+
+                        <TextView
+                            android:id="@+id/vip_text"
+                            android:layout_width="20dp"
+                            android:layout_height="14dp"
+                            android:background="@drawable/shape_rectagle_vip_red"
+                            android:gravity="center"
+                            android:text="VIP"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/item_date_some_time"
+                            android:layout_alignWithParentIfMissing="false"
+                            android:layout_alignTop="@+id/res_level"
+                            android:layout_toLeftOf="@+id/res_level"
+                            android:layout_toStartOf="@+id/res_level"/>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:clipChildren="false"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:layout_gravity="center_vertical">
+                    <!--待预约-->
+                    <TextView
+                        android:id="@+id/action_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="top"
+                        android:text="        "
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/item_some_time_big"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_toLeftOf="@+id/layout_pencil"
+                        android:layout_toStartOf="@+id/layout_pencil"/>
+                    <!--10:30-->
+                    <TextView
+                        android:id="@+id/action_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:text=""
+                        android:textColor="@color/blue_tip"
+                        android:textSize="@dimen/item_some_time_big"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toRightOf="@+id/layout_pencil"
+                        android:layout_toEndOf="@+id/layout_pencil"/>
+
+                    <LinearLayout
+                        android:id="@+id/layout_pencil"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:background="@drawable/blue_circle"
+                        android:gravity="center"
+                        android:layout_marginTop="22dp"
+                        android:layout_centerHorizontal="true">
+
+                        <ImageView
+                            android:id="@+id/action_icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/action_time_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="0dp"
+                        android:text=""
+                        android:textColor="@color/item_text_gray"
+                        android:textSize="@dimen/item_no_late_than_some_time"
+                        android:layout_above="@+id/action_time"
+                        android:layout_alignLeft="@+id/action_time"
+                        android:layout_alignStart="@+id/action_time"
+                        android:layout_marginLeft="3dp"/>
+
+                    <TextView
+                        android:id="@+id/action_name_tip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="即将超时"
+                        android:textColor="@color/item_text_gray"
+                        android:textSize="@dimen/item_no_late_than_some_time"
+                        android:layout_above="@+id/action_name"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="3dp"/>
+                </RelativeLayout>
+                <!--ID:2016040616301234-->
+                <TextView
+                    android:id="@+id/ticket_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="right|center_vertical"
+                    android:singleLine="true"
+                    android:text="ID:2016040616301234"
+                    android:textColor="@color/item_text_gray"
+                    android:textSize="@dimen/item_title_some_time"/>
+                <!--描述：pos机. 设备型号>屏碎，但能正常使用-->
+                <TextView
+                    android:id="@+id/ticket_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="right|center_vertical"
+                    android:paddingBottom="7dp"
+                    android:singleLine="true"
+                    android:text="描述：pos机. 设备型号>屏碎，但能正常使用"
+                    android:textColor="@color/item_text_gray"
+                    android:textSize="@dimen/item_title_some_time"/>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</info.futureme.abs.example.widget.swipe.SwipeLayout>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/press_to_talk_layout"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_voice_arrows"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/voice_arrows" />
+
+        <TextView
+            android:id="@+id/tv_press_to_talk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:text="@string/press_to_talk"
+            android:textColor="#808080"
+            android:textSize="@dimen/tv_press_to_talk_size" />
+
+        <ImageView
+            android:id="@+id/iv_press_to_talk_voice"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/voice_icn" />
+    </LinearLayout>
+</RelativeLayout>

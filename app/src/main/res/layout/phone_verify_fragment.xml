@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_default_bg"
+    >
+
+    <LinearLayout
+        android:id="@+id/forget_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+
+        <LinearLayout
+            android:id="@+id/phone_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="43dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/forget_pass_word_left_interval"
+                    android:text="+86"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/forget_pass_word_arrows_size"
+                    android:visibility="gone"
+                    android:layout_height="@dimen/forget_pass_word_arrows_size"
+                    android:layout_marginLeft="@dimen/forget_pass_word_interval"
+                    android:background="@drawable/iv_forget_pass_word_arrows" />
+
+
+                <ImageView
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="@dimen/forget_pass_word_interval"
+                    android:layout_marginTop="8dp"
+                    android:background="#D6D6D6" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/phone_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_weight="2.5"
+                android:background="@null"
+                android:hint="@string/input_phone_number"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/forget_pass_word_remove_size"
+                    android:layout_height="@dimen/forget_pass_word_remove_size"
+                    android:id="@+id/remove_text"
+                    android:background="@drawable/iv_remove_text" />
+
+                <Button
+                    android:id="@+id/get_number"
+                    android:layout_width="87dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="@dimen/forget_pass_word_left_interval"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/btn_verify_selector"
+
+                    android:text="@string/get_auth_code"
+                    android:textColor="@color/veritfy_number_not_active"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginLeft="@dimen/forget_pass_word_left_interval"
+            android:background="#c8c7cc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/forget_pass_word_left_interval"
+                android:text="@string/froget_pass_word_auth_code"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/number_edit"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="4.5"
+                android:background="@null"
+                android:inputType="number"
+                android:hint="@string/input_auth_code"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_below="@id/forget_password_layout"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_app_blue_selector"
+        android:text="@string/next"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</RelativeLayout>

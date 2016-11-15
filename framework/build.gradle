@@ -1,0 +1,106 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            moduleName "apk_patch"
+            ldLibs "log"
+            abiFilters "armeabi", "armeabi-v7a", "armeabi-v7a", "x86", "x86_64" //cpu的类型
+        }
+
+    }
+	lintOptions {
+        disable 'InvalidPackage'
+        abortOnError false
+        warningsAsErrors false
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            //自定义jni目录
+            jni.srcDirs "jni", "src/main/jni"
+            //自定义libs目录
+            jniLibs.srcDirs "src/main/jinLibs"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    provided 'junit:junit:4.12'
+    //Provided是对所有的build type以及favlors只在编译时使用，类似eclipse中的external-libs,只参与编译，不打包到最终apk。
+    provided 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+
+    //support lib
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    // recyclerview
+    compile 'com.jcodecraeer:xrecyclerview:1.2.6'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+
+    //material design
+    compile 'com.android.support:design:23.4.0'
+    compile('com.android.support:cardview-v7:23.1.1') {
+        exclude group: 'com.google.android', module: 'android'
+        exclude module: 'support-v4'
+        exclude module: 'appcompat-v7'
+    }
+
+    compile 'io.reactivex:rxandroid:1.1.0'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:0.4.0'
+
+    compile('com.squareup.retrofit2:converter-gson:2.1.0') {
+        exclude group: 'com.squareup.retrofit2'
+    }
+    compile('com.squareup.retrofit2:adapter-rxjava:2.1.0'){
+        exclude group: 'io.reactivex'
+    }
+
+    compile 'com.trello:rxlifecycle:0.6.1'
+
+    // If you want pre-written Activities and Fragments you can subclass as providers
+    compile 'com.trello:rxlifecycle-components:0.6.1'
+    compile 'com.tbruyelle.rxpermissions:rxpermissions:0.7.0@aar'
+
+    // If you want to use Navi for providers
+    //compile 'com.trello:rxlifecycle-navi:0.4.0'
+
+    //glide for media loading
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+//    compile 'com.github.kimiscircle:glide:master-SNAPSHOT'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //view injection
+    compile 'com.jakewharton:butterknife:7.0.1'
+
+    //orm
+    compile 'org.greenrobot:greendao:2.2.1'
+
+    //JsBridge
+    compile project(':jsbridge')
+    //umeng analytics
+    compile('com.umeng.analytics:analytics:5.6.4') {
+        exclude group: 'com.google.android', module: 'android'
+        exclude module: 'support-v4'
+    }
+}

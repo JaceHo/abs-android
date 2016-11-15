@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:background="@color/app_default_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/imageView6"
+            android:src="@mipmap/ic_launcher"
+            android:layout_gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/app_name"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="v1.0"
+            android:textColor="@color/grey"
+            android:id="@+id/version_name"/>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:layout_marginTop="20dp"
+            android:background="#c8c7cc" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/relative_feedBack"
+                style="@style/itemSettingStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/setting_shortcut_key_layout_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_feedback"
+                    style="@style/titleSettingStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/feed_back" />
+
+                <ImageView
+                    android:id="@+id/image_feedback"
+                    android:layout_width="@dimen/setting_back_size"
+                    android:layout_height="@dimen/setting_back_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/setting_back" />
+            </RelativeLayout>
+        </FrameLayout>
+
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/relative_upgrade"
+                style="@style/itemSettingStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/setting_shortcut_key_layout_height"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_versionUpdate"
+                    style="@style/titleSettingStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/version_update" />
+
+                <TextView
+                    android:id="@+id/tv_currentVersion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@id/tv_versionUpdate"
+                    android:text="@string/tv_currentversion"
+                    android:textColor="#809080"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/image_appSetting_rightImage"
+                    android:layout_width="@dimen/setting_back_size"
+                    android:layout_height="@dimen/setting_back_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/setting_back" />
+
+                <TextView
+                    android:id="@+id/tv_update_mindIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@id/image_appSetting_rightImage"
+                    android:background="@drawable/update_icon_bg"
+                    android:gravity="center"
+                    android:text="@string/update_new"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="1px"
+            android:background="#c8c7cc" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <RelativeLayout
+                android:id="@+id/relative_clearCache"
+                style="@style/itemSettingStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/setting_shortcut_key_layout_height"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/tv_appSetting_clearcache"
+                    style="@style/titleSettingStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/clear_cache" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clear_cache_tip"
+                    android:text="@string/clear_cache_subtitle"
+                    android:textColor="#809080"
+                    android:textSize="12sp"
+                    android:layout_alignBottom="@+id/tv_appSetting_clearcache"
+                    android:layout_toRightOf="@+id/tv_appSetting_clearcache"
+                    android:layout_toEndOf="@+id/tv_appSetting_clearcache"
+                    android:layout_marginLeft="31dp"
+                    android:layout_marginStart="31dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clear_cache_size"
+                    android:text="0.0KB"
+                    android:textColor="#809080"
+                    android:textSize="12sp"
+                    android:layout_alignTop="@+id/clear_cache_tip"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"/>
+
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_selector_bg"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@null"
+        android:background="@color/order_list_divider" />
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        android:id="@+id/text_orderlistActiveFragmentTitle_conditionDistancelistItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="距离"
+        android:textColor="@drawable/textcolor_orderlist_condition_selector"
+        android:textSize="@dimen/orderlistActiveFragmentTitle_conditionDistancelistItem_textsize" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/image_conditionSelected_orderlist"
+        android:src="@drawable/setting_selected"/>
+</RelativeLayout>

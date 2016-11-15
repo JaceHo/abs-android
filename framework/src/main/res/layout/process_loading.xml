@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_outside_whole_loading"
+    android:gravity="center">
+    <!--android:background="@android:color/transparent"-->
+    <RelativeLayout
+        android:id="@+id/loading_layout_need_bg"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:clipChildren="false"
+        android:background="@drawable/loading_bg_shape"
+        android:gravity="center_horizontal"
+        >
+        <RelativeLayout
+            android:id="@+id/loading_iv"
+            android:clipChildren="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            >
+
+            <info.futureme.abs.view.AVLoadingIndicatorView
+                android:id="@+id/loading_view"
+                app:indicator="BallScaleMultiple"
+                app:indicator_color="#009FE8"
+                android:background="@android:color/transparent"
+                android:clipChildren="false"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/process_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loading_iv"
+            android:gravity="center"
+            android:text="@string/loading_text"
+            android:maxLines="2"
+            android:lines="2"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="@dimen/action_bar_size"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:weightSum="1">
+<RelativeLayout
+    android:id="@+id/actionbar_left_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_bg_white">
+
+    <ImageView
+        android:id="@+id/actionbar_left"
+        android:layout_width="@dimen/action_bar_imageView_size"
+        android:layout_height="@dimen/action_bar_imageView_size"
+        android:layout_margin="10dp"
+        android:src="@drawable/back_arow" />
+</RelativeLayout>
+
+<RelativeLayout
+    android:id="@+id/search_box_layout"
+    android:layout_width="234dp"
+    android:layout_height="@dimen/action_bar_size"
+    android:layout_gravity="left|center"
+    android:gravity="center"
+    android:visibility="visible"
+    android:layout_weight="1.07">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_bg_trans">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/history_order_search_box_shap"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="8dp"
+                android:background="@drawable/image_search"/>
+
+            <EditText
+                android:id="@+id/actionbar_search_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:background="@null"
+                android:imeOptions="actionSearch"
+                android:singleLine="true"
+                android:textColor="#808080"
+                android:textColorHint="@color/secondary_text"
+                android:textSize="13dp"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/transparent"/>
+    </RelativeLayout>
+</RelativeLayout>
+    <TextView
+        android:id="@+id/img_tool_mic"
+        android:layout_width="55dp"
+        android:layout_height="match_parent"
+        android:text="搜索"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/circle_map_for_search"
+        android:textSize="15sp"
+        android:layout_marginRight="10dp"/>
+</LinearLayout>

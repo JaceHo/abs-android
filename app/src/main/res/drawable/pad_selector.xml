@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/pad_btn_disable" android:state_enabled="false"/>
+<item
+    android:state_enabled="true"
+    android:drawable="@drawable/forget_pass_word_button_actived_shape"/>
+</selector>

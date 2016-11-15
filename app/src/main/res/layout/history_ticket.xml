@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:background="@color/white"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp">
+
+        <!--wincor中关村店 3.3 km vip 7*8*8 小喇叭-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:id="@+id/shop_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/catalog_icon_iv"
+                android:layout_toRightOf="@+id/catalog_icon_iv"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:text="dian"
+                android:textColor="@color/item_text_gray"
+                android:visibility="gone"
+                android:textSize="@dimen/item_title_some_time"/>
+
+            <ImageView
+                android:id="@+id/catalog_icon_iv"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/receive_catelog"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:id="@+id/sumary"
+
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:gravity="right|center_vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="14dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="5dp"
+                    android:orientation="horizontal">
+                    <!--vip-->
+                    <TextView
+                        android:id="@+id/vip_text"
+                        android:layout_width="20dp"
+                        android:layout_height="14dp"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shape_rectagle_vip_red"
+                        android:gravity="center"
+                        android:text="VIP"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/item_date_some_time"/>
+                    <!--vip后面的7*8*8 res_level_red_shape-->
+                    <TextView
+                        android:id="@+id/res_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="14dp"
+                        android:background="@drawable/res_level_gray_shape"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="7*8*8"
+                        android:textColor="#D3706F"
+                        android:textSize="@dimen/item_date_some_time"/>
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+        <!--ID:2016040616301234-->
+        <!--描述：pos机. 设备型号>屏碎，但能正常使用-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignTop="@+id/catalog_icon_iv"
+            android:background="@color/blue_grey_primary_light"
+            android:foregroundGravity="bottom"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/ticket_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:ellipsize="end"
+                    android:gravity="left|center_vertical"
+                    android:singleLine="true"
+                    android:text="ID:2016040616301234"
+                    android:textColor="@color/item_text_gray"
+                    android:textSize="@dimen/item_title_some_time"/>
+
+                <TextView
+                    android:id="@+id/ticket_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:gravity="left|center_vertical"
+                    android:paddingBottom="7dp"
+                    android:singleLine="true"
+                    android:text="描述：pos机. 设备型号>屏碎，但能正常使用"
+                    android:textColor="@color/item_text_gray"
+                    android:textSize="@dimen/item_title_some_time"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="50dp">
+
+                <FrameLayout
+                    android:layout_width="111dp"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@color/blue_grey_primary_light"/>
+
+                    <TextView
+                        android:id="@+id/no_score"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/no_appreciate"
+                        android:textColor="@color/grey"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/rating_grade"
+                            android:layout_width="match_parent"
+                            android:layout_height="22dp"
+                            android:gravity="center"
+                            android:text="3"
+                            android:textColor="@color/red_primary"
+                            android:textSize="18sp"/>
+
+                        <RatingBar
+                            android:id="@+id/rating_bar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_below="@+id/rating_grade"
+                            style="@style/appRatingBar"
+                            android:progressDrawable="@drawable/rating_yellow"
+                            android:numStars="5"
+                            android:stepSize="0.1"
+                            android:isIndicator="true"
+                            />
+                    </RelativeLayout>
+                </FrameLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

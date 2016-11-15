@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#fff"
+        >
+
+        <TextView
+            android:id="@+id/tv_poi_detail_title"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:singleLine="true"
+            android:gravity="bottom"
+            android:text="fdqerqq"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="#fff"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_poi_detail_dis"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:textColor="#808080"
+            android:text="gang"/>
+        <TextView
+            android:id="@+id/tv_detail_address"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_toLeftOf="@id/tv_poi_detail_dis"
+            android:text="weqreqr"
+            android:textSize="13sp"
+            android:singleLine="true"
+            android:textColor="#808080"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#e5e5e5"/>
+
+</LinearLayout>

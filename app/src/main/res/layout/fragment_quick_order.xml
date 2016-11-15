@@ -1,0 +1,52 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".example.ui.fragment.POIMarkerFragment">
+
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/mPoiMarkerMapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true" />
+
+    <ImageView
+        android:id="@+id/image_guideWay"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/shape_alphgray"
+        android:onClick="changeMapMode"
+        android:padding="5dp"
+        android:src="@drawable/icon_guidefollow" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/layout_orderInfo_container"
+        android:visibility="gone"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:background="#E1E1E1"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="20dp">
+        <ImageView
+            android:id="@+id/flow_down"
+            android:background="@drawable/down_arow"
+            android:layout_width="20dp"
+            android:layout_height="10dp"></ImageView>
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/layout_orderInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            />
+    </LinearLayout>
+</FrameLayout>
