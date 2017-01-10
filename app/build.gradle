@@ -155,7 +155,7 @@ dependencies {
     compile project(':framework')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //GETUI config
-    compile 'com.getui:sdk:2.7.0.0'
+    compile 'com.getui:sdk:2.9.5.0'
     compile ('com.getui:ext:2.0.3'){
         exclude group: 'com.google.android', module: 'android'
         exclude module: 'support-v4'

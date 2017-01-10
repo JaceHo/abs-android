@@ -81,15 +81,18 @@
             </intent-filter>
         </receiver>
         <!-- 配置第三方Receiver -->
-        <receiver
-            android:name=".service.GetuiPushReceiver"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.igexin.sdk.action.${GETUI_APP_ID}" />
-            </intent-filter>
-        </receiver>
+        <!-- 配置第三方Receiver -->
+        <service android:name=".service.GetuiIntentService"/>
+
+        <service
+            android:name=".service.GetuiService"
+            android:exported="true"
+            android:label="PushService"
+            android:process=":pushservice">
+        </service>
 
         <service android:name=".service.UploadService"/>
+        <service android:name=".service.LogService"></service>
         <service
             android:name="info.futureme.abs.util.update.DownloadService"
             android:enabled="true"
