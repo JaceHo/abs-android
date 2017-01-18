@@ -4,12 +4,17 @@ package info.futureme.abs.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import info.futureme.abs.biz.ContextManager;
 import info.futureme.abs.conf.Theme;
 
 
 public class FPreferenceManager {
 
+
+    public static final String PREF_COOKIES = "pref_cookies_set";
 
     private static SharedPreferences getSharedPreferences(final Context context) {
         return android.preference.PreferenceManager.getDefaultSharedPreferences(context);
@@ -131,4 +136,14 @@ public class FPreferenceManager {
         FPreferenceManager.putString("app_theme", currentTheme.name());
     }
 
+    public static Set<String> getStringSet(String prefCookies, HashSet<String> prefs) {
+        final SharedPreferences preferences = FPreferenceManager.getSharedPreferences(ContextManager.context());
+        return preferences.getStringSet(prefCookies, new HashSet<String>());
+    }
+
+    public static void putStringSet(String prefCookies, HashSet<String> cookies) {
+        final SharedPreferences.Editor editor = FPreferenceManager.getSharedPreferences(ContextManager.context()).edit();
+        editor.putStringSet(prefCookies, cookies);
+        editor.commit();
+    }
 }

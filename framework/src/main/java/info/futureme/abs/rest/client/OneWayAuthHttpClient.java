@@ -19,8 +19,10 @@ import info.futureme.abs.FApplication;
 import info.futureme.abs.biz.ContextManager;
 import info.futureme.abs.biz.IAccountManager;
 import info.futureme.abs.conf.FConstants;
+import info.futureme.abs.rest.AddCookiesInterceptor;
 import info.futureme.abs.rest.CountingRequestBody;
 import info.futureme.abs.rest.DownloadProgressInterceptor;
+import info.futureme.abs.rest.ReceivedCookiesInterceptor;
 import info.futureme.abs.rest.RefreshableAuthInterceptor;
 import info.futureme.abs.rest.TimberLoggingInterceptor;
 import info.futureme.abs.rest.UpLoadProgressInterceptor;
@@ -113,6 +115,8 @@ public class OneWayAuthHttpClient {
                 .readTimeout(FConstants.HTTP_READ_TIMEOUT, TimeUnit.MILLISECONDS)
                 .retryOnConnectionFailure(false)
                 .cache(cache)
+                .addInterceptor(new AddCookiesInterceptor())
+                .addInterceptor(new ReceivedCookiesInterceptor())
                 .addInterceptor(new RefreshableAuthInterceptor(accountService));
         if(uploadListener != null)
             builder.addNetworkInterceptor(new UpLoadProgressInterceptor(uploadListener));
