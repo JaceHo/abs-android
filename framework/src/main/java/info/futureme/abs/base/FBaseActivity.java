@@ -40,6 +40,7 @@ import info.futureme.abs.util.DLog;
 import info.futureme.abs.util.FPreferenceManager;
 import info.futureme.abs.util.ToastHelper;
 import info.futureme.abs.util.ViewHelper;
+import info.futureme.abs.util.ViewServer;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 
@@ -144,6 +145,10 @@ public abstract class FBaseActivity extends RxAppCompatActivity {
         TAG = this.getClass().getName();
         DLog.d(TAG, this.getClass().getSimpleName()
                 + " onCreate() invoked!!");
+        // Set content view, etc.
+        if (FApplication.DEBUG)
+            ViewServer.get(this).addWindow(this);
+
     }
 
     /**
@@ -466,6 +471,8 @@ public abstract class FBaseActivity extends RxAppCompatActivity {
         }
         if (!FApplication.DEBUG)
             MobclickAgent.onResume(this);
+        if (FApplication.DEBUG)
+            ViewServer.get(this).setFocusedWindow(this);
     }
 
     @Override
@@ -511,6 +518,10 @@ public abstract class FBaseActivity extends RxAppCompatActivity {
 
         RefWatcher refWatcher = FApplication.getRefWatcher();
         refWatcher.watch(this);
+
+        if (FApplication.DEBUG)
+            ViewServer.get(this).removeWindow(this);
+
     }
 
     /**

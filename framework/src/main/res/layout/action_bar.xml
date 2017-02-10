@@ -45,7 +45,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginLeft="28dp"
         android:background="@drawable/alert_red_shape"
-        android:visibility="invisible"
+        android:visibility="visible"
         android:id="@+id/read_tip"
         android:layout_width="6dp"
         android:layout_height="6dp"/>
