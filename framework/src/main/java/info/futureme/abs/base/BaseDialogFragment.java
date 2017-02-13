@@ -2,12 +2,12 @@ package info.futureme.abs.base;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +20,7 @@ import com.trello.rxlifecycle.components.support.RxDialogFragment;
 import info.futureme.abs.FApplication;
 import info.futureme.abs.R;
 import info.futureme.abs.util.DLog;
+import info.futureme.abs.util.ViewServer;
 import rx.functions.Action1;
 
 
@@ -29,35 +30,44 @@ import rx.functions.Action1;
  * then observable could use compose to binding fragment lifecycle to itself.
  * and to be easy injected with base dialog fragment used for dialog styling in this
  * app, this dialog is customized using styling params from fragment argument bundle
- * @author Jeffrey
+ * @author JeffreyHe
  * @version 1.0
  * @updated 26-一月-2016 14:51:51
  */
-public class BaseDialogFragment extends RxDialogFragment{
+public class BaseDialogFragment extends RxDialogFragment {
 
-    public static final java.lang.String GRAVITY = "gravity";
-    public static final java.lang.String LAYOUT = "layout";
-    public static final java.lang.String LAYOUT_HEIGHT = "layout_height";
-    public static final java.lang.String LAYOUT_WIDTH = "layout_width";
+    public static final String GRAVITY = "gravity";
+    public static final String LAYOUT = "layout";
+    public static final String LAYOUT_HEIGHT = "layout_height";
+    public static final String LAYOUT_WIDTH = "layout_width";
     public static final String WINDOW_ANIM = "window_anim";
     public static final String DISMISSABLE = "dismiss_able";
     public static final String IGNORE_WATCH_REFERENCE = "ignore_watch_reference";
     //is normal dialogfragment, not loading!
-    public static final java.lang.String IS_NORMAL = "is_normal";
-    public static final java.lang.String NEED_TRANSPARENT = "need_transparent";
+    public static final String IS_NORMAL = "is_normal";
+    public static final String NEED_TRANSPARENT = "need_transparent";
     private Rect outRect;
-	/**
-	 * listener to retrieve data from this fragment 
-	 */
+    /**
+     * listener to retrieve data from this fragment
+     */
     protected DialogFragmentDismissListener mInterface;
-    private Runnable runnable;
+    private FragmentDecker fragmentDecker;
     private Dialog dialog;
 
-    public static BaseDialogFragment newInstance(Bundle bundle, Runnable setup){
+    public static BaseDialogFragment newInstance(Bundle bundle, FragmentDecker fragmentDecker) {
         BaseDialogFragment fragment = new BaseDialogFragment();
         fragment.setArguments(bundle);
-        fragment.setRunnable(setup);
+        fragment.setDecker(fragmentDecker);
         return fragment;
+    }
+
+    public static abstract class FragmentDecker {
+        //on resume setting up method
+        public abstract void setup(Dialog dialog);
+
+        protected void decorate(Dialog dialog) {
+            setup(dialog);
+        }
     }
 
     public BaseDialogFragment(){
@@ -104,7 +114,7 @@ public class BaseDialogFragment extends RxDialogFragment{
         }
         int layout = getArguments().getInt(LAYOUT, -1);
         int gravity = getArguments().getInt(GRAVITY, -1);
-        if(gravity != Gravity.BOTTOM && gravity != -1) {
+        if (gravity != -1) {
             getDialog().getWindow().setGravity(gravity);
         }
         if(layout != -1){
@@ -117,9 +127,11 @@ public class BaseDialogFragment extends RxDialogFragment{
         }
 
         //dialog customizing runnable
-        if(runnable != null)
-            runnable.run();
+        if (fragmentDecker != null)
+            fragmentDecker.decorate(getDialog());
         super.onResume();
+        if (FApplication.DEBUG)
+            ViewServer.get(getContext()).setFocusedWindow(getView());
     }
 
     @Override
@@ -134,6 +146,8 @@ public class BaseDialogFragment extends RxDialogFragment{
                         }
                     });
         }
+        if (FApplication.DEBUG)
+            ViewServer.get(getContext()).addWindow(getDialog());
         return view;
     }
 
@@ -162,16 +176,16 @@ public class BaseDialogFragment extends RxDialogFragment{
         return y<=height;
     }
 
-    public void setRunnable(Runnable runnable) {
-        this.runnable = runnable;
+    public void setDecker(FragmentDecker fragmentDecker) {
+        this.fragmentDecker = fragmentDecker;
     }
 
     /**
-	 * this listener is used to retrieve dialog fragment data to the observer.
-     * @author Jeffrey
+     * this listener is used to retrieve dialog fragment data to the observer.
+     * @author JeffreyHe
      * @version 1.0
-	 * @updated 26-一月-2016 14:51:51
-	 */
+     * @updated 26-一月-2016 14:51:51
+     */
     public static interface DialogFragmentDismissListener {
         //retrieve data from the dialog fragment
         void onRetrieveDialogFragmentData(Bundle b, int Tag);
@@ -192,6 +206,12 @@ public class BaseDialogFragment extends RxDialogFragment{
         super.onDetach();
     }
 
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        if (FApplication.DEBUG)
+            ViewServer.get(getContext()).removeWindow(getView());
+        super.onDismiss(dialog);
+    }
 
     public void onDestroy() {
         mInterface = null;
@@ -221,3 +241,4 @@ public class BaseDialogFragment extends RxDialogFragment{
         }catch (Exception e){}
     }
 }
+

@@ -17,6 +17,7 @@
 package info.futureme.abs.util;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
@@ -52,13 +53,13 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * make HierarchyViewer work on any device. You must be very careful
  * however to only enable HierarchyViewer when debugging your
  * application.</p>
- * <p>
+ *
  * <p>To use this view server, your application must require the INTERNET
  * permission.</p>
- * <p>
+ *
  * <p>The recommended way to use this API is to register activities when
  * they are created, and to unregister them when they get destroyed:</p>
- * <p>
+ *
  * <pre>
  * public class MyActivity extends Activity {
  *     public void onCreate(Bundle savedInstanceState) {
@@ -78,11 +79,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  *     }
  * }
  * </pre>
- * <p>
+ *
  * <p>
  * In a similar fashion, you can use this API with an InputMethodService:
  * </p>
- * <p>
+ *
  * <pre>
  * public class MyInputMethodService extends InputMethodService {
  *     public void onCreate() {
@@ -139,7 +140,7 @@ public class ViewServer implements Runnable {
     private ExecutorService mThreadPool;
 
     private final List<WindowListener> mListeners =
-            new CopyOnWriteArrayList<ViewServer.WindowListener>();
+            new CopyOnWriteArrayList<WindowListener>();
 
     private final HashMap<View, String> mWindows = new HashMap<View, String>();
     private final ReentrantReadWriteLock mWindowsLock = new ReentrantReadWriteLock();
@@ -153,7 +154,7 @@ public class ViewServer implements Runnable {
      * Returns a unique instance of the ViewServer. This method should only be
      * called from the main thread of your application. The server will have
      * the same lifetime as your process.
-     * <p>
+     *
      * If your application does not have the <code>android:debuggable</code>
      * flag set in its manifest, the server returned by this method will
      * be a dummy object that does not do anything. This allows you to use
@@ -193,6 +194,7 @@ public class ViewServer implements Runnable {
      * specified local port. The server is not started by default.
      *
      * @param port The port for the server to listen to.
+     *
      * @see #start()
      */
     private ViewServer(int port) {
@@ -204,6 +206,7 @@ public class ViewServer implements Runnable {
      *
      * @return True if the server was successfully created, or false if it already exists.
      * @throws IOException If the server cannot be created.
+     *
      * @see #stop()
      * @see #isRunning()
      * @see WindowManagerService#startViewServer(int)
@@ -224,7 +227,8 @@ public class ViewServer implements Runnable {
      * Stops the server.
      *
      * @return True if the server was stopped, false if an error occurred or if the
-     * server wasn't started.
+     *         server wasn't started.
+     *
      * @see #start()
      * @see #isRunning()
      * @see WindowManagerService#stopViewServer()
@@ -273,6 +277,7 @@ public class ViewServer implements Runnable {
      * Indicates whether the server is currently running.
      *
      * @return True if the server is running, false otherwise.
+     *
      * @see #start()
      * @see #stop()
      * @see WindowManagerService#isViewServerRunning()
@@ -285,6 +290,7 @@ public class ViewServer implements Runnable {
      * Invoke this method to register a new view hierarchy.
      *
      * @param activity The activity whose view hierarchy/window to register
+     *
      * @see #addWindow(View, String)
      * @see #removeWindow(Activity)
      */
@@ -299,10 +305,22 @@ public class ViewServer implements Runnable {
         addWindow(activity.getWindow().getDecorView(), name);
     }
 
+    public void addWindow(Dialog dialog) {
+        String name = dialog.toString();
+        if (TextUtils.isEmpty(name)) {
+            name = dialog.getClass().getCanonicalName() +
+                    "/0x" + System.identityHashCode(dialog);
+        } else {
+            name += "(" + dialog.getClass().getCanonicalName() + ")";
+        }
+        addWindow(dialog.getWindow().getDecorView(), name);
+    }
+
     /**
      * Invoke this method to unregister a view hierarchy.
      *
      * @param activity The activity whose view hierarchy/window to unregister
+     *
      * @see #addWindow(Activity)
      * @see #removeWindow(View)
      */
@@ -315,6 +333,7 @@ public class ViewServer implements Runnable {
      *
      * @param view A view that belongs to the view hierarchy/window to register
      * @name name The name of the view hierarchy/window to register
+     *
      * @see #removeWindow(View)
      */
     public void addWindow(View view, String name) {
@@ -331,6 +350,7 @@ public class ViewServer implements Runnable {
      * Invoke this method to unregister a view hierarchy.
      *
      * @param view A view that belongs to the view hierarchy/window to unregister
+     *
      * @see #addWindow(View, String)
      */
     public void removeWindow(View view) {
@@ -456,7 +476,6 @@ public class ViewServer implements Runnable {
 
     private interface WindowListener {
         void windowsChanged();
-
         void focusChanged();
     }
 
@@ -845,3 +864,4 @@ public class ViewServer implements Runnable {
         }
     }
 }
+

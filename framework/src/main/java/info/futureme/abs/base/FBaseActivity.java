@@ -1,6 +1,7 @@
 package info.futureme.abs.base;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -290,9 +291,9 @@ public abstract class FBaseActivity extends RxAppCompatActivity {
         }
         bundle.putBoolean(BaseDialogFragment.DISMISSABLE, false);
         //customized processbar
-        processBar = BaseDialogFragment.newInstance(bundle, new Runnable() {
+        processBar = BaseDialogFragment.newInstance(bundle, new BaseDialogFragment.FragmentDecker() {
             @Override
-            public void run() {
+            public void setup(Dialog dialog) {
                 try {
                     if (getWindow() != null && getWindow().isActive() && !FBaseActivity.this.isFinishing()) {
                         if (tip == null) {
@@ -331,6 +332,8 @@ public abstract class FBaseActivity extends RxAppCompatActivity {
                 } catch (Exception e) {
                 }
             }
+
+            ;
         });
 
         //actually show the dialog
