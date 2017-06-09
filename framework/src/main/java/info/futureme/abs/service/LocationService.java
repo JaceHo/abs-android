@@ -1,3 +1,10 @@
+/*
+ * Lenovo Group
+ * Copyright (c) 2015-2016 All Rights Reserved.
+ * Project Name: lmrp-android framework
+ * Create Time: 16-2-16 下午6:51
+ */
+
 package info.futureme.abs.service;
 
 import android.app.Service;
@@ -5,7 +12,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.util.Log;
 
 import com.baidu.location.BDLocation;
@@ -25,18 +34,21 @@ import info.futureme.abs.util.DLog;
 /**
  * more detail, visit <a href="$inet://http://lbsyun.baidu.com/"><font
  * color="#0000ff"><u>http://lbsyun.baidu.com/</u></font></a>
- * @author Jeffrey
+ * @author JeffreyHe
  * @version 1.0
  * @updated 26-一月-2016 15:56:07
  */
 public class LocationService extends Service implements BDLocationListener {
     private LocationClient mLocationClient;
     private LocationBinder locationBinder;
+    private static LocationService instance;
+    private static final long FAILURE_DELAYTIME = 5000;
+    private static Handler handler = new Handler(Looper.getMainLooper());
     private static LocationSuccessListener obj = new LocationSuccessListener() {
         @Override
         public void onReceiveLocation(BDLocation location) {
             //do nothing since history location already saved
-            DLog.w("receive obj:", getClass().getName());
+            DLog.w("loc receive obj:", getClass().getName());
         }
     };
     private static ConcurrentHashMap<Intent, LocationReference<LocationSuccessListener>> listenerLinkedHashMap = new ConcurrentHashMap<>();
@@ -50,7 +62,7 @@ public class LocationService extends Service implements BDLocationListener {
             if (listenerLinkedHashMap.get(intent).get() == null) {
                 listenerLinkedHashMap.remove(intent);
             }else {
-                DLog.i("init with listeners", "init" + listenerLinkedHashMap.size() + listenerLinkedHashMap.get(intent).get().getClass().getName());
+                DLog.i("loc init with listeners", "init" + listenerLinkedHashMap.size() + listenerLinkedHashMap.get(intent).get().getClass().getName());
             }
         }
         //listenerLinkedHashMap.clear();
@@ -61,7 +73,7 @@ public class LocationService extends Service implements BDLocationListener {
         if(locations.size() > 0) {
             Long max = Collections.max(locations.keySet());
             BDLocation bdLocation = locations.get(max);
-            DLog.i("real no time", bdLocation.getCity());
+            DLog.i("loc real no time", bdLocation.getCity());
             return bdLocation;
         }
         return new BDLocation();
@@ -70,9 +82,9 @@ public class LocationService extends Service implements BDLocationListener {
     public static BDLocation getRealTimeLatLng(){
         if(locations.size() > 0) {
             Long max = Collections.max(locations.keySet());
-            if (System.currentTimeMillis() - max < 10000) {
+            if (System.currentTimeMillis() - max < 2*FAILURE_DELAYTIME) {
                 BDLocation bdLocation = locations.get(max);
-                DLog.i("real time", bdLocation.getCity());
+                DLog.i("loc real time", bdLocation.getCity());
                 return bdLocation;
             }
         }
@@ -84,10 +96,10 @@ public class LocationService extends Service implements BDLocationListener {
             if (listenerLinkedHashMap.get(i).get() == null)
                 listenerLinkedHashMap.remove(i);
             else {
-                DLog.i("destroy listeners", "init" + listenerLinkedHashMap.size() + listenerLinkedHashMap.get(i).get().getClass().getName());
+                DLog.i("loc destroy listeners", "init" + listenerLinkedHashMap.size() + listenerLinkedHashMap.get(i).get().getClass().getName());
             }
         }
-        DLog.i("unbind remove", (listenerLinkedHashMap.get(intent) == null || listenerLinkedHashMap.get(intent).get() == null)? "null":listenerLinkedHashMap.get(intent).getClass().getName());
+        DLog.i("loc unbind remove", (listenerLinkedHashMap.get(intent) == null || listenerLinkedHashMap.get(intent).get() == null)? "null":listenerLinkedHashMap.get(intent).getClass().getName());
         listenerLinkedHashMap.remove(intent);
         try {
             return super.onUnbind(intent);
@@ -105,7 +117,7 @@ public class LocationService extends Service implements BDLocationListener {
             locations.put(System.currentTimeMillis(), location);
     }
 
-    public static class LocationConnection implements ServiceConnection {
+    public static class LocationConnection implements ServiceConnection, Runnable {
         private final Intent intent;
         private LocationReference<LocationSuccessListener> listener;
 
@@ -123,10 +135,11 @@ public class LocationService extends Service implements BDLocationListener {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            DLog.w("connected:", name + "location service bind success");
+            DLog.w("loc connected:", name + "location service bind success");
             //用来访问service中的数据
             if(listener == null)
                 listener = new LocationReference<>(obj);
+            handler.postDelayed(this, FAILURE_DELAYTIME);// 设置超过5秒还没有定位到就停止定位
             synchronized (LocationService.class){
                     listenerLinkedHashMap.put(intent, listener);
             }
@@ -135,11 +148,32 @@ public class LocationService extends Service implements BDLocationListener {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             synchronized (LocationService.class){
-                DLog.i("remove", (listenerLinkedHashMap.get(intent) == null || listenerLinkedHashMap.get(intent).get() == null) ? "null" : listenerLinkedHashMap.get(intent).get().getClass().getName());
+                DLog.i("loc remove", (listenerLinkedHashMap.get(intent) == null || listenerLinkedHashMap.get(intent).get() == null) ? "null" : listenerLinkedHashMap.get(intent).get().getClass().getName());
                 listenerLinkedHashMap.remove(intent);
-                DLog.i("listeners", listenerLinkedHashMap.size() + "");
+                DLog.i("loc listeners", listenerLinkedHashMap.size() + "");
             }
-            DLog.w("connection:", "location bind fail");
+            DLog.w("loc connection:", "location bind fail");
+        }
+
+        @Override
+        public void run() {
+            DLog.w("loc timeout:", "getRealTimeLatLng");
+            if(getRealTimeLatLng() == null){
+                if(instance != null) {
+                    instance.onDestroy(null);
+                    instance.onCreate();
+                }
+            }else{
+                handleLocationReceive(getRealTimeLatLng());
+            }
+        }
+    }
+
+    private void onDestroy(Object tmp) {
+        super.onDestroy();
+        if (mLocationClient != null) {
+            mLocationClient.stop();
+            mLocationClient = null;
         }
     }
 
@@ -147,30 +181,31 @@ public class LocationService extends Service implements BDLocationListener {
         return new LocationConnection(listener, intent);
     }
 
-    private void handleLocationReceive(BDLocation bdLocation){
+
+    private static void handleLocationReceive(BDLocation bdLocation){
         Set<Intent> intents = new HashSet<>();
         for (Intent in : listenerLinkedHashMap.keySet()) {
             LocationReference<LocationSuccessListener> listener = listenerLinkedHashMap.get(in);
             if (listener.get() != null && listener.get() != obj) {
-                DLog.w("call:", listener.get().getClass().getName());
+                DLog.w("loc call:", listener.get().getClass().getName());
                 listener.get().onReceiveLocation(bdLocation);
                 intents.add(in);
             }
         }
         for(Intent i : intents){
-            DLog.i("bind remove call", (listenerLinkedHashMap.get(i) == null || listenerLinkedHashMap.get(i).get() == null)? "null":listenerLinkedHashMap.get(i).getClass().getName());
+            DLog.i("loc bind remove call", (listenerLinkedHashMap.get(i) == null || listenerLinkedHashMap.get(i).get() == null)? "null":listenerLinkedHashMap.get(i).getClass().getName());
             listenerLinkedHashMap.remove(i);
         }
     }
 
     @Override
     public boolean bindService(Intent intent, ServiceConnection connection, int flags){
-        DLog.i("bind", intent + "");
+        DLog.i("loc bind", intent + "");
         if(locations.size() > 0) {
             Long max = Collections.max(locations.keySet());
-            if (System.currentTimeMillis() - max < 8000) {
+            if (System.currentTimeMillis() - max < 2000) {
                 BDLocation bdLocation = locations.get(max);
-                DLog.i("onreceive local", bdLocation.getCity());
+                DLog.i("loc onreceive local", bdLocation.getCity());
                 handleLocationReceive(bdLocation);
                 return false;
             }
@@ -193,10 +228,16 @@ public class LocationService extends Service implements BDLocationListener {
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         locationBinder = new LocationBinder();
         mLocationClient = new LocationClient(getApplicationContext());
         mLocationClient.registerLocationListener(this);
         initLocation();
+    }
+
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        instance = this;
+        return super.onStartCommand(intent, flags, startId);
     }
 
     private void initLocation() {
@@ -205,7 +246,7 @@ public class LocationService extends Service implements BDLocationListener {
             mOption = new LocationClientOption();
             mOption.setLocationMode(LocationClientOption.LocationMode.Battery_Saving);//可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
             mOption.setCoorType("bd09ll");//可选，默认gcj02，设置返回的定位结果坐标系，如果配合百度地图使用，建议设置为bd09ll;
-            mOption.setScanSpan(0);//可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+            mOption.setScanSpan(2000);//可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
             mOption.setIsNeedAddress(true);//可选，设置是否需要地址信息，默认不需要
             mOption.setNeedDeviceDirect(false);//可选，设置是否需要设备方向结果
             mOption.setLocationNotify(false);//可选，默认false，设置是否当gps有效时按照1S1次频率输出GPS结果
@@ -213,8 +254,8 @@ public class LocationService extends Service implements BDLocationListener {
             mOption.setIsNeedLocationDescribe(true);//可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
             mOption.setIsNeedLocationPoiList(true);//可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
             mOption.SetIgnoreCacheException(false);//可选，默认false，设置是否收集CRASH信息，默认收集
-            mOption.setTimeOut(3000);
-            mOption.setOpenGps(false);//可选，默认false,设置是否使用gps
+            mOption.setTimeOut(2000);
+            mOption.setOpenGps(true);//可选，默认false,设置是否使用gps
             mOption.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤gps仿真结果，默认需要
         }
 
@@ -224,12 +265,12 @@ public class LocationService extends Service implements BDLocationListener {
 
     @Override
     public void onReceiveLocation(BDLocation bdLocation) {
-        DLog.w("receive", bdLocation.toString());
+        DLog.w("loc receive", bdLocation.toString());
         for(LocationReference<LocationSuccessListener> listener : listenerLinkedHashMap.values()){
-            DLog.i("listeners", listenerLinkedHashMap.size() + ((listener == null || listener.get() == null )? "null" : listener.get().getClass().getName()));
+            DLog.i("loc listeners", listenerLinkedHashMap.size() + ((listener == null || listener.get() == null )? "null" : listener.get().getClass().getName()));
         }
         if(listenerLinkedHashMap.size() == 0){
-            DLog.i("nothing", "shutdown");
+            DLog.i("loc nothing", "shutdown");
             onDestroy();
         }
         if(locations.size() > HISTORY_LOCATIONS){
@@ -239,26 +280,26 @@ public class LocationService extends Service implements BDLocationListener {
         if ((bdLocation.getLocType() == BDLocation.TypeGpsLocation || bdLocation.getLocType() == BDLocation.TypeNetWorkLocation || bdLocation.getLocType() == BDLocation.TypeOffLineLocation)) { // 离线定位结果
             if (bdLocation.getLongitude() != 0 && bdLocation.getLatitude() != 0)
                 locations.put(System.currentTimeMillis(), bdLocation);
-            DLog.i("onreceive remote", bdLocation.getCity());
+            DLog.i("loc onreceive remote", bdLocation.getCity());
             handleLocationReceive(bdLocation);
         }else {
             handleLocationReceive(bdLocation);
             if (bdLocation.getLocType() == BDLocation.TypeServerError) {
-                DLog.i("loc:", "服务端网络定位失败");
+                DLog.i("loc :", "服务端网络定位失败");
             } else if (bdLocation.getLocType() == BDLocation.TypeNetWorkException) {
-                DLog.i("loc:", "网络不同导致定位失败，请检查网络是否通畅");
+                DLog.i("loc :", "网络不同导致定位失败，请检查网络是否通畅");
             } else if (bdLocation.getLocType() == BDLocation.TypeCriteriaException) {
-                DLog.i("loc:", "无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
+                DLog.i("loc :", "无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
             } else {
-                DLog.i("loc:", "无法获取有效定位依据导致定位失败，未知错误");
+                DLog.i("loc :", "无法获取有效定位依据导致定位失败，未知错误");
             }
         }
     }
 
 	/**
 	 * location service using baidu location
-     * @author Jeffrey
-     * @version 1.0
+	 * @author JeffreyHe
+	 * @version 1.0
 	 * @updated 26-一月-2016 15:56:07
 	 */
     public interface LocationSuccessListener {
@@ -272,8 +313,9 @@ public class LocationService extends Service implements BDLocationListener {
             mLocationClient.stop();
             mLocationClient = null;
         }
-        DLog.i("destroy", "listeners");
+        DLog.i("loc destroy", "listeners");
         handleLocationReceive(null);
+        instance = null;
     }
 
 

@@ -1,3 +1,10 @@
+/*
+ * Lenovo Group
+ * Copyright (c) 2015-2016 All Rights Reserved.
+ * Project Name: lmrp-android framework
+ * Create Time: 16-2-16 下午6:52
+ */
+
 package info.futureme.abs.view;
 
 import android.annotation.TargetApi;
@@ -163,11 +170,15 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
             visibleItemCount = layoutManager.getChildCount();
             View firstVisibleChild = recyclerView.getChildAt(0);
             firstVisibleItemPosition = recyclerView.getChildLayoutPosition(firstVisibleChild);
-            if (totalPage > currentPage &&
+            int lastCount = recyclerView.getTag() == null ? 0 : (int) recyclerView.getTag();
+            if (dy > 0 &&
+                    lastCount < totalItemCount &&
+                    totalPage > currentPage &&
                     !loadMore &&
                     (firstVisibleItemPosition + visibleItemCount + LOAD_MORE_ITEM_SLOP) >= totalItemCount) {
 
                 loadMore = true;
+                recyclerView.setTag(totalItemCount);
                 if (moreListener != null) {
                     moreListener.onMore(++currentPage);
                 }
@@ -217,8 +228,10 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
 
             private void update() {
                 //success!
-                if(recyclerView != null)
+                if(recyclerView != null) {
                     recyclerView.refreshComplete();
+                    recyclerView.setTag(null);
+                }
                 int itemCount = recyclerView.getLayoutManager().getItemCount();
                 itemCount -= 2;//因为有header 还有 footer 啊
                 if (itemCount > 0) {
@@ -248,7 +261,8 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
     public void onRetryButtonClick() {
         setDisplayState(STATE_CONTENT);
         if (refreshListener != null) {
-            refreshListener.onRefresh(false);
+            recyclerView.setTag(0);
+            refreshListener.onRefresh(true);
         }
     }
 
@@ -268,10 +282,11 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
                     updateStateResourceCallback.onUpdateResource(STATE_ERROR, errorImage, errorMessageTV);
                 }
                 setDisplayState(STATE_ERROR);
+                return;
             } else {
-                setDisplayState(STATE_CONTENT);
                 Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            setDisplayState(STATE_CONTENT);
         }
     }
 
@@ -325,6 +340,7 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
         setDisplayState(STATE_LOADING);
         currentPage = 1;
         if(refreshListener != null){
+            recyclerView.setTag(0);
             refreshListener.onRefresh(true);
         }
     }
@@ -336,6 +352,7 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
             setDisplayState(STATE_LOADING);
             currentPage = 1;
             if(refreshListener != null){
+                recyclerView.setTag(0);
                 refreshListener.onRefresh(true);
             }
         }
@@ -347,7 +364,8 @@ public class ContentLoaderView extends FrameLayout implements View.OnClickListen
             @Override
             public void run() {
                 if(refreshListener != null)
-                    refreshListener.onRefresh(true);
+                    recyclerView.setTag(0);
+                refreshListener.onRefresh(true);
             }
         }, 500);
     }
